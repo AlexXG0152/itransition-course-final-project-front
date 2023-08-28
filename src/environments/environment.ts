@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  MESSAGES_API: 'http://localhost:3000/api/v1',
+  API: 'http://localhost:3000/api/v1',
 };
 
 /*

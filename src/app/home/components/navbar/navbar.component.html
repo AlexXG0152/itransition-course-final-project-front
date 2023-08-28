@@ -1,0 +1,50 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">RecommendApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown" *ngFor="let category of categories | keyvalue; let i = index">
+
+            <ng-container *ngIf="category.value.subcategories.length; else noSubcategories">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {{category.value.name}}
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let subcategories of category.value.subcategories">
+                  <a class="dropdown-item" href="#">{{subcategories.name}}</a>
+                </li>
+              </ul>
+            </ng-container>
+
+            <ng-template #noSubcategories>
+              <a class="nav-link" href="#" role="button">
+                {{category.value.name}}
+              </a>
+            </ng-template>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button">Latest Rewiews</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button">Top Rewiews</a>
+          </li>
+
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LastReviewsComponent } from './components/last-reviews/last-reviews.component';
 import { TopReviewsComponent } from './components/top-reviews/top-reviews.component';
 import { TagsCloudComponent } from './components/tags-cloud/tags-cloud.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { TagsCloudComponent } from './components/tags-cloud/tags-cloud.component
     LastReviewsComponent,
     TopReviewsComponent,
     TagsCloudComponent,
+    HomepageComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, BrowserModule],
+  imports: [CommonModule, HomeRoutingModule],
   exports: [HeaderComponent],
 })
 export class HomeModule {}

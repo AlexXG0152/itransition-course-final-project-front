@@ -32,13 +32,14 @@ export class UserPageComponent implements OnInit {
       this.addFields();
       this.user = JSON.parse(
         JSON.stringify(this.user)
-          .replaceAll('productTitle', 'Product Title')
-          .replaceAll('createdAt', 'Create')
-          .replaceAll('commentTitle', 'Comment Title')
-          .replaceAll('commentText', 'Comment Text')
-          .replaceAll('reviewId', 'Review ID')
-          .replaceAll('productId', 'Product ID')
-          .replaceAll('reviewRating', 'Review Rating')
+          .replaceAll('productTitle', 'product title')
+          .replaceAll('createdAt', 'create')
+          .replaceAll('commentTitle', 'comment title')
+          .replaceAll('commentText', 'comment text')
+          .replaceAll('category', 'product category')
+          .replaceAll('reviewId', 'review id')
+          .replaceAll('productId', 'product id')
+          .replaceAll('reviewRating', 'review rating')
       );
       console.log(this.user);
 
@@ -55,22 +56,22 @@ export class UserPageComponent implements OnInit {
     reviews: [
       'id',
       'title',
-      'category',
-      'Review Rating',
+      'product category',
+      'review rating',
       'like',
-      'Product Title',
-      'Create',
+      'product title',
+      'create',
     ],
-    ratings: ['id', 'Product ID', 'Product Title', 'rate', 'Create'],
+    ratings: ['id', 'product id', 'product title', 'rate', 'create'],
     comments: [
       'id',
-      'Review ID',
-      'Comment Title',
-      'Comment Text',
-      'Product Title',
-      'Create',
+      'Review id',
+      'comment title',
+      'comment text',
+      'product title',
+      'create',
     ],
-    likes: ['id', 'Review ID', 'Product Title', 'Create'],
+    likes: ['id', 'review id', 'product title', 'create'],
   };
 
   addFields(): void {

@@ -10,7 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [UserPageComponent, UserInfoComponent, UserInfoTableComponent],
@@ -22,7 +25,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSortModule,
     MatPaginatorModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
   ],
 })
 export class UserModule {}

@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  word-wrap: break-word;
 }
 
 .mat-mdc-form-field {
@@ -11,10 +12,39 @@ td,
 th,
 mat-cell,
 mat-header-cell {
-  width: 25%;
+  // width: 25%;
+  word-wrap: break-word;
 }
 
 .cdk-mouse-focused {
   color: black;
   font-weight: bold;
+}
+
+.mat-column-id {
+  flex: 0 0 7%;
+}
+
+.mat-column-actions {
+  flex: 0 0 10%;
+}
+
+.mat-column-like {
+  flex: 0 0 10%;
+}
+
+.mat-column-title {
+  flex: 0 0 20%;
+}
+
+.mat-column-category {
+  flex: 0 0 15%;
+}
+
+.mat-column-review-rating {
+  flex: 0 0 7%;
+}
+
+.mat-column-product-title {
+  flex: 0 0 20%;
 }

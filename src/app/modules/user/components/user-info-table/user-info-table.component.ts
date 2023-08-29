@@ -25,7 +25,7 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.inputData.rows);
-    this.displayedColumns = this.inputData.columns;
+    this.displayedColumns = [...this.inputData.columns, 'actions'];
   }
 
   ngAfterViewInit() {
@@ -40,5 +40,10 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onDelete(id: any) {
+    console.log(id);
+
   }
 }

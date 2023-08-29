@@ -40,7 +40,7 @@ export class TagsCloudComponent {
   ];
 
   handleClick(tag: string) {
-    // Добавить здесь логику обработки действия по клику на тег
+    // Добавить логику обработки действия по клику на тег
     console.log('Clicked tag:', tag);
   }
 }

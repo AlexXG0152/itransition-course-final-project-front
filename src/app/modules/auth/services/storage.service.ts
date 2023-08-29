@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import jwt_decode from 'jwt-decode';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +36,11 @@ export class StorageService {
   }
 
   public isLoggedIn(): boolean {
-    const user = window.localStorage.getItem(this.USER_KEY);
-    if (user) {
-      return true;
+    const token = window.localStorage.getItem('a_token');
+    if (token) {
+      const decoded: IUser = jwt_decode(token);
+
+      return Number(decoded.iat.toString().slice(0, 10)) < Date.now();
     }
     return false;
   }

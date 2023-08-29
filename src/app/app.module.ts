@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtInterceptor } from './modules/auth/interceptors/jwt.interceptor';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,9 +17,10 @@ import { JwtInterceptor } from './modules/auth/interceptors/jwt.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HomeModule,
     HttpClientModule,
+    HomeModule,
     AuthModule,
+    UserModule
   ],
   providers: [
     {

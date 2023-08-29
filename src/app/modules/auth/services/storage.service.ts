@@ -40,7 +40,7 @@ export class StorageService {
     if (token) {
       const decoded: IUser = jwt_decode(token);
 
-      return Number(decoded.iat.toString().slice(0, 10)) < Date.now();
+      return Number(decoded.iat!.toString().slice(0, 10)) < Date.now();
     }
     return false;
   }

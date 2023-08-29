@@ -1,8 +1,22 @@
-<app-user-info></app-user-info>
-<!-- <router-outlet></router-outlet> -->
-<nav class="nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Comments</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="#">Likes</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="#">Ratings</a>
-  <a class="flex-sm-fill text-sm-center nav-link" href="#">Reviews</a>
-</nav>
+<app-user-info [user]="user"></app-user-info>
+
+<div class="spinner-grow" role="status" *ngIf="!ready; else table">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<ng-template #table>
+  <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
+    <mat-tab label="Reviews">
+      <div><app-user-info-table [inputData]="data"></app-user-info-table></div>
+    </mat-tab>
+    <mat-tab label="Ratings">
+      <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+    </mat-tab>
+    <mat-tab label="Comments">
+      <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+    </mat-tab>
+    <mat-tab label="Likes">
+      <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+    </mat-tab>
+  </mat-tab-group>
+</ng-template>

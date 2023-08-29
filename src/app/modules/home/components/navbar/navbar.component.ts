@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationService } from '../../services/navigation.service';
+import { StorageService } from 'src/app/modules/auth/services/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,10 @@ import { NavigationService } from '../../services/navigation.service';
 export class NavbarComponent implements OnInit {
   constructor(
     private navigationService: NavigationService,
-    // private storageService: StorageService
+    private storageService: StorageService
   ) {}
 
-  // isLoggedIn = false;
+  isLoggedIn = false;
 
   categories: any[] = [];
 
@@ -22,7 +23,7 @@ export class NavbarComponent implements OnInit {
       .subscribe((i) => this.categories.push(...i));
     console.log(this.categories);
 
-    // this.isLoggedIn = this.storageService.isLoggedIn();
+    this.isLoggedIn = this.storageService.isLoggedIn();
     // if (this.isLoggedIn) {
     //   const user = this.storageService.getUser();
     //   this.roles = user.roles;

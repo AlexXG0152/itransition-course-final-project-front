@@ -12,7 +12,9 @@ export class NavigationService {
   API = environment.API;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
   };
 
   getAllNavigationPoints() {

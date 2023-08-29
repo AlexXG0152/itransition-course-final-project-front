@@ -26,6 +26,7 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value).subscribe((data: IAuthRes) => {
       this.storageService.saveUser(data.name);
+      this.storageService.saveToken(data.token);
       this.router.navigate(['/home']);
     });
   }

@@ -20,6 +20,11 @@ export class StorageService {
     window.localStorage.setItem(this.USER_KEY, user);
   }
 
+  public saveToken(token: string): void {
+    window.localStorage.removeItem(token);
+    window.localStorage.setItem('a_token', token);
+  }
+
   public getUser(): any {
     const user = window.localStorage.getItem(this.USER_KEY);
     if (user) {
@@ -39,6 +44,7 @@ export class StorageService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
+
   loginStatus(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }

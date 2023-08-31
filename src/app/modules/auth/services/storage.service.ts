@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '../../user/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,7 @@ export class StorageService {
     if (token) {
       const decoded: IUser = jwt_decode(token);
 
-      return Number(decoded.iat.toString().slice(0, 10)) < Date.now();
+      return Number(decoded.iat!.toString().slice(0, 10)) < Date.now();
     }
     return false;
   }

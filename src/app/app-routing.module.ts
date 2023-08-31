@@ -16,6 +16,13 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
+    path: 'user',
+    // path: 'user/:id/',
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
+    data: { preload: true },
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

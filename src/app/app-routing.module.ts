@@ -17,15 +17,20 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    // path: 'user/:id/',
     loadChildren: () =>
       import('./modules/user/user.module').then((m) => m.UserModule),
     data: { preload: true },
   },
   {
+    path: 'review',
+    loadChildren: () =>
+      import('./modules/review/review.module').then((m) => m.ReviewModule),
+    data: { preload: true },
+  },
+  {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',

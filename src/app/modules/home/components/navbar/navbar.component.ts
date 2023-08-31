@@ -19,12 +19,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   loginStatus$?: Subscription;
 
-  categories: any[] = [];
+  categories: any[] = this.navigationService.categories;
 
   ngOnInit() {
-    this.navigationService
-      .getAllNavigationPoints()
-      .subscribe((i) => this.categories.push(...i));
+    this.navigationService.getAllNavigationPoints();
 
     this.loginStatus$ = this.storageService.loginStatus().subscribe(() => {
       this.isLoggedIn = this.storageService.isLoggedIn();

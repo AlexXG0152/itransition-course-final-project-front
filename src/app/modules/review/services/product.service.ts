@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class ProductService {
   constructor(private http: HttpClient) {}
 
   API = environment.API;
@@ -14,7 +14,10 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  getUserInfo() {
-    return this.http.get<any>(`${this.API}/users/0/me`);
+  getAllCategories() {
+    return this.http.get<any[]>(
+      `${this.API}/products/subcategory/all`,
+      this.httpOptions
+    );
   }
 }

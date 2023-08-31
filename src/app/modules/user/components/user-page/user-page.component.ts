@@ -27,7 +27,11 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe((response) => {
+    this.getInputData();
+  }
+
+  getInputData() {
+    this.userService.getUserInfo().subscribe((response) => {
       this.user = response;
       this.addFields();
       this.user = JSON.parse(
@@ -47,7 +51,6 @@ export class UserPageComponent implements OnInit {
         rows: this.user.reviews,
         columns: this.columns.reviews,
       };
-
       this.ready = true;
     });
   }

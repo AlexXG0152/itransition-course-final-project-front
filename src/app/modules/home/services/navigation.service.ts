@@ -17,10 +17,12 @@ export class NavigationService {
     }),
   };
 
+  categories: any[] = [];
+
   getAllNavigationPoints() {
     return this.http.get<ICategory[]>(
       `${this.API}/products/category/all`,
       this.httpOptions
-    );
+    ).subscribe((i) => this.categories.push(...i));;
   }
 }

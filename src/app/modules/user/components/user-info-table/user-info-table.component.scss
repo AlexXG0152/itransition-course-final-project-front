@@ -48,3 +48,8 @@ mat-header-cell {
 .mat-column-product-title {
   flex: 0 0 20%;
 }
+
+.row-hover:hover {
+  background-color: rgba(0, 0, 0, .05);
+  cursor: pointer;
+}

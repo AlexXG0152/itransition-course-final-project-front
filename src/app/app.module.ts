@@ -10,6 +10,7 @@ import { HomeModule } from './modules/home/home.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtInterceptor } from './modules/auth/interceptors/jwt.interceptor';
 import { UserModule } from './modules/user/user.module';
+import { ReviewModule } from './modules/review/review.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { UserModule } from './modules/user/user.module';
     HttpClientModule,
     HomeModule,
     AuthModule,
-    UserModule
+    UserModule,
+    ReviewModule
   ],
   providers: [
     {

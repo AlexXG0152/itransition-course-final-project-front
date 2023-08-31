@@ -1,0 +1,78 @@
+<div class="container m-3">
+  <h1>Create Review</h1>
+
+  <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Review title</label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of categories | keyvalue; let i = index" [value]="category.value.id"
+            (click)="onCategorySelect()">{{category.value.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <ng-container *ngIf="subCategories?.length">
+      <div class="mb-3">
+        <label for="subcategoryId" class="form-label">Subcategory Id</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Subcategory</mat-label>
+          <mat-select formControlName="subcategoryId">
+            <mat-option *ngFor="let subCategory of subCategories | keyvalue; let i = index"
+              [value]="subCategory.value.id">{{
+              subCategory.value.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+    <div class="mb-2">
+      <label for="productTitle" class="form-label">Product Title</label>
+      <input type="text" class="form-control" id="productTitle" formControlName="productTitle">
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Product Title</mat-label>
+        <mat-select formControlName="productTitle" (selectionChange)="onProductTitleChange()">
+          <mat-option *ngFor="let product of products" [value]="product.title">{{ product.title }}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    </div>
+
+    <div class="mb-2" *ngIf="showProductId">
+      <label for="productId" class="form-label">Product Id</label>
+      <input type="number" class="form-control" id="productId" formControlName="productId">
+    </div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea class="form-control" id="content" formControlName="content"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="tags" class="form-label">Tags</label>
+      <input type="text" class="form-control" id="tags" formControlName="tags">
+    </div>
+
+    <div class="mb-3">
+      <label for="reviewRating" class="form-label">Review Rating</label>
+      <input type="number" class="form-control" id="reviewRating" formControlName="reviewRating" min="1" max="10">
+    </div>
+
+    <div class="mb-3">
+      <label for="images" class="form-label">Images</label>
+      <div class="dropzone" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+        <p>Drag and drop images here</p>
+      </div>
+      <div class="image-preview" *ngFor="let image of droppedImages">
+        <img [src]="image">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Review</button>
+  </form>
+</div>

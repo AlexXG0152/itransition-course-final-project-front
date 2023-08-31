@@ -1,13 +1,16 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ReviewService } from 'src/app/modules/review/services/review.service';
 
 @Component({
   selector: 'app-user-info-table',
@@ -15,7 +18,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./user-info-table.component.scss'],
 })
 export class UserInfoTableComponent implements AfterViewInit, OnInit {
+  constructor(private reviewService: ReviewService) {}
+
   @Input() inputData?: any;
+  @Output() getInputData = new EventEmitter<any>();
 
   displayedColumns!: string[];
   dataSource!: MatTableDataSource<any>;
@@ -44,6 +50,8 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
 
   onDelete(id: any) {
     console.log(id);
-
+    this.reviewService
+      .deleteReview(id)
+      .subscribe(() => this.getInputData.emit());
   }
 }

@@ -8,7 +8,7 @@
         <h5 class="card-title">{{user?.name}}</h5>
         <p class="card-text">Email: {{user?.email}}</p>
         <p class="card-text">Roles: {{user?.roles[0].value }}, {{user?.roles[1].value }}</p>
-        <p class="card-text">Created: {{user?.Create | date:'dd/MM/yyyy, hh:mm'}}</p>
+        <p class="card-text">Created: {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
         <p class="card-text">Updated: {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
       </div>
     </div>

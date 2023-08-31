@@ -7,16 +7,16 @@
 <ng-template #table>
   <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
     <mat-tab label="Reviews">
-      <div><app-user-info-table [inputData]="data"></app-user-info-table></div>
+      <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
     </mat-tab>
     <mat-tab label="Ratings">
-      <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+      <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
     </mat-tab>
     <mat-tab label="Comments">
-      <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+      <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
     </mat-tab>
     <mat-tab label="Likes">
-      <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"></app-user-info-table></div>
+      <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
     </mat-tab>
   </mat-tab-group>
 </ng-template>

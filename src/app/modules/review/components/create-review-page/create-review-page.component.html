@@ -8,7 +8,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="category" class="form-label">Category</label>
+      <label for="category" class="form-label me-3">Category</label>
       <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
@@ -20,7 +20,7 @@
 
     <ng-container *ngIf="subCategories?.length">
       <div class="mb-3">
-        <label for="subcategoryId" class="form-label">Subcategory Id</label>
+        <label for="subcategoryId" class="form-label me-3">Subcategory Id</label>
         <mat-form-field appearance="fill">
           <mat-label>Subcategory</mat-label>
           <mat-select formControlName="subcategoryId">
@@ -64,12 +64,30 @@
     </div>
 
     <div class="mb-3">
-      <label for="images" class="form-label">Images</label>
-      <div class="dropzone" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
-        <p>Drag and drop images here</p>
+      <label for="images" class="form-label">Images (up to 10 *.jpeg or *.jpg or *.png images each size up to 5mb)</label>
+      <div class="dnd-container" appDnd (fileDropped)="onFileDropped($event)">
+        <input type="file" #fileDropRef id="fileDropRef" multiple
+          (change)="fileBrowseHandler($any($event).target.files)" />
+        <img src="assets/ic-upload-file.svg" alt="">
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <label for="fileDropRef">Browse for file</label>
       </div>
-      <div class="image-preview" *ngFor="let image of droppedImages">
-        <img [src]="image">
+
+      <div class="files-list">
+        <div class="single-file" *ngFor="let file of files; let i = index">
+          <img src="assets/ic-file.svg" width="45px" alt="file">
+          <div class="info">
+            <h4 class="name">
+              {{ file?.name }}
+            </h4>
+            <p class="size">
+              {{ formatBytes(file?.size) }}
+            </p>
+            <app-progress [progress]="file?.progress"></app-progress>
+          </div>
+          <img src="assets/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+        </div>
       </div>
     </div>
 

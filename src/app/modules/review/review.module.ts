@@ -6,9 +6,11 @@ import { ReviewPageComponent } from './components/review-page/review-page.compon
 import { CreateReviewPageComponent } from './components/create-review-page/create-review-page.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DndDirective } from './directives/dnd.directive';
+import { ProgressComponent } from './components/progress/progress.component';
 
 @NgModule({
-  declarations: [ReviewPageComponent, CreateReviewPageComponent],
+  declarations: [ReviewPageComponent, CreateReviewPageComponent, DndDirective, ProgressComponent],
   imports: [
     CommonModule,
     ReviewRoutingModule,

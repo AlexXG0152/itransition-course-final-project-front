@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">RecommendApp</a>
+      <a class="navbar-brand" href="#">Suggify</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
         aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,14 +32,18 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">Latest Rewiews</a>
+            <a class="nav-link" href="#" role="button">Latest Reviews</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">Top Rewiews</a>
+            <a class="nav-link" href="#" role="button">Top Reviews</a>
           </li>
 
         </ul>
+
+        <button mat-raised-button class="me-2" routerLink="review/create" matTooltip="CREATE REVIEW"
+            matTooltipPosition="below">NEW</button>
+
         <div *ngIf="!isLoggedIn; else loggedIn">
           <button mat-raised-button class="me-2" routerLink="auth/login" matTooltip="LOGIN"
             matTooltipPosition="below">LOGIN</button>

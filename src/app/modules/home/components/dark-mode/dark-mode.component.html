@@ -1,1 +1,4 @@
-<input type="checkbox" [checked]="darkMode$ | async" (change)="onToggle()" />
+<input type="checkbox" [checked]="darkMode$ | async" (change)="onToggle()" id="toggle-darkmode" />
+<label for="toggle-darkmode" matTooltip="{{(darkMode$ | async) ? 'Change to light mode' : 'Change to dark mode'}}"
+  matTooltipPosition="below"><span>Toggle
+    Light/Dark Mode</span></label>

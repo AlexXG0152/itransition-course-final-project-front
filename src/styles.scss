@@ -1,5 +1,7 @@
 @use "@angular/material" as mat;
 
+@import 'bootstrap/scss/bootstrap';
+
 @import "node_modules/@angular/material/theming";
 
 @include mat.core();
@@ -52,9 +54,19 @@ body {
 }
 
 body.dark-mode {
-  @include mat.all-component-colors($angular-dark-theme);
-  background-color: #2d3436;
+  background-color: #202124;
   color: #dfe6e9;
+
+  @include mat.all-component-colors($angular-dark-theme);
+  @include color-mode(dark) {
+    .card {
+      --bs-body-bg: #202124;
+    }
+    .tag {
+      background-color: #202124;
+      color: #dfe6e9;
+    }
+  }
 }
 
 body.light-mode {
@@ -63,5 +75,5 @@ body.light-mode {
 }
 
 body:not(.dark-mode-preloading) {
-  transition: all 0.3s linear;
+  transition: all 0.1s linear;
 }

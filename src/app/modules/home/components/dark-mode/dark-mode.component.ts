@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dark-mode.component.scss'],
 })
 export class DarkModeComponent {
-  darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
-
   constructor(private darkModeService: DarkModeService) {}
+
+  darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
 
   onToggle(): void {
     this.darkModeService.toggle();

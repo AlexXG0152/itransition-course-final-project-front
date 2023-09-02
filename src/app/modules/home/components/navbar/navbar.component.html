@@ -41,13 +41,17 @@
 
         </ul>
         <div *ngIf="!isLoggedIn; else loggedIn">
-          <button type="button" class="btn btn-outline-primary me-2" routerLink="auth/login">LOGIN</button>
-          <button type="button" class="btn btn-outline-primary me-2" routerLink="auth/register">REGISTER</button>
+          <button mat-raised-button class="me-2" routerLink="auth/login" matTooltip="LOGIN"
+            matTooltipPosition="below">LOGIN</button>
+          <button mat-raised-button class="me-2" routerLink="auth/register" matTooltip="REGISTER"
+            matTooltipPosition="below">REGISTER</button>
         </div>
         <div>
           <ng-template #loggedIn>
-            <button type="button" class="btn btn-outline-success me-2" routerLink="user">YOUR PROFILE</button>
-            <button type="button" class="btn btn-outline-success me-2" (click)="logout()">LOGOUT</button>
+            <button mat-raised-button class="me-2" routerLink="user" matTooltip="YOUR PROFILE"
+              matTooltipPosition="below">PROFILE</button>
+            <button mat-raised-button class="me-2" (click)="logout()" matTooltip="LOGOUT"
+              matTooltipPosition="below">LOGOUT</button>
           </ng-template>
         </div>
         <form class="d-flex" role="search">

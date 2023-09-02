@@ -9,6 +9,7 @@ import { LastReviewsComponent } from './components/last-reviews/last-reviews.com
 import { TopReviewsComponent } from './components/top-reviews/top-reviews.component';
 import { TagsCloudComponent } from './components/tags-cloud/tags-cloud.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     TopReviewsComponent,
     TagsCloudComponent,
     HomepageComponent,
+    DarkModeComponent,
   ],
   imports: [CommonModule, HomeRoutingModule],
   exports: [HeaderComponent],

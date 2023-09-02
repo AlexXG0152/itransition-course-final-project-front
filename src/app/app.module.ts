@@ -11,6 +11,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { JwtInterceptor } from './modules/auth/interceptors/jwt.interceptor';
 import { UserModule } from './modules/user/user.module';
 import { ReviewModule } from './modules/review/review.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { ReviewModule } from './modules/review/review.module';
     HomeModule,
     AuthModule,
     UserModule,
-    ReviewModule
+    ReviewModule,
+    NgbModule
   ],
   providers: [
     {

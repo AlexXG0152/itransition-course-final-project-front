@@ -1,5 +1,9 @@
 @use "@angular/material" as mat;
 
+@import 'bootstrap/scss/bootstrap';
+
+@import "node_modules/@angular/material/theming";
+
 @include mat.core();
 
 $my-app-primary: mat.define-palette(mat.$indigo-palette);
@@ -13,6 +17,13 @@ $my-app-theme: mat.define-light-theme((color: (primary: $my-app-primary,
     ));
 
 @include mat.all-component-themes($my-app-theme);
+
+$angular-dark-theme: mat.define-dark-theme((color: (primary: $my-app-primary,
+        accent: $my-app-accent,
+        warn: $my-app-warn,
+      ),
+    ));
+
 
 html,
 body {
@@ -40,4 +51,29 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+body.dark-mode {
+  background-color: #202124;
+  color: #dfe6e9;
+
+  @include mat.all-component-colors($angular-dark-theme);
+  @include color-mode(dark) {
+    .card {
+      --bs-body-bg: #202124;
+    }
+    .tag {
+      background-color: #202124;
+      color: #dfe6e9;
+    }
+  }
+}
+
+body.light-mode {
+  background-color: #dfe6e9;
+  color: #2d3436;
+}
+
+body:not(.dark-mode-preloading) {
+  transition: all 0.1s linear;
 }

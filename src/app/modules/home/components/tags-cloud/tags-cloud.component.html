@@ -1,4 +1,6 @@
-<h2 class="d-flex justify-content-center display-6 mb-3">TAGS</h2>
-<div class="tag-cloud d-flex justify-content-center ">
-  <a *ngFor="let tag of tags" class="tag" (click)="handleClick(tag)">{{ tag }}</a>
+<div class="container my-3">
+  <h2 class="d-flex justify-content-center display-6 mb-3">{{'tags.header' | translate | uppercase}}</h2>
+  <div class="tag-cloud d-flex justify-content-center ">
+    <a *ngFor="let tag of tags" class="tag" (click)="handleClick(tag)">{{ tag }}</a>
+  </div>
 </div>

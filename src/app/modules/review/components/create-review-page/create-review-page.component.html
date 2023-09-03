@@ -1,16 +1,16 @@
-<div class="container m-3">
-  <h1>Create Review</h1>
+<div class="container my-3">
+  <h1>{{'review.create.create' | translate}}</h1>
 
   <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
     <div class="mb-3">
-      <label for="title" class="form-label">Review title</label>
+      <label for="title" class="form-label">{{'review.create.title' | translate}}</label>
       <input type="text" class="form-control" id="title" formControlName="title">
     </div>
 
     <div class="mb-3">
-      <label for="category" class="form-label me-3">Category</label>
+      <label for="category" class="form-label me-3">{{'review.create.category' | translate}}</label>
       <mat-form-field appearance="fill">
-        <mat-label>Category</mat-label>
+        <mat-label>{{'review.create.category' | translate}}</mat-label>
         <mat-select formControlName="category">
           <mat-option *ngFor="let category of categories | keyvalue; let i = index" [value]="category.value.id"
             (click)="onCategorySelect()">{{category.value.name}}</mat-option>
@@ -20,9 +20,9 @@
 
     <ng-container *ngIf="subCategories?.length">
       <div class="mb-3">
-        <label for="subcategoryId" class="form-label me-3">Subcategory Id</label>
+        <label for="subcategoryId" class="form-label me-3">{{'review.create.subcategory' | translate}}</label>
         <mat-form-field appearance="fill">
-          <mat-label>Subcategory</mat-label>
+          <mat-label>{{'review.create.subcategory' | translate}}</mat-label>
           <mat-select formControlName="subcategoryId">
             <mat-option *ngFor="let subCategory of subCategories | keyvalue; let i = index"
               [value]="subCategory.value.id">{{
@@ -33,7 +33,7 @@
     </ng-container>
 
     <div class="mb-2">
-      <label for="productTitle" class="form-label">Product Title</label>
+      <label for="productTitle" class="form-label">{{'review.create.product-title' | translate}}</label>
       <input type="text" class="form-control" id="productTitle" formControlName="productTitle">
       <!-- <mat-form-field appearance="fill">
         <mat-label>Product Title</mat-label>
@@ -44,34 +44,34 @@
     </div>
 
     <div class="mb-2" *ngIf="showProductId">
-      <label for="productId" class="form-label">Product Id</label>
+      <label for="productId" class="form-label">{{'review.create.product-id' | translate}}</label>
       <input type="number" class="form-control" id="productId" formControlName="productId">
     </div>
 
     <div class="mb-3">
-      <label for="content" class="form-label">Content</label>
+      <label for="content" class="form-label">{{'review.create.content' | translate}}</label>
       <textarea class="form-control" id="content" formControlName="content"></textarea>
     </div>
 
     <div class="mb-3">
-      <label for="tags" class="form-label">Tags</label>
+      <label for="tags" class="form-label">{{'review.create.tags' | translate}}</label>
       <input type="text" class="form-control" id="tags" formControlName="tags">
     </div>
 
     <div class="mb-3">
-      <label for="reviewRating" class="form-label">Review Rating</label>
+      <label for="reviewRating" class="form-label">{{'review.create.review-rating' | translate}}</label>
       <input type="number" class="form-control" id="reviewRating" formControlName="reviewRating" min="1" max="10">
     </div>
 
     <div class="mb-3">
-      <label for="images" class="form-label">Images (up to 10 *.jpeg or *.jpg or *.png images each size up to 5mb)</label>
+      <label for="images" class="form-label">{{'review.create.images' | translate}}</label>
       <div class="dnd-container" appDnd (fileDropped)="onFileDropped($event)">
         <input type="file" #fileDropRef id="fileDropRef" multiple
           (change)="fileBrowseHandler($any($event).target.files)" />
         <img src="assets/ic-upload-file.svg" alt="">
-        <h3>Drag and drop file here</h3>
-        <h3>or</h3>
-        <label for="fileDropRef">Browse for file</label>
+        <h3>{{'review.create.drag1' | translate}}</h3>
+        <h3>{{'review.create.drag2' | translate}}</h3>
+        <label for="fileDropRef">{{'review.create.drag2' | translate}}</label>
       </div>
 
       <div class="files-list">
@@ -91,6 +91,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Review</button>
+    <button type="submit" class="btn btn-primary">{{'review.create.create' | translate}}</button>
   </form>
+
 </div>

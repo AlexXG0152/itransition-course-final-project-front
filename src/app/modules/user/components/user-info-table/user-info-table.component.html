@@ -1,6 +1,7 @@
 <div class="container mt-3">
+
   <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>{{'user.table.filter' | translate}}</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Example" #input>
   </mat-form-field>
 
@@ -10,7 +11,8 @@
 
         <ng-container matColumnDef="{{col}}" *ngIf="col !== 'create' && col !== 'actions'; else createAt">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
-          <mat-cell *matCellDef="let row" [routerLink]="'/review/' + row.id" class="row-hover" matTooltip="Go to review">
+          <mat-cell *matCellDef="let row" [routerLink]="'/review/' + row.id" class="row-hover"
+            matTooltip="Go to review">
             {{row[displayedColumns[i]]}} </mat-cell>
         </ng-container>
 
@@ -25,8 +27,8 @@
           <ng-container matColumnDef="{{col}}">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <mat-icon matTooltip="Edit">edit</mat-icon>
-              <mat-icon matTooltip="Delete" (click)="onDelete(row.id)">delete_forever</mat-icon>
+              <mat-icon matTooltip="{{'user.table.edit' | translate}}">edit</mat-icon>
+              <mat-icon matTooltip="{{'user.table.delete' | translate}}" (click)="onDelete(row.id)">delete_forever</mat-icon>
             </mat-cell>
           </ng-container>
         </ng-template>
@@ -36,12 +38,15 @@
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data</td>
+      <tr class="mat-row d-flex justify-content-center" *matNoDataRow>
+        <td class="mat-cell my-3" colspan="4">{{'user.table.no-rec-found' | translate}}</td>
       </tr>
+
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator *ngIf="dataSource.data.length !== 0" [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"></mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
   </div>
+
 </div>

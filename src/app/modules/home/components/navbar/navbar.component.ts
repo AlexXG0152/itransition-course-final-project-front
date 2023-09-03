@@ -3,6 +3,7 @@ import { NavigationService } from '../../services/navigation.service';
 import { StorageService } from 'src/app/modules/auth/services/storage.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/modules/user/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +14,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private navigationService: NavigationService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private userService: UserService
   ) {}
 
   isLoggedIn = false;
   loginStatus$?: Subscription;
+
+  roles: string[] = [];
+  showAdminBoard = false;
 
   categories: any[] = this.navigationService.categories;
 
@@ -26,15 +31,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.loginStatus$ = this.storageService.loginStatus().subscribe(() => {
       this.isLoggedIn = this.storageService.isLoggedIn();
-    });
 
-    // if (this.isLoggedIn) {
-    //   const user = this.storageService.getUser();
-    //   this.roles = user.roles;
-    //   this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-    //   this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-    //   this.username = user.username;
-    // }
+      if (this.isLoggedIn) {
+        this.userService.getUserInfo().subscribe((response) => {
+          this.roles = response.roles.map((data: any) => data.value);
+          this.showAdminBoard = this.roles.includes('ADMIN');
+        });
+
+        //   this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+        //   this.username = user.username;
+      }
+    });
   }
 
   logout() {

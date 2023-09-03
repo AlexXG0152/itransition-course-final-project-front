@@ -1,15 +1,17 @@
-<div class="card m-3 d-flex">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../../../../assets/avatar.png" class="img-fluid rounded-start" alt="avatar">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{user?.name}}</h5>
-        <p class="card-text">Email: {{user?.email}}</p>
-        <p class="card-text">Roles: {{user?.roles[0].value }}, {{user?.roles[1].value }}</p>
-        <p class="card-text">Created: {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
-        <p class="card-text">Updated: {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
+<div class="container mt-3">
+  <div class="card m-3 d-flex">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../../../../../assets/avatar.png" class="img-fluid rounded-start" alt="avatar">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{user?.name}}</h5>
+          <p class="card-text">{{'user.info.email' | translate}}: {{user?.email}}</p>
+          <p class="card-text">{{'user.info.roles' | translate}}: {{user?.roles[0].value }}, {{user?.roles[1].value }}</p>
+          <p class="card-text">{{'user.info.created' | translate}}: {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
+          <p class="card-text">{{'user.info.updated' | translate}}: {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
+        </div>
       </div>
     </div>
   </div>

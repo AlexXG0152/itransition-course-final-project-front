@@ -8,15 +8,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndDirective } from './directives/dnd.directive';
 import { ProgressComponent } from './components/progress/progress.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [ReviewPageComponent, CreateReviewPageComponent, DndDirective, ProgressComponent],
+  declarations: [
+    ReviewPageComponent,
+    CreateReviewPageComponent,
+    DndDirective,
+    ProgressComponent,
+  ],
   imports: [
     CommonModule,
     ReviewRoutingModule,
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
 })
 export class ReviewModule {}

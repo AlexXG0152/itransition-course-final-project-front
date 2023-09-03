@@ -11,6 +11,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LanguageComponent } from './components/language/language.component';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TagsCloudComponent,
     HomepageComponent,
     DarkModeComponent,
+    LanguageComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MatButtonModule, MatTooltipModule],
+  imports: [CommonModule, HomeRoutingModule, MatButtonModule, MatTooltipModule, TranslateModule],
   exports: [HeaderComponent],
 })
 export class HomeModule {}

@@ -16,6 +16,12 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    data: { preload: true },
+  },
+  {
     path: 'user',
     loadChildren: () =>
       import('./modules/user/user.module').then((m) => m.UserModule),

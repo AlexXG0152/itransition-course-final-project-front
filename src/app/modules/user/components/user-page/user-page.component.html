@@ -1,22 +1,29 @@
-<app-user-info [user]="user"></app-user-info>
+<div class="container mt-3">
 
-<div class="spinner-grow" role="status" *ngIf="!ready; else table">
-  <span class="visually-hidden">Loading...</span>
+  <app-user-info [user]="user"></app-user-info>
+
+  <div class="spinner-grow" role="status" *ngIf="!ready; else table">
+    <span class="visually-hidden">{{'user.user-page.loading' | translate}}...</span>
+  </div>
+
+  <ng-template #table>
+    <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
+      <mat-tab label="Reviews">
+        <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
+      </mat-tab>
+      <mat-tab label="Ratings">
+        <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"
+            (getInputData)="getInputData()"></app-user-info-table></div>
+      </mat-tab>
+      <mat-tab label="Comments">
+        <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"
+            (getInputData)="getInputData()"></app-user-info-table></div>
+      </mat-tab>
+      <mat-tab label="Likes">
+        <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"
+            (getInputData)="getInputData()"></app-user-info-table></div>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-template>
+
 </div>
-
-<ng-template #table>
-  <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
-    <mat-tab label="Reviews">
-      <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
-    </mat-tab>
-    <mat-tab label="Ratings">
-      <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
-    </mat-tab>
-    <mat-tab label="Comments">
-      <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
-    </mat-tab>
-    <mat-tab label="Likes">
-      <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"(getInputData)="getInputData()"></app-user-info-table></div>
-    </mat-tab>
-  </mat-tab-group>
-</ng-template>

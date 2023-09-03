@@ -45,7 +45,7 @@ body {
 
 body {
   min-height: 100vh;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -58,10 +58,12 @@ body.dark-mode {
   color: #dfe6e9;
 
   @include mat.all-component-colors($angular-dark-theme);
+
   @include color-mode(dark) {
     .card {
       --bs-body-bg: #202124;
     }
+
     .tag {
       background-color: #202124;
       color: #dfe6e9;

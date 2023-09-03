@@ -30,7 +30,7 @@ export class StorageService {
   public getUser(): any {
     const user = window.localStorage.getItem(this.USER_KEY);
     if (user) {
-      return JSON.parse(user);
+      return user;
     }
     return {};
   }

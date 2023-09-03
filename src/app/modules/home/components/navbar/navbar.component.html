@@ -32,30 +32,34 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">Latest Reviews</a>
+            <a class="nav-link" href="#" role="button">{{'navbar.latest' | translate}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">Top Reviews</a>
+            <a class="nav-link" href="#" role="button">{{'navbar.top' | translate}}</a>
           </li>
 
         </ul>
 
-        <button mat-raised-button class="me-2" routerLink="review/create" matTooltip="CREATE REVIEW"
-            matTooltipPosition="below">NEW</button>
-
         <div *ngIf="!isLoggedIn; else loggedIn">
           <button mat-raised-button class="me-2" routerLink="auth/login" matTooltip="LOGIN"
-            matTooltipPosition="below">LOGIN</button>
+            matTooltipPosition="below">{{'navbar.login' | translate}}</button>
           <button mat-raised-button class="me-2" routerLink="auth/register" matTooltip="REGISTER"
-            matTooltipPosition="below">REGISTER</button>
+            matTooltipPosition="below">{{'navbar.register' | translate}}</button>
         </div>
         <div>
           <ng-template #loggedIn>
+            <button mat-raised-button class="me-2" routerLink="review/create" matTooltip="CREATE REVIEW"
+              matTooltipPosition="below">{{'navbar.new' | translate}}</button>
+
+            <button *ngIf="showAdminBoard" mat-raised-button class="me-2" routerLink="admin" matTooltip="ADMIN PAGE"
+              matTooltipPosition="below">{{'navbar.admin-panel' | translate}}</button>
+
             <button mat-raised-button class="me-2" routerLink="user" matTooltip="YOUR PROFILE"
-              matTooltipPosition="below">PROFILE</button>
+              matTooltipPosition="below">{{'navbar.profile' | translate}}</button>
+
             <button mat-raised-button class="me-2" (click)="logout()" matTooltip="LOGOUT"
-              matTooltipPosition="below">LOGOUT</button>
+              matTooltipPosition="below">{{'navbar.logout' | translate}}</button>
           </ng-template>
         </div>
         <form class="d-flex" role="search">
@@ -64,6 +68,7 @@
         </form>
       </div>
       <app-dark-mode></app-dark-mode>
+      <app-language></app-language>
     </div>
   </nav>
 </div>

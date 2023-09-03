@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container m-3">
   <div class="card m-3">
     <div class="card-header">
       <h1>{{ review?.title }}</h1>
@@ -6,10 +6,10 @@
     <div class="card-body">
       <h5 class="card-title">{{ review?.productTitle }}</h5>
       <p class="card-text">{{ review?.content }}</p>
-      <p>Category: {{ review?.category }}</p>
-      <p>Tags: {{ review?.tags }}</p>
-      <p>Rating: {{ review?.reviewRating }}</p>
-      <p>Images: {{ review?.imageslinks }}</p>
+      <p>{{'review.read.category' | translate}}: {{ review?.category }}</p>
+      <p>{{'review.read.tags' | translate}}: {{ review?.tags }}</p>
+      <p>{{'review.read.rating' | translate}}: {{ review?.reviewRating }}</p>
+      <p>{{'review.read.images' | translate}}: {{ review?.imageslinks }}</p>
       <!-- <div *ngFor="let image of review?.imageslinks"> -->
         <!-- <img [src]="image" alt="Review Image" class="img-fluid"> -->
       <!-- </div> -->

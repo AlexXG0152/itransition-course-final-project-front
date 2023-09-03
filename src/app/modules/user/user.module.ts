@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [UserPageComponent, UserInfoComponent, UserInfoTableComponent],
@@ -29,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
+    TranslateModule,
   ],
 })
 export class UserModule {}

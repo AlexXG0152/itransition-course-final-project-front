@@ -1,0 +1,17 @@
+<div class="dropdown">
+
+  <button class="btn btn-secondary-outline btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+    aria-expanded="false" matTooltip="Language">
+    {{language | uppercase}}
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-sm-start dropdown-menu-sm-start">
+
+    <li *ngFor="let locale of locales">
+      <button class="dropdown-item" [ngClass]="{'active':language === locale}" (click)="useLanguage(locale)">
+        {{locale | uppercase}}</button>
+    </li>
+
+  </ul>
+
+</div>

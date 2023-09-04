@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  word-wrap: break-word;
 }
 
 .mat-mdc-form-field {
@@ -8,6 +9,24 @@ table {
 }
 
 td,
-th {
-  width: 25%;
+th,
+mat-cell,
+mat-header-cell {
+  // width: 25%;
+  word-wrap: break-word;
+}
+
+.cdk-mouse-focused {
+  color: black;
+  font-weight: bold;
+}
+
+.mat-column-id {
+  flex: 0 0 7%;
+}
+
+
+.row-hover:hover {
+  background-color: rgba(0, 0, 0, .05);
+  cursor: pointer;
 }

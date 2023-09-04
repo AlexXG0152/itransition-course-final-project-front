@@ -1,68 +1,45 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from '../../services/admin.service';
 import { IUser } from '../../interfaces/user.interface';
 
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<IUser[]>;
+export class UserTableComponent {
+  dataSource!: MatTableDataSource<any>;
+  users: IUser[] = [];
+
+  displayedColumns: string[] = [
+    'id',
+    'email',
+    'name',
+    'banned',
+    'banreason',
+    'unbanreason',
+    'createdAt',
+    'updatedAt',
+    'deletedAt',
+  ];
+
+  constructor(private adminService: AdminService) {
+    this.adminService.getAllUsers().subscribe((response) => {
+      this.users = response;
+
+      this.displayedColumns = [...this.displayedColumns, 'actions'];
+      this.dataSource = new MatTableDataSource(this.users);
+
+      this.dataSource.paginator = this.paginator!;
+      this.dataSource.sort = this.sort!;
+    });
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
-
-  constructor(private adminService: AdminService) {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-    this.adminService.getAllUsers().subscribe((users) => console.log(users));
-    this.adminService.getAUserById(1).subscribe((user) => console.log(user));
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator!;
-    this.dataSource.sort = this.sort!;
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -72,20 +49,39 @@ export class UserTableComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): any {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
+  onDelete(id: number) {
+    console.log(id);
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
+  onBlock(userActionId: number, reason: string) {
+    console.log('onBlock', userActionId, reason);
+  }
+
+  onUnblock(userActionId: number, reason: string) {
+    console.log('onUnblock', userActionId, reason);
+  }
+
+  userActionId!: number;
+  userAction!: string;
+  actionReason: string = '';
+
+  onModalOpen(id: number, action: string) {
+    this.userActionId = id;
+    this.userAction = action;
+  }
+
+  onSave() {
+    if ((this.userAction = 'block')) {
+      this.onBlock(this.userActionId, this.actionReason);
+    } else {
+      this.onUnblock(this.userActionId, this.actionReason);
+    }
+  }
+
+  onClose() {
+    this.userActionId = 0;
+    this.userAction = '';
+    this.actionReason = '';
+  }
 }

@@ -15,6 +15,11 @@ const routes: Routes = [
       // { path: '**', component: PageNotFoundComponent },
     ],
   },
+  {
+    path: ':id',
+    component: UserPageComponent,
+    // canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

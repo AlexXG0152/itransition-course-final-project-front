@@ -4,17 +4,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from '../../services/admin.service';
 import { IUser } from '../../interfaces/user.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent {
+export class UserTableComponent implements AfterViewInit, OnInit {
   dataSource!: MatTableDataSource<any>;
   users: IUser[] = [];
 
-  displayedColumns: string[] = [
+  columns: string[] = [
     'id',
     'email',
     'name',
@@ -24,17 +25,36 @@ export class UserTableComponent {
     'createdAt',
     'updatedAt',
     'deletedAt',
+    'actions',
   ];
 
-  constructor(private adminService: AdminService) {
+  displayedColumns: string[] = [];
+
+  constructor(
+    private adminService: AdminService,
+    private translateService: TranslateService
+  ) {
     this.adminService.getAllUsers().subscribe((response) => {
       this.users = response;
 
-      this.displayedColumns = [...this.displayedColumns, 'actions'];
       this.dataSource = new MatTableDataSource(this.users);
 
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort!;
+    });
+  }
+
+  ngOnInit(): void {
+    this.displayedColumns = this.columns.map((columnName) => {
+      return this.translateService.instant(`admin.table.${[columnName]}`);
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.translateService.onLangChange.subscribe(() => {
+      this.displayedColumns = this.columns.map((columnName) => {
+        return this.translateService.instant(`admin.table.${[columnName]}`);
+      });
     });
   }
 
@@ -52,6 +72,9 @@ export class UserTableComponent {
 
   onDelete(id: number) {
     console.log(id);
+    // this.reviewService
+    //   .deleteReview(id)
+    //   .subscribe(() => this.getInputData.emit());
   }
 
   onBlock(userActionId: number, reason: string) {

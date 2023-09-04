@@ -1,8 +1,8 @@
 <div class="container mt-3">
 
   <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Example" #input>
+    <mat-label>{{'admin.table.filter' | translate}}</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="{{'admin.table.filter' | translate}}" #input>
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -10,17 +10,17 @@
       <div *ngFor="let col of displayedColumns; let i = index;">
 
         <ng-container matColumnDef="{{col}}"
-          *ngIf="col !== 'createdAt' && col !== 'updatedAt' && col !== 'deletedAt' && col !== 'actions'; else createdAt">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
+          *ngIf="columns[i] !== 'createdAt' && columns[i] !== 'updatedAt' && columns[i] !== 'deletedAt' && columns[i] !== 'actions'; else createdAt">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase }} </mat-header-cell>
           <mat-cell *matCellDef="let row" [routerLink]="'/user/' + row.id" class="row-hover"
-            matTooltip="Go to user page">
-            {{row[displayedColumns[i]]}} </mat-cell>
+            matTooltip="{{'admin.placeholder.go-to' | translate}}">
+            {{row[columns[i]]}} </mat-cell>
         </ng-container>
 
         <ng-template #createdAt>
-          <ng-container matColumnDef="{{col}}" *ngIf="col !== 'actions'; else buttons">
+          <ng-container matColumnDef="{{col}}" *ngIf="columns[i] !== 'actions'; else buttons">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row[displayedColumns[i]] | date:'dd.MM.yyyy, hh:mm'}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row[columns[i]] | date:'dd.MM.yyyy, hh:mm'}} </mat-cell>
           </ng-container>
         </ng-template>
 
@@ -28,14 +28,14 @@
           <ng-container matColumnDef="{{col}}">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <mat-icon class="me-2" matTooltip="{{'user.table.edit' | translate}}">edit</mat-icon>
-              <mat-icon class="me-2" matTooltip="{{'user.table.lock' | translate}}" *ngIf="row['banned'] === false"
-                (click)="onModalOpen(row.id, 'block')" data-bs-toggle="modal"
+              <mat-icon class="me-2" matTooltip="{{'admin.placeholder.edit' | translate}}">edit</mat-icon>
+              <mat-icon class="me-2" matTooltip="{{'admin.placeholder.block' | translate}}"
+                *ngIf="row['banned'] === false" (click)="onModalOpen(row.id, 'block')" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">lock</mat-icon>
-              <mat-icon class="me-2" matTooltip="{{'user.table.lock_open' | translate}}" *ngIf="row['banned'] === true"
-                (click)="onModalOpen(row.id, 'unblock')" data-bs-toggle="modal"
+              <mat-icon class="me-2" matTooltip="{{'admin.placeholder.unblock' | translate}}"
+                *ngIf="row['banned'] === true" (click)="onModalOpen(row.id, 'unblock')" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">lock_open</mat-icon>
-              <mat-icon class="me-2" matTooltip="{{'user.table.delete' | translate}}"
+              <mat-icon class="me-2" matTooltip="{{'admin.placeholder.delete' | translate}}"
                 (click)="onDelete(row.id)">delete_forever</mat-icon>
             </mat-cell>
           </ng-container>
@@ -46,9 +46,8 @@
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-      <!-- Row shown when there is no matching data. -->
       <tr class="mat-row d-flex justify-content-center" *matNoDataRow>
-        <td class="mat-cell my-3" colspan="9">No data matching the filter</td>
+        <td class="mat-cell my-3" colspan="9">{{'admin.placeholder.no-data' | translate}}</td>
       </tr>
 
     </mat-table>
@@ -64,24 +63,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">REASON</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{'admin.placeholder.reason' | translate}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onClose()"></button>
       </div>
       <div class="modal-body">
         <form class="was-validated">
           <div class="mb-3">
-            <label for="validationTextarea" class="form-label">Textarea</label>
+            <label for="validationTextarea" class="form-label">{{'admin.placeholder.reason' | translate}}</label>
             <textarea class="form-control is-invalid" id="validationTextarea" placeholder="REASON REQUIRED"
               [(ngModel)]="actionReason" [ngModelOptions]="{standalone: true}" required></textarea>
             <div class="invalid-feedback" *ngIf="actionReason.length! < 2">
-              Please enter a message in the textarea.
+              {{'admin.placeholder.please-enter' | translate}}
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSave()" [disabled]="actionReason.length! < 2">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="onClose()">{{'admin.placeholder.close' | translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="onSave()"
+          [disabled]="actionReason.length! < 2">{{'admin.placeholder.save' | translate}}</button>
       </div>
     </div>
   </div>

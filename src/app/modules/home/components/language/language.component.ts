@@ -8,13 +8,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./language.component.scss'],
 })
 export class LanguageComponent {
-  locales: any;
-  language: string;
+  locales = environment.LOCALES;
+  language: string = this.locales[0];
 
-  constructor(private translate: TranslateService) {
-    this.locales = environment.LOCALES.split(', ');
-    this.language = this.locales[0];
-  }
+  constructor(private translate: TranslateService) {}
 
   useLanguage(language: string): void {
     this.translate.use(language);

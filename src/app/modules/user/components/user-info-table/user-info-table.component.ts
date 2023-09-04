@@ -10,6 +10,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import { ReviewService } from 'src/app/modules/review/services/review.service';
 
 @Component({
@@ -18,7 +19,10 @@ import { ReviewService } from 'src/app/modules/review/services/review.service';
   styleUrls: ['./user-info-table.component.scss'],
 })
 export class UserInfoTableComponent implements AfterViewInit, OnInit {
-  constructor(private reviewService: ReviewService) {}
+  constructor(
+    private reviewService: ReviewService,
+    private translateService: TranslateService
+  ) {}
 
   @Input() inputData?: any;
   @Output() getInputData = new EventEmitter<any>();
@@ -49,7 +53,6 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
   }
 
   onDelete(id: any) {
-    console.log(id);
     this.reviewService
       .deleteReview(id)
       .subscribe(() => this.getInputData.emit());

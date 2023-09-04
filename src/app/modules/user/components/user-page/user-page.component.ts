@@ -16,13 +16,15 @@ export class UserPageComponent implements OnInit {
   ready = false;
   selectedTab: any;
   data: any;
+  tabs = ['reviews', 'ratings', 'comments', 'likes'];
 
   selectedTabChange($event: any) {
-    this.selectedTab = $event.tab.textLabel.toLowerCase();
+    // this.selectedTab = $event.tab.textLabel.toLowerCase();
+    this.selectedTab = this.tabs[$event.index];
 
     this.data = {
-      rows: this.user[this.selectedTab as keyof IUser],
-      columns: this.columns[this.selectedTab as keyof IColumns],
+      rows: this.user[this.tabs[$event.index] as keyof IUser],
+      columns: this.columns[this.tabs[$event.index] as keyof IColumns],
     };
   }
 
@@ -68,7 +70,7 @@ export class UserPageComponent implements OnInit {
     ratings: ['id', 'product id', 'product title', 'rate', 'create'],
     comments: [
       'id',
-      'Review id',
+      'review id',
       'comment title',
       'comment text',
       'product title',

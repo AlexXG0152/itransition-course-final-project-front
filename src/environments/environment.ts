@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   API: 'http://localhost:3000/api/v1',
   USER_KEY: 'auth-user',
-  LOCALES: 'en, by, pl, ru',
+  LOCALES: ['en', 'by', 'pl', 'ru'],
 };
 
 /*

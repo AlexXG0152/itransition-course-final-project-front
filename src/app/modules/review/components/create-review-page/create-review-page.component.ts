@@ -50,14 +50,12 @@ export class CreateReviewPageComponent {
     };
     delete data['category'];
 
-    data.tags = String(
-      data.tags
-        .split(',')
-        .map((element: string) => {
-          return element.trim();
-        })
-        .filter((elem: string) => elem !== '')
-    );
+    data.tags = data.tags
+      .split(',')
+      .map((element: string) => {
+        return element.trim();
+      })
+      .filter((elem: string) => elem !== '');
 
     if (this.files.length > 0) {
       const images = this.createImageFormData();

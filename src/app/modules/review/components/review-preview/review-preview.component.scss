@@ -1,0 +1,27 @@
+.card {
+  width: 67vw;
+}
+
+.wrapper {
+  width: 100%;
+  height: 500px;
+  border: 5px solid #515151;
+}
+
+.exmpl {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exmpl img {
+  height: 100%;
+  width: auto;
+}
+
+.col-md-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

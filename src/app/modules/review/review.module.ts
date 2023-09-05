@@ -9,7 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndDirective } from './directives/dnd.directive';
 import { ProgressComponent } from './components/progress/progress.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCarouselModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
+import { ReviewPreviewComponent } from './components/review-preview/review-preview.component';
+import { ReviewPreviewsListComponent } from './components/review-previews-list/review-previews-list.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -17,6 +23,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     CreateReviewPageComponent,
     DndDirective,
     ProgressComponent,
+    ReviewPreviewComponent,
+    ReviewPreviewsListComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +33,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbPaginationModule,
+    MatButtonModule,
   ],
 })
 export class ReviewModule {}

@@ -35,6 +35,18 @@ export class ReviewService {
     );
   }
 
+  getReviewsByParams(
+    quantity: number,
+    offset: number,
+    orderBy: string,
+    direction: 'ASC' | 'DESC'
+  ): Observable<{ count: number; rows: IReview[] }> {
+    return this.http.get<{ count: number; rows: IReview[] }>(
+      `${this.API}/reviews/list?quantity=${quantity}&offset=${offset}&order=${orderBy}&direction=${direction}`,
+      this.httpOptions
+    );
+  }
+
   editReview(id: string, data: IReview): Observable<IReview> {
     return this.http.patch<IReview>(
       `${this.API}/reviews/${id}`,

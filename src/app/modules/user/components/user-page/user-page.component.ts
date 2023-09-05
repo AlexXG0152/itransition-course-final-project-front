@@ -3,6 +3,30 @@ import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
 import { IColumns } from '../../interfaces/columns.interface';
 
+export const columns: IColumns = {
+  reviews: [
+    'id',
+    'title',
+    'product-category',
+    'review-rating',
+    'like',
+    'product-title',
+    'create',
+    'actions',
+  ],
+  ratings: ['id', 'product-id', 'product-title', 'rate', 'create', 'actions'],
+  comments: [
+    'id',
+    'review-id',
+    'comment-title',
+    'comment-text',
+    'product-title',
+    'create',
+    'actions',
+  ],
+  likes: ['id', 'review-id', 'product-title', 'create', 'actions'],
+};
+
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -16,13 +40,15 @@ export class UserPageComponent implements OnInit {
   ready = false;
   selectedTab: any;
   data: any;
+  tabs = ['reviews', 'ratings', 'comments', 'likes'];
 
   selectedTabChange($event: any) {
-    this.selectedTab = $event.tab.textLabel.toLowerCase();
+    // this.selectedTab = $event.tab.textLabel.toLowerCase();
+    this.selectedTab = this.tabs[$event.index];
 
     this.data = {
-      rows: this.user[this.selectedTab as keyof IUser],
-      columns: this.columns[this.selectedTab as keyof IColumns],
+      rows: this.user[this.tabs[$event.index] as keyof IUser],
+      columns: columns[this.tabs[$event.index] as keyof IColumns],
     };
   }
 
@@ -36,46 +62,24 @@ export class UserPageComponent implements OnInit {
       this.addFields();
       this.user = JSON.parse(
         JSON.stringify(this.user)
-          .replaceAll('productTitle', 'product title')
+          .replaceAll('productTitle', 'product-title')
           .replaceAll('createdAt', 'create')
-          .replaceAll('commentTitle', 'comment title')
-          .replaceAll('commentText', 'comment text')
-          .replaceAll('category', 'product category')
-          .replaceAll('reviewId', 'review id')
-          .replaceAll('productId', 'product id')
-          .replaceAll('reviewRating', 'review rating')
+          .replaceAll('commentTitle', 'comment-title')
+          .replaceAll('commentText', 'comment-text')
+          .replaceAll('category', 'product-category')
+          .replaceAll('reviewId', 'review-id')
+          .replaceAll('productId', 'product-id')
+          .replaceAll('reviewRating', 'review-rating')
       );
       console.log(this.user);
 
       this.data = {
         rows: this.user.reviews,
-        columns: this.columns.reviews,
+        columns: columns.reviews,
       };
       this.ready = true;
     });
   }
-
-  columns: IColumns = {
-    reviews: [
-      'id',
-      'title',
-      'product category',
-      'review rating',
-      'like',
-      'product title',
-      'create',
-    ],
-    ratings: ['id', 'product id', 'product title', 'rate', 'create'],
-    comments: [
-      'id',
-      'Review id',
-      'comment title',
-      'comment text',
-      'product title',
-      'create',
-    ],
-    likes: ['id', 'review id', 'product title', 'create'],
-  };
 
   addFields(): void {
     const reviewMap: { [id: string]: any } = {};

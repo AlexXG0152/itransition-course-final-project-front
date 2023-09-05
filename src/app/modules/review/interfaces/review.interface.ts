@@ -4,7 +4,7 @@ export interface IReview {
   category?: string;
   tags?: string;
   content?: string;
-  imageslinks?: string[] | string;
+  imageslinks?: any;
   reviewRating?: number;
   productTitle?: string;
   productId?: number;

@@ -1,0 +1,32 @@
+table {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th,
+mat-cell,
+mat-header-cell {
+  // width: 25%;
+  word-wrap: break-word;
+}
+
+.cdk-mouse-focused {
+  color: black;
+  font-weight: bold;
+}
+
+.mat-column-id {
+  flex: 0 0 7%;
+}
+
+
+.row-hover:hover {
+  background-color: rgba(0, 0, 0, .05);
+  cursor: pointer;
+}

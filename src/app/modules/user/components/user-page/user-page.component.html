@@ -8,18 +8,18 @@
 
   <ng-template #table>
     <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
-      <mat-tab label="Reviews">
+      <mat-tab label="{{'user.user-page.reviews' | translate}}">
         <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
       </mat-tab>
-      <mat-tab label="Ratings">
+      <mat-tab label="{{'user.user-page.ratings' | translate}}">
         <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"
             (getInputData)="getInputData()"></app-user-info-table></div>
       </mat-tab>
-      <mat-tab label="Comments">
+      <mat-tab label="{{'user.user-page.comments' | translate}}">
         <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"
             (getInputData)="getInputData()"></app-user-info-table></div>
       </mat-tab>
-      <mat-tab label="Likes">
+      <mat-tab label="{{'user.user-page.likes' | translate}}">
         <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"
             (getInputData)="getInputData()"></app-user-info-table></div>
       </mat-tab>

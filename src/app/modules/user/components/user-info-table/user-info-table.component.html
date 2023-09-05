@@ -2,24 +2,24 @@
 
   <mat-form-field>
     <mat-label>{{'user.table.filter' | translate}}</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Example" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="{{'user.table.filter' | translate}}" #input>
   </mat-form-field>
 
   <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort>
       <div *ngFor="let col of displayedColumns; let i = index;">
 
-        <ng-container matColumnDef="{{col}}" *ngIf="col !== 'create' && col !== 'actions'; else createAt">
+        <ng-container matColumnDef="{{col}}"
+        *ngIf="inputData.columns[i] !== 'create' && inputData.columns[i] !== 'actions'; else createAt">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
           <mat-cell *matCellDef="let row" [routerLink]="'/review/' + row.id" class="row-hover"
-            matTooltip="Go to review">
-            {{row[displayedColumns[i]]}} </mat-cell>
+            matTooltip="Go to review">{{row[inputData.columns[i]]}}</mat-cell>
         </ng-container>
 
         <ng-template #createAt>
-          <ng-container matColumnDef="{{col}}" *ngIf="col !== 'actions'; else buttons">
+          <ng-container matColumnDef="{{col}}" *ngIf="inputData.columns[i] !== 'actions'; else buttons">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row[displayedColumns[i]] | date:'dd.MM.yyyy, hh:mm'}} </mat-cell>
+            <mat-cell *matCellDef="let row">{{row[inputData.columns[i]] | date:'dd.MM.yyyy, hh:mm'}}</mat-cell>
           </ng-container>
         </ng-template>
 
@@ -44,7 +44,7 @@
 
     </mat-table>
 
-    <mat-paginator *ngIf="dataSource.data.length !== 0" [pageSizeOptions]="[5, 10, 25, 100]"
+    <mat-paginator *ngIf="dataSource.data.length !== 0" [pageSizeOptions]="[10, 25, 100]"
       aria-label="Select page of users"></mat-paginator>
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
   </div>

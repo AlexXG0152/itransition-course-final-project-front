@@ -1,4 +1,4 @@
-<div class="container m-3">
+<div class="container">
   <div class="card m-3">
     <div class="card-header">
       <h1>{{ review?.title }}</h1>
@@ -9,10 +9,16 @@
       <p>{{'review.read.category' | translate}}: {{ review?.category }}</p>
       <p>{{'review.read.tags' | translate}}: {{ review?.tags }}</p>
       <p>{{'review.read.rating' | translate}}: {{ review?.reviewRating }}</p>
-      <p>{{'review.read.images' | translate}}: {{ review?.imageslinks }}</p>
-      <!-- <div *ngFor="let image of review?.imageslinks"> -->
-        <!-- <img [src]="image" alt="Review Image" class="img-fluid"> -->
-      <!-- </div> -->
+      <p>{{'review.read.numberOfPic' | translate}}: {{ review?.imageslinks.length }}</p>
+
+      <ngb-carousel *ngIf="review?.imageslinks" class="img-container">
+        <ng-template ngbSlide *ngFor="let image of review?.imageslinks; let i = index">
+          <div class="wrapper exmpl">
+            <img [src]="image.link" alt="Random first slide" class="img"/>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+
     </div>
   </div>
-  </div>
+</div>

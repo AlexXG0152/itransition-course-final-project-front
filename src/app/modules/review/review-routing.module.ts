@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'list', component: ReviewPreviewsListComponent },
   { path: 'popular', component: ReviewPreviewsListComponent },
   { path: 'latest', component: ReviewPreviewsListComponent },
+  { path: 'tags', component: ReviewPreviewsListComponent },
   { path: 'create', component: CreateReviewPageComponent },
   { path: ':id', component: ReviewPageComponent },
   { path: ':id/edit', component: CreateReviewPageComponent },

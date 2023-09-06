@@ -755,6 +755,52 @@
 									</translation>
 								</translations>
 							</concept_node>
+							<concept_node>
+								<name>search</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>be-BY</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>en-US</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>pl-PL</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>ru-RU</language>
+										<approved>true</approved>
+									</translation>
+								</translations>
+							</concept_node>
+							<concept_node>
+								<name>tags</name>
+								<description/>
+								<comment/>
+								<translations>
+									<translation>
+										<language>be-BY</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>en-US</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>pl-PL</language>
+										<approved>true</approved>
+									</translation>
+									<translation>
+										<language>ru-RU</language>
+										<approved>true</approved>
+									</translation>
+								</translations>
+							</concept_node>
 						</children>
 					</folder_node>
 					<folder_node>

@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 class="d-flex justify-content-center">{{reviews?.name | uppercase }}</h2>
+  <ngb-carousel>
+
+    <ng-template ngbSlide *ngFor="let review of reviews; let i = index">
+      <app-review-preview [reviewData]="review"></app-review-preview>
+    </ng-template>
+
+  </ngb-carousel>
+</div>

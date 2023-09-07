@@ -71,7 +71,6 @@ export class UserPageComponent implements OnInit {
           .replaceAll('productId', 'product-id')
           .replaceAll('reviewRating', 'review-rating')
       );
-      console.log(this.user);
 
       this.data = {
         rows: this.user.reviews,

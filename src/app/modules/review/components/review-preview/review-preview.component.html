@@ -2,10 +2,10 @@
   <div class="row">
 
     <div class="col-md-4">
-        <div class="wrapper exmpl 2">
-          <img src="{{reviewData?.imageslinks[0]!.link}}" alt="Random first slide" class="img"
-            onerror="this.src='assets/images/placeholder.jpg';" />
-        </div>
+      <div class="wrapper exmpl 2">
+        <img src="{{reviewData?.imageslinks[0]!.link}}" alt="Random first slide" class="img"
+          onerror="this.src='assets/images/placeholder.jpg';" />
+      </div>
     </div>
 
     <div class="col-md-8">
@@ -23,9 +23,15 @@
             {{reviewData!.createdAt | date:'dd.MM.yyyy,
             hh:mm'}}</small></p>
 
-        <button mat-raised-button [routerLink]="'/review/' + reviewData!.id">{{'review.preview.go-to-review' |
-          translate}}
-        </button>
+        <div class="d-flex">
+          <button mat-raised-button [routerLink]="'/review/' + reviewData!.id" matTooltip="{{'review.preview.go-to-review' |
+            translate}}">{{'review.preview.go-to-review' | translate}}
+          </button>
+
+          <app-like></app-like>
+
+        </div>
+
       </div>
     </div>
 

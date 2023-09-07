@@ -1949,6 +1949,29 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>liked</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>true</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>numberOfPic</name>
 										<description/>
 										<comment/>
@@ -2042,6 +2065,29 @@
 									</concept_node>
 									<concept_node>
 										<name>rating</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>true</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>set-like</name>
 										<description/>
 										<comment/>
 										<translations>

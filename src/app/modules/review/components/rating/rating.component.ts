@@ -49,7 +49,6 @@ export class RatingComponent {
 
   // onHoverRatingChangeResult?: HoverRatingChangeEvent;
   // onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-  //   console.log('onHoverRatingChange $event: ', $event);
   //   this.onHoverRatingChangeResult = $event;
   // };
 }

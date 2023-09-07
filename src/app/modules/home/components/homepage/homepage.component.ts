@@ -19,7 +19,6 @@ export class HomepageComponent implements OnInit {
         this.parseJSON(response);
         this.topTenReviews = response.rows;
         this.topTenReviews.name = 'Top 10';
-        console.log(this.topTenReviews);
       });
 
     this.reviewService
@@ -29,7 +28,6 @@ export class HomepageComponent implements OnInit {
 
         this.latestTenReviews = response.rows;
         this.latestTenReviews.name = 'Latest 10';
-        console.log(this.latestTenReviews);
       });
   }
 

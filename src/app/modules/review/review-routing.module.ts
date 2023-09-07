@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReviewPageComponent } from './components/review-page/review-page.component';
 import { CreateReviewPageComponent } from './components/create-review-page/create-review-page.component';
 import { ReviewPreviewsListComponent } from './components/review-previews-list/review-previews-list.component';
+import { LikeComponent } from './components/like/like.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     component: ReviewPageComponent,
     // canActivate: [AuthGuard],
   },
+  { path: 'like', component: LikeComponent },
   { path: 'list', component: ReviewPreviewsListComponent },
   { path: 'popular', component: ReviewPreviewsListComponent },
   { path: 'latest', component: ReviewPreviewsListComponent },

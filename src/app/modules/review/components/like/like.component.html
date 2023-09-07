@@ -1,0 +1,7 @@
+<div class="container">
+  <button mat-raised-button matTooltip="{{'review.read.set-like' | translate}}" (click)="onClick()">
+    <mat-icon class="favorite_outline"
+      [ngClass]="{'favorite': liked, 'favorite_outline': !liked}">{{shape}}</mat-icon>
+    {{ (shape === 'favorite' ? 'review.read.liked' : 'review.read.set-like' ) | translate }}
+  </button>
+</div>

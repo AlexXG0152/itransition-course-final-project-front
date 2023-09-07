@@ -44,7 +44,6 @@ export class RatingComponent {
   };
 
   onRatingChange = ($event: RatingChangeEvent) => {
-    console.log('onRatingUpdated $event: ', $event);
     this.onRatingChangeResult = $event;
   };
 

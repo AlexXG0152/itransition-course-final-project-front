@@ -3,7 +3,7 @@
     [boundaryLinks]="true" (pageChange)="pageChanged($event)"></ngb-pagination>
 </div>
 
-<div class="container d-flex justify-content-center mt-3" *ngFor="let review of reviews">
+<div class="container d-flex justify-content-center mt-3 flex-column" *ngFor="let review of reviews">
   <app-review-preview [reviewData]="review"></app-review-preview>
 </div>
 

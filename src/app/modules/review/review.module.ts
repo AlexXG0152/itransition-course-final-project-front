@@ -41,7 +41,8 @@ import { RatingComponent } from './components/rating/rating.component';
     NgbPaginationModule,
     MatButtonModule,
     StarRatingModule,
-    TagComponent
+    TagComponent,
   ],
+  exports: [ReviewPreviewComponent],
 })
 export class ReviewModule {}

@@ -1,0 +1,15 @@
+<div class="container d-flex justify-content-center mt-3">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+    [boundaryLinks]="true" (pageChange)="pageChanged($event)"></ngb-pagination>
+</div>
+
+<!-- <pre class="container d-flex justify-content-center mt-3">Current page: {{page}}</pre> -->
+
+<div class="container d-flex justify-content-center mt-3" *ngFor="let review of reviews">
+  <app-review-preview [reviewData]="review"></app-review-preview>
+</div>
+
+<div class="container d-flex justify-content-center mt-3">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+    [boundaryLinks]="true" (pageChange)="pageChanged($event)"></ngb-pagination>
+</div>

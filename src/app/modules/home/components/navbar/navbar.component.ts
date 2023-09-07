@@ -11,6 +11,7 @@ import { UserService } from 'src/app/modules/user/services/user.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
   constructor(
     private router: Router,
     private navigationService: NavigationService,
@@ -37,9 +38,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
           this.roles = response.roles.map((data: any) => data.value);
           this.showAdminBoard = this.roles.includes('ADMIN');
         });
-
-        //   this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-        //   this.username = user.username;
       }
     });
   }
@@ -51,7 +49,28 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.showButton$?.unsubscribe();
     this.loginStatus$?.unsubscribe();
+  }
+
+  openLatest() {
+    const dbQueryParams = {
+      quantity: 10,
+      offset: 0,
+      orderBy: 'createdAt',
+      direction: 'DESC',
+    };
+
+    this.router.navigate(['/review/latest'], { queryParams: dbQueryParams });
+  }
+
+  openPopular() {
+    const dbQueryParams = {
+      quantity: 10,
+      offset: 0,
+      orderBy: 'reviewRating',
+      direction: 'DESC',
+    };
+
+    this.router.navigate(['/review/popular'], { queryParams: dbQueryParams });
   }
 }

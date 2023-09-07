@@ -25,6 +25,7 @@ export class ReviewPageComponent implements OnInit {
     this.reviewService.getReviewByID(reviewId).subscribe((review: IReview) => {
       this.review = review;
       this.review.imageslinks = JSON.parse(this.review.imageslinks);
+      this.review.tags = this.review.tags!.map((obj: any) => obj.name);
     });
   }
 }

@@ -1,6 +1,16 @@
-<div class="container my-3">
+<div class="container my-3 border border-light-subtle">
   <h2 class="d-flex justify-content-center display-6 mb-3">{{'tags.header' | translate | uppercase}}</h2>
-  <div class="tag-cloud d-flex justify-content-center ">
-    <a *ngFor="let tag of tags" class="tag" (click)="handleClick(tag)">{{ tag }}</a>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">{{'home.tags' | translate}}</span>
+    <input type="text" [(ngModel)]="searchQuery" class="form-control" placeholder="{{'home.tags' | translate}}"
+      aria-label="Tags search" aria-describedby="button-addon2">
+    <button (click)="searchTags()" class="btn btn-outline-secondary" type="button" id="button-addon2">{{'home.search' |
+      translate}}</button>
+  </div>
+
+  <div class="tag-cloud d-flex justify-content-center">
+    <a *ngFor="let tag of tags" class="tag" (click)="handleClick(tag)"><button mat-raised-button>{{ tag.name
+        }}</button></a>
   </div>
 </div>

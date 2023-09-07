@@ -10,14 +10,9 @@ export class ProductService {
 
   API = environment.API;
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
-
-  getAllCategories() {
-    return this.http.get<any[]>(
-      `${this.API}/products/subcategory/all`,
-      this.httpOptions
-    );
-  }
+  // getAllCategories() {
+  //   return this.http.get<any[]>(
+  //     `${this.API}/products/subcategory/all`,
+  //   );
+  // }
 }

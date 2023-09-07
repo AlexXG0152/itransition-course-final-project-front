@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LanguageComponent } from './components/language/language.component';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,14 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
     DarkModeComponent,
     LanguageComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MatButtonModule, MatTooltipModule, TranslateModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    MatButtonModule,
+    MatTooltipModule,
+    TranslateModule,
+    FormsModule,
+  ],
   exports: [HeaderComponent],
 })
 export class HomeModule {}

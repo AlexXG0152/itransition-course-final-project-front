@@ -518,6 +518,39 @@
 						</children>
 					</folder_node>
 					<folder_node>
+						<name>common</name>
+						<children>
+							<folder_node>
+								<name>errors</name>
+								<children>
+									<concept_node>
+										<name>not-authorized</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+						</children>
+					</folder_node>
+					<folder_node>
 						<name>header</name>
 						<children>
 							<concept_node>
@@ -1750,7 +1783,7 @@
 										</translations>
 									</concept_node>
 									<concept_node>
-										<name>rating</name>
+										<name>product-title</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -1773,7 +1806,7 @@
 										</translations>
 									</concept_node>
 									<concept_node>
-										<name>review-title</name>
+										<name>rating</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -1825,6 +1858,29 @@
 								<children>
 									<concept_node>
 										<name>category</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>true</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>content</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -1912,6 +1968,75 @@
 											<translation>
 												<language>ru-RU</language>
 												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>product-title</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>rate</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>rate-error</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>be-BY</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>pl-PL</language>
+												<approved>true</approved>
+											</translation>
+											<translation>
+												<language>ru-RU</language>
+												<approved>true</approved>
 											</translation>
 										</translations>
 									</concept_node>

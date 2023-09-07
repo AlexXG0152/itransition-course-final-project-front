@@ -15,4 +15,8 @@ export class ProductService {
   //     `${this.API}/products/subcategory/all`,
   //   );
   // }
+
+  rateProduct(data: { productId: number; rate: string }) {
+    return this.http.post<any>(`${this.API}/products/rate`, data);
+  }
 }

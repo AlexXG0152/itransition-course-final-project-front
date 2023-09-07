@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TagService } from '../../services/tag.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tags-cloud',
@@ -8,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./tags-cloud.component.scss'],
 })
 export class TagsCloudComponent implements OnInit {
-  constructor(private tagService: TagService, private router: Router) {}
+  constructor(private tagService: TagService) {}
 
   tags: any[] = [];
   searchQuery: any = '';
@@ -30,17 +29,5 @@ export class TagsCloudComponent implements OnInit {
     this.tagService.searchTags(this.searchQuery).subscribe((tags: string[]) => {
       this.tags = tags;
     });
-  }
-
-  handleClick(tag: any) {
-    const dbQueryParams = {
-      tagId: tag.tagId || tag.id,
-      quantity: 10,
-      offset: 0,
-      orderBy: 'createdAt',
-      direction: 'ASC',
-    };
-
-    this.router.navigate(['/review/tags'], { queryParams: dbQueryParams });
   }
 }

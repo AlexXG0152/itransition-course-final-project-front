@@ -2,6 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IReview } from '../../interfaces/review.interface';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
+import {
+  ClickEvent,
+  HoverRatingChangeEvent,
+  RatingChangeEvent,
+} from 'angular-star-rating';
 
 @Component({
   selector: 'app-review-page',
@@ -25,7 +30,9 @@ export class ReviewPageComponent implements OnInit {
     this.reviewService.getReviewByID(reviewId).subscribe((review: IReview) => {
       this.review = review;
       this.review.imageslinks = JSON.parse(this.review.imageslinks);
-      this.review.tags = this.review.tags!.map((obj: any) => obj.name);
+      // this.review.tags = this.review.tags!.map((obj: any) => obj.name);
+      console.log(this.review);
     });
   }
+
 }

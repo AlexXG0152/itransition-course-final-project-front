@@ -68,7 +68,7 @@
       <div class="dnd-container" appDnd (fileDropped)="onFileDropped($event)">
         <input type="file" #fileDropRef id="fileDropRef" multiple
           (change)="fileBrowseHandler($any($event).target.files)" />
-        <img src="assets/ic-upload-file.svg" alt="">
+        <img src="assets/images/ic-upload-file.svg" alt="">
         <h3>{{'review.create.drag1' | translate}}</h3>
         <h3>{{'review.create.drag2' | translate}}</h3>
         <label for="fileDropRef">{{'review.create.drag2' | translate}}</label>
@@ -76,7 +76,7 @@
 
       <div class="files-list">
         <div class="single-file" *ngFor="let file of files; let i = index">
-          <img src="assets/ic-file.svg" width="45px" alt="file">
+          <img src="assets/images/ic-file.svg" width="45px" alt="file">
           <div class="info">
             <h4 class="name">
               {{ file?.name }}
@@ -86,7 +86,7 @@
             </p>
             <app-progress [progress]="file?.progress"></app-progress>
           </div>
-          <img src="assets/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+          <img src="assets/images/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
         </div>
       </div>
     </div>

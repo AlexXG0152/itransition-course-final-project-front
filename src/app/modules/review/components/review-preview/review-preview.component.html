@@ -1,19 +1,31 @@
 <div class="card mb-3">
   <div class="row">
+
     <div class="col-md-4">
       <img src="{{reviewData?.imageslinks[0]?.link}}" class="img img-fluid rounded" alt="Firs review image"
         onerror="this.src='../../../../../assets/placeholder.jpg';">
     </div>
+
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{reviewData!.productTitle}}</h5>
-        <p class="card-text">{{'review.preview.review-title' | translate}}: {{reviewData!.title}}</p>
+        <h5 class="card-title" [routerLink]="'/review/' + reviewData!.id">{{reviewData!.title}}</h5>
+        <p class="card-text d-flex">{{'review.preview.product-title' | translate}}: {{reviewData!.productTitle}}
+
+          <app-rating [rating]="reviewData?.product?.productRating!" [product]="reviewData?.product"></app-rating>
+
+        </p>
         <p class="card-text">{{'review.preview.text' | translate}}: {{reviewData!.content | slice: 0: 100}}...</p>
-        <p class="card-text"><small class="text-body-secondary">{{'review.preview.rating' | translate}}: {{reviewData!.reviewRating}}</small></p>
-        <p class="card-text"><small class="text-body-secondary">{{'review.preview.created' | translate}}: {{reviewData!.createdAt | date:'dd.MM.yyyy,
+        <p class="card-text"><small class="text-body-secondary">{{'review.preview.rating' | translate}}:
+            {{reviewData!.reviewRating}}</small></p>
+        <p class="card-text"><small class="text-body-secondary">{{'review.preview.created' | translate}}:
+            {{reviewData!.createdAt | date:'dd.MM.yyyy,
             hh:mm'}}</small></p>
-        <button mat-raised-button [routerLink]="'/review/' + reviewData!.id">{{'review.preview.go-to-review' | translate}}</button>
+
+        <button mat-raised-button [routerLink]="'/review/' + reviewData!.id">{{'review.preview.go-to-review' |
+          translate}}
+        </button>
       </div>
     </div>
+
   </div>
 </div>

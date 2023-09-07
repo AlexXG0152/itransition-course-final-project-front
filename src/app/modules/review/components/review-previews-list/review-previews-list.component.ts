@@ -177,7 +177,7 @@ export class ReviewPreviewsListComponent implements OnInit {
     );
     this.reviews = response.rows;
     this.collectionSize = response.count;
-    this.cdr.detectChanges(); // Запуск обнаружения изменений
+    this.cdr.detectChanges();
   }
 
   pageChanged(page: any) {

@@ -4,6 +4,8 @@
 
 @import "node_modules/@angular/material/theming";
 
+@import 'node_modules/css-star-rating/css/star-rating';
+
 @include mat.core();
 
 $my-app-primary: mat.define-palette(mat.$indigo-palette);

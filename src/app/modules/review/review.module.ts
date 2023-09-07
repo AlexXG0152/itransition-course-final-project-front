@@ -16,6 +16,8 @@ import {
 import { ReviewPreviewComponent } from './components/review-preview/review-preview.component';
 import { ReviewPreviewsListComponent } from './components/review-previews-list/review-previews-list.component';
 import { MatButtonModule } from '@angular/material/button';
+import { StarRatingModule } from 'angular-star-rating';
+import { TagComponent } from '../home/components/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     NgbCarouselModule,
     NgbPaginationModule,
     MatButtonModule,
+    StarRatingModule,
+    TagComponent
   ],
 })
 export class ReviewModule {}

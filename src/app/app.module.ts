@@ -17,8 +17,9 @@ import { UserModule } from './modules/user/user.module';
 import { ReviewModule } from './modules/review/review.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     UserModule,
     ReviewModule,
     NgbModule,
+    StarRatingModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

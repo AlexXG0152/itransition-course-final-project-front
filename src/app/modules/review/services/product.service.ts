@@ -15,4 +15,8 @@ export class ProductService {
   //     `${this.API}/products/subcategory/all`,
   //   );
   // }
+
+  rateProduct(id: number) {
+    return this.http.get<any>(`${this.API}/products/${id}/rate`).subscribe();
+  }
 }

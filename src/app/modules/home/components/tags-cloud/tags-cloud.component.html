@@ -10,7 +10,6 @@
   </div>
 
   <div class="tag-cloud d-flex justify-content-center">
-    <a *ngFor="let tag of tags" class="tag" (click)="handleClick(tag)"><button mat-raised-button>{{ tag.name
-        }}</button></a>
+    <a *ngFor="let tag of tags" class="tag"><app-tag [tag]="tag"></app-tag></a>
   </div>
 </div>

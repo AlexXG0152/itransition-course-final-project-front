@@ -12,4 +12,8 @@
     <b>{{'review.read.rate-error' | translate}}</b>
   </div>
 
+  <div class="col d-flex ms-3" *ngIf="notAuthorized">
+    <b>{{'common.errors.not-authorized' | translate}}</b>
+  </div>
+
 </div>

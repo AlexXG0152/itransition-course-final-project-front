@@ -20,6 +20,7 @@
 	"admin.table.name": "imię",
 	"admin.table.unbanreason": "Usuń powód bana",
 	"admin.table.updatedAt": "Zaktualizowano",
+	"common.errors.not-authorized": "Użytkownik nieautoryzowany",
 	"header.dark": "Zmień na tryb ciemny",
 	"header.dark-light-mode": "Przełącz tryb jasny/ciemny",
 	"header.light": "Zmień na tryb jasny",

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ClickEvent, RatingChangeEvent } from 'angular-star-rating';
 import { ProductService } from '../../services/product.service';
+import { Subscription } from 'rxjs';
+import { StorageService } from 'src/app/modules/auth/services/storage.service';
 
 @Component({
   selector: 'app-rating',
@@ -8,13 +10,17 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private storageService: StorageService
+  ) {}
   @Input() rating: any;
   @Input() product: any;
 
   onClickResult?: ClickEvent | number;
   onRatingChangeResult?: RatingChangeEvent;
   error = false;
+  notAuthorized = false;
 
   onClick = ($event: ClickEvent) => {
     this.productService
@@ -28,7 +34,11 @@ export class RatingComponent {
           this.onClickResult = $event.rating;
         },
         (error) => {
-          this.error = true;
+          if (error.error.message === 'User not authorized') {
+            this.notAuthorized = true;
+          } else {
+            this.error = true;
+          }
         }
       );
   };

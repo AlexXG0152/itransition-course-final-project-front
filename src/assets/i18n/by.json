@@ -20,6 +20,7 @@
 	"admin.table.name": "Імя",
 	"admin.table.unbanreason": "Прычына зняцця забароны",
 	"admin.table.updatedAt": "Абнаўлён",
+	"common.errors.not-authorized": "Карыстальнік не аўтарызаваны",
 	"header.dark": "Пераключыцеся на цёмны рэжым",
 	"header.dark-light-mode": "Пераключыць светлы/цёмны рэжым",
 	"header.light": "Пераход на светлы рэжым",

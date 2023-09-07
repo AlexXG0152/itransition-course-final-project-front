@@ -20,6 +20,7 @@
 	"admin.table.name": "Имя",
 	"admin.table.unbanreason": "Причина разбана",
 	"admin.table.updatedAt": "Обновлен",
+	"common.errors.not-authorized": "Пользователь не авторизован",
 	"header.dark": "Перейти в темный режим",
 	"header.dark-light-mode": "Переключить светлый/темный режим",
 	"header.light": "Перейти в светлый режим",

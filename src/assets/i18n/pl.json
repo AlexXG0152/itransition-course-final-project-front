@@ -82,7 +82,8 @@
 	"review.read.numberOfPic": "Liczba obrazów",
 	"review.read.product-title": "Tytuł produktu",
 	"review.read.rate": "Oceniłeś tę recenzję przez:",
-	"review.read.rating": "Ocena",
+	"review.read.rate-error": "Ustawiłeś już ocenę dla tego produktu",
+	"review.read.rating": "Użytkownik ustawia ocenę produktu",
 	"review.read.subcategory": "Podkategoria",
 	"review.read.tags": "Tagi",
 	"tags.header": "Tagi",
@@ -109,7 +110,7 @@
 	"user.user-page.rate": "Ocena",
 	"user.user-page.ratings": "Oceny",
 	"user.user-page.review-id": "ID przeglądu",
-	"user.user-page.review-rating": "Ocena review",
+	"user.user-page.review-rating": "Ocena zestawu użytkownika",
 	"user.user-page.reviews": "Recenzje",
 	"user.user-page.title": "Tytuł"
 }

@@ -18,6 +18,7 @@ import { ReviewPreviewsListComponent } from './components/review-previews-list/r
 import { MatButtonModule } from '@angular/material/button';
 import { StarRatingModule } from 'angular-star-rating';
 import { TagComponent } from '../home/components/tag/tag.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TagComponent } from '../home/components/tag/tag.component';
     ProgressComponent,
     ReviewPreviewComponent,
     ReviewPreviewsListComponent,
+    RatingComponent,
   ],
   imports: [
     CommonModule,

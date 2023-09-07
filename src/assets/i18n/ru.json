@@ -82,7 +82,8 @@
 	"review.read.numberOfPic": "Количество изображений",
 	"review.read.product-title": "Название произведения",
 	"review.read.rate": "Вы оценили этот обзор на:",
-	"review.read.rating": "Рейтинг",
+	"review.read.rate-error": "Вы уже установили оценку этому продукту",
+	"review.read.rating": "Поставленный пользователем рейтинг продукта",
 	"review.read.subcategory": "Подкатегория",
 	"review.read.tags": "Теги",
 	"tags.header": "Теги",
@@ -109,7 +110,7 @@
 	"user.user-page.rate": "Рейтинг",
 	"user.user-page.ratings": "Рейтинги",
 	"user.user-page.review-id": "ID отзыва",
-	"user.user-page.review-rating": "Рейтинг обзора",
+	"user.user-page.review-rating": "Рейтинг установленный пользователем",
 	"user.user-page.reviews": "Отзывы",
 	"user.user-page.title": "Название"
 }

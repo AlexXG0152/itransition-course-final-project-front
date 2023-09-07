@@ -16,7 +16,7 @@ export class ProductService {
   //   );
   // }
 
-  rateProduct(id: number) {
-    return this.http.get<any>(`${this.API}/products/${id}/rate`).subscribe();
+  rateProduct(data: { productId: number; rate: string }) {
+    return this.http.post<any>(`${this.API}/products/rate`, data);
   }
 }

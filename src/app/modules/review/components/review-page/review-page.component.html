@@ -10,15 +10,9 @@
         <th scope="row">{{'review.read.product-title' | translate}}</th>
         <td class="d-flex">{{ review?.productTitle }}
 
-          <star-rating [starType]="'svg'" [rating]="2.63" [hoverEnabled]="true" (starClickChange)="onClick($event)"
-            (ratingChange)="onRatingChange($event)">
-          </star-rating>
-
-          <div class="col d-flex ms-3" *ngIf="onClickResult">
-            <b>{{'review.read.rate' | translate}} {{onClickResult}}</b>
-          </div>
-
+          <app-rating [rating]="+review?.product?.productRating!" [product]="review?.product"></app-rating>
         </td>
+
       </tr>
       <tr>
         <th scope="row">{{'review.read.content' | translate}}</th>

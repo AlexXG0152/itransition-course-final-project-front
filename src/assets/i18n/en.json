@@ -82,7 +82,8 @@
 	"review.read.numberOfPic": "Number of images",
 	"review.read.product-title": "Product Title",
 	"review.read.rate": "You rated this review by: ",
-	"review.read.rating": "Rating",
+	"review.read.rate-error": "You already set rating to this product",
+	"review.read.rating": "User Set Product's Rating",
 	"review.read.subcategory": "Subcategory",
 	"review.read.tags": "Tags",
 	"tags.header": "TAGS",
@@ -109,7 +110,7 @@
 	"user.user-page.rate": "Rate",
 	"user.user-page.ratings": "Ratings",
 	"user.user-page.review-id": "Review ID",
-	"user.user-page.review-rating": "Review rating",
+	"user.user-page.review-rating": "User Set Review rating",
 	"user.user-page.reviews": "Reviews",
 	"user.user-page.title": "Title"
 }

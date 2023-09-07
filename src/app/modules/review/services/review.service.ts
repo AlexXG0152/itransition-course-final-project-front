@@ -55,7 +55,6 @@ export class ReviewService {
     return this.http.delete<IReview>(`${this.API}/reviews/${id}`);
   }
 
-
   likeProduct(id: number) {
     return this.http.get<IReview>(`${this.API}/reviews/${id}/like`);
   }

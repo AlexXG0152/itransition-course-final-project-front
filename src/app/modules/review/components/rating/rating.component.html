@@ -1,0 +1,15 @@
+<div class="container d-flex">
+
+  <star-rating [starType]="'svg'" [rating]="rating" [hoverEnabled]="true" (starClickChange)="onClick($event)"
+    (ratingChange)="onRatingChange($event)">
+  </star-rating>
+
+  <div class="col d-flex ms-3" *ngIf="onClickResult">
+    <b>{{'review.read.rate' | translate}} {{onClickResult}}</b>
+  </div>
+
+  <div class="col d-flex ms-3" *ngIf="error">
+    <b>{{'review.read.rate-error' | translate}}</b>
+  </div>
+
+</div>

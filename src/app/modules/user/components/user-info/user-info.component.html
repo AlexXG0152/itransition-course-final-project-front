@@ -2,15 +2,22 @@
   <div class="card m-3 d-flex">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="../../../../../assets/images/avatar.png" class="img-fluid rounded-start" alt="avatar">
+        <img src="../../../../../assets/images/avatar.png" class="img-fluid rounded-start" alt="avatar"
+          matTooltip="{{'user.info.avatar' | translate}}">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{user?.name}} <i class="bi bi-heart-fill text-danger"></i></h5>
-          <p class="card-text">{{'user.info.email' | translate}}: {{user?.email}}</p>
-          <p class="card-text">{{'user.info.roles' | translate}}: {{user?.roles[0].value }}, {{user?.roles[1].value }}</p>
-          <p class="card-text">{{'user.info.created' | translate}}: {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
-          <p class="card-text">{{'user.info.updated' | translate}}: {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
+          <h5 class="card-title">{{user?.name}} <i class="bi bi-heart-fill text-danger ms-2"
+              matTooltip="{{'user.info.likes' | translate}}"> {{user?.totalLikes}}</i></h5>
+          <p class="card-text" matTooltip="{{'user.info.email' | translate}}">{{'user.info.email' | translate}}:
+            {{user?.email}}</p>
+          <p class="card-text" matTooltip="{{'user.info.roles' | translate}}">{{'user.info.roles' | translate}}:
+            {{user?.roles[0]?.value }}, {{user?.roles[1]?.value }}
+          </p>
+          <p class="card-text" matTooltip="{{'user.info.created' | translate}}">{{'user.info.created' | translate}}:
+            {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
+          <p class="card-text" matTooltip="{{'user.info.updated' | translate}}">{{'user.info.updated' | translate}}:
+            {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
         </div>
       </div>
     </div>

@@ -34,6 +34,8 @@ export class RatingComponent {
           this.onClickResult = $event.rating;
         }),
         catchError((error) => {
+          console.log(error);
+
           if (error.error.message === 'User not authorized') {
             this.notAuthorized = true;
           } else {

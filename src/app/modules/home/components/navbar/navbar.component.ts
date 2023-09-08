@@ -11,19 +11,15 @@ import { UserService } from 'src/app/modules/user/services/user.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-
   constructor(
     private router: Router,
     private navigationService: NavigationService,
     private storageService: StorageService,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   isLoggedIn = false;
   loginStatus$?: Subscription;
-
-  roles: string[] = [];
-  showAdminBoard = false;
 
   categories: any[] = this.navigationService.categories;
 
@@ -32,12 +28,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.loginStatus$ = this.storageService.loginStatus().subscribe(() => {
       this.isLoggedIn = this.storageService.isLoggedIn();
-
       if (this.isLoggedIn) {
-        this.userService.getUserInfo().subscribe((response) => {
-          this.roles = response.roles.map((data: any) => data.value);
-          this.showAdminBoard = this.roles.includes('ADMIN');
-        });
+        this.userService.getMyInfo();
       }
     });
   }
@@ -52,25 +44,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.loginStatus$?.unsubscribe();
   }
 
-  openLatest() {
+  openPage(orderBy: string, direction: string) {
     const dbQueryParams = {
       quantity: 10,
       offset: 0,
-      orderBy: 'createdAt',
-      direction: 'DESC',
+      orderBy,
+      direction,
     };
 
-    this.router.navigate(['/review/latest'], { queryParams: dbQueryParams });
-  }
-
-  openPopular() {
-    const dbQueryParams = {
-      quantity: 10,
-      offset: 0,
-      orderBy: 'reviewRating',
-      direction: 'DESC',
-    };
-
-    this.router.navigate(['/review/popular'], { queryParams: dbQueryParams });
+    this.router.navigate(
+      [`/review/${orderBy === 'createdAt' ? 'latest' : 'popular'}`],
+      { queryParams: dbQueryParams }
+    );
   }
 }

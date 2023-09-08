@@ -4,7 +4,7 @@
     <div class="row d-flex align-items-center px-3">
 
       <div class="col-sm-2 d-flex justify-content-center">
-        <app-like></app-like>
+        <app-like [liked]="liked" [reviewId]="review?.id" *ngIf="showLikeButton"></app-like>
       </div>
 
       <div class="col-sm-10 d-flex justify-content-center">
@@ -18,10 +18,16 @@
       <tr>
         <th scope="row">{{'review.read.product-title' | translate}}</th>
         <td class="d-flex">{{ review?.productTitle }}
-
-          <app-rating [rating]="+review?.product?.productRating!" [product]="review?.product"></app-rating>
         </td>
-
+      </tr>
+      <tr>
+        <th scope="row">{{'review.preview.rating-average' | translate}}</th>
+        <td class="d-flex">
+          <div>{{+review?.product?.productRating!}}</div>
+          <div>
+            <app-rating [rating]="+review?.product?.productRating!" [product]="review?.product"></app-rating>
+          </div>
+        </td>
       </tr>
       <tr>
         <th scope="row">{{'review.read.content' | translate}}</th>

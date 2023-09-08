@@ -32,11 +32,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" role="button" (click)="openLatest()">{{'navbar.latest' | translate}}</a>
+            <a class="nav-link" role="button" (click)="openPage('createdAt', 'DESC')">{{'navbar.latest' | translate}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" role="button" (click)="openPopular()">{{'navbar.top' | translate}}</a>
+            <a class="nav-link" role="button" (click)="openPage('reviewRating', 'DESC')">{{'navbar.top' | translate}}</a>
           </li>
 
         </ul>
@@ -52,7 +52,7 @@
             <button mat-raised-button class="me-2" routerLink="review/create" matTooltip="CREATE REVIEW"
               matTooltipPosition="below">{{'navbar.new' | translate}}</button>
 
-            <button *ngIf="showAdminBoard" mat-raised-button class="me-2" routerLink="admin" matTooltip="ADMIN PAGE"
+            <button *ngIf="userService.getAdminBoard()" mat-raised-button class="me-2" routerLink="admin" matTooltip="ADMIN PAGE"
               matTooltipPosition="below">{{'navbar.admin-panel' | translate}}</button>
 
             <button mat-raised-button class="me-2" routerLink="user" matTooltip="YOUR PROFILE"

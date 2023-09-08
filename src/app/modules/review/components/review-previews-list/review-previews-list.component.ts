@@ -1,7 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ReviewService } from '../../services/review.service';
 import { IReview } from '../../interfaces/review.interface';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/modules/user/services/user.service';
 
 @Component({
   selector: 'app-review-previews-list',
@@ -13,6 +19,7 @@ export class ReviewPreviewsListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reviewService: ReviewService,
+    private userService: UserService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -26,6 +33,8 @@ export class ReviewPreviewsListComponent implements OnInit {
   direction: 'ASC' | 'DESC' = 'ASC';
 
   reviews?: IReview[];
+  likesArray: boolean[] = [];
+  showLikeButton: boolean = false;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -49,7 +58,12 @@ export class ReviewPreviewsListComponent implements OnInit {
 
   loadTopOrLatestReviews() {
     this.reviewService
-      .getReviewsByParams(this.quantity, this.offset, this.orderBy, this.direction)
+      .getReviewsByParams(
+        this.quantity,
+        this.offset,
+        this.orderBy,
+        this.direction
+      )
       .subscribe((response) => {
         this.processReviewsResponse(response);
       });
@@ -57,7 +71,13 @@ export class ReviewPreviewsListComponent implements OnInit {
 
   loadTagsReviews() {
     this.reviewService
-      .getReviewsByTag(this.tagId!, this.quantity, this.offset, this.orderBy, this.direction)
+      .getReviewsByTag(
+        this.tagId!,
+        this.quantity,
+        this.offset,
+        this.orderBy,
+        this.direction
+      )
       .subscribe((response) => {
         this.processReviewsResponse(response);
       });
@@ -65,15 +85,26 @@ export class ReviewPreviewsListComponent implements OnInit {
 
   processReviewsResponse(response: any) {
     response.rows.map(
-      (review: { imageslinks: string; }) => (review.imageslinks = JSON.parse(review.imageslinks))
+      (review: { imageslinks: string }) =>
+        (review.imageslinks = JSON.parse(review.imageslinks))
     );
     this.reviews = response.rows;
     this.collectionSize = response.count;
+    this.getLikes();
     this.cdr.detectChanges();
   }
 
   pageChanged(page: any) {
     this.offset = page * 10 - 10;
     this.loadData();
+  }
+
+  getLikes() {
+    const userLikes = this.userService.getCurrentUser().likes!;
+
+    this.reviews?.forEach((rew) => {
+      this.likesArray!.push(userLikes.some((like) => like.reviewId === rew.id));
+    });
+    this.showLikeButton = true;
   }
 }

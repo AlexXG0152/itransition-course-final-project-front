@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import {
   NgbCarouselModule,
   NgbPaginationModule,
+  NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewPreviewComponent } from './components/review-preview/review-preview.component';
 import { ReviewPreviewsListComponent } from './components/review-previews-list/review-previews-list.component';
@@ -43,6 +44,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TranslateModule,
     NgbCarouselModule,
     NgbPaginationModule,
+    NgbPopoverModule,
     MatButtonModule,
     StarRatingModule,
     TagComponent,

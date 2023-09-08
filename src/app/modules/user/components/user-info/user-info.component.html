@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{user?.name}}</h5>
+          <h5 class="card-title">{{user?.name}} <i class="bi bi-heart-fill text-danger"></i></h5>
           <p class="card-text">{{'user.info.email' | translate}}: {{user?.email}}</p>
           <p class="card-text">{{'user.info.roles' | translate}}: {{user?.roles[0].value }}, {{user?.roles[1].value }}</p>
           <p class="card-text">{{'user.info.created' | translate}}: {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>

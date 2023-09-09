@@ -3,7 +3,7 @@
 
     <div class="col-md-4">
       <div class="wrapper exmpl 2">
-        <img src="{{reviewData?.imageslinks[0]!.link}}" alt="Random first slide" class="img"
+        <img src="{{reviewData?.imageslinks[0]?.link !== null ? reviewData?.imageslinks[0]!.link : 'assets/images/placeholder.jpg'}}" alt="Random first slide" class="img"
           onerror="this.src='assets/images/placeholder.jpg';" />
       </div>
     </div>

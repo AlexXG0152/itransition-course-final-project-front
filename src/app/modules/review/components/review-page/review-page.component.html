@@ -60,7 +60,7 @@
       </tr>
       <tr>
         <th scope="row">{{'review.read.numberOfPic' | translate}}: </th>
-        <td>{{ review?.imageslinks.length }}</td>
+        <td>{{ review?.imageslinks?.length || 0 }}</td>
       </tr>
     </tbody>
   </table>

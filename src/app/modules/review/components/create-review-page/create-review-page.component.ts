@@ -1,5 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { NavigationService } from 'src/app/modules/home/services/navigation.service';
 import { ReviewService } from '../../services/review.service';
 import { UploadService } from '../../services/upload.service';
@@ -31,35 +36,26 @@ export class CreateReviewPageComponent {
   ) {
     this.reviewForm = this.formBuilder.group({
       title: ['', Validators.required],
-      category: ['', Validators.required],
-      tags: '',
+      tags: ['', Validators.required],
       content: ['', Validators.required],
       imageslinks: '',
       reviewRating: ['', Validators.required],
-      productTitle: '',
+      productTitle: ['', Validators.required],
       productId: 0,
       categoryId: ['', Validators.required],
       subcategoryId: ['', Validators.required],
     });
   }
 
-  get contentControl(){
-    return this.reviewForm.controls['content'] as FormControl
+  get contentControl() {
+    return this.reviewForm.controls['content'] as FormControl;
   }
 
   async submitReview() {
-    const data = {
-      ...this.reviewForm.value,
-      categoryId: this.reviewForm.value['category'],
-    };
-    delete data['category'];
+    console.log(this.reviewForm);
+    console.log(this.files.length);
 
-    data.tags = data.tags
-      .split(',')
-      .map((element: string) => {
-        return element.trim();
-      })
-      .filter((elem: string) => elem !== '');
+    this.splitTagsFromForm();
 
     if (this.files.length > 0) {
       const images = this.createImageFormData();
@@ -68,15 +64,16 @@ export class CreateReviewPageComponent {
         .upload(images)
         .pipe(
           map((links) => {
-            data.imageslinks = JSON.stringify(links);
-            return data;
+            this.reviewForm.value.imageslinks = JSON.stringify(links);
+            return this.reviewForm.value;
           }),
           switchMap((data: any) => this.reviewService.createReview(data))
         )
         .subscribe();
     }
 
-    this.reviewService.createReview(data);
+    this.reviewService.createReview(this.reviewForm.value).subscribe();
+    this.reviewForm.reset()
   }
 
   createImageFormData() {
@@ -85,6 +82,15 @@ export class CreateReviewPageComponent {
       formData.append('file', file);
     });
     return formData;
+  }
+
+  splitTagsFromForm() {
+    this.reviewForm.value.tags = this.reviewForm.value.tags
+      .split(',')
+      .map((element: string) => {
+        return element.trim();
+      })
+      .filter((elem: string) => elem !== '');
   }
 
   onProductTitleChange() {
@@ -103,7 +109,7 @@ export class CreateReviewPageComponent {
   onCategorySelect() {
     this.subCategories =
       this.navigationService.categories[
-        this.reviewForm.get('category')!.value - 1
+        this.reviewForm.get('categoryId')!.value - 1
       ].subcategories;
   }
 

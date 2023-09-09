@@ -1,17 +1,17 @@
 <div class="container my-3">
   <h1>{{'review.create.create' | translate}}</h1>
 
-  <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+  <form [formGroup]="reviewForm">
     <div class="mb-3">
       <label for="title" class="form-label">{{'review.create.title' | translate}}</label>
       <input type="text" class="form-control" id="title" formControlName="title">
     </div>
 
     <div class="mb-3">
-      <label for="category" class="form-label me-3">{{'review.create.category' | translate}}</label>
+      <label for="categoryId" class="form-label me-3">{{'review.create.category' | translate}}</label>
       <mat-form-field appearance="fill">
         <mat-label>{{'review.create.category' | translate}}</mat-label>
-        <mat-select formControlName="category">
+        <mat-select formControlName="categoryId">
           <mat-option *ngFor="let category of categories | keyvalue; let i = index" [value]="category.value.id"
             (click)="onCategorySelect()">{{category.value.name}}</mat-option>
         </mat-select>
@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">{{'review.create.create' | translate}}</button>
+    <button type="submit" class="btn btn-primary" (click)="submitReview()">{{'review.create.create' | translate}}</button>
   </form>
 
 </div>

@@ -1,0 +1,13 @@
+<div class="container">
+
+  <button mat-raised-button matTooltip="{{'review.read.like-set' | translate}}" (click)="onClick()" [autoClose]="true"
+    [openDelay]="300" #popover="ngbPopover" ngbPopover="{{
+      (error === true ? 'review.read.like-error'
+      : (notAuthorized === true ? 'common.errors.not-authorized'
+      : 'review.read.like-error')) | translate}}">
+
+    <mat-icon class="favorite_outline" [ngClass]="{'favorite': liked, 'favorite_outline': !liked}">{{shape}}</mat-icon>
+    {{ (shape === 'favorite' ? 'review.read.liked' : 'review.read.like-set' ) | translate }}
+  </button>
+
+</div>

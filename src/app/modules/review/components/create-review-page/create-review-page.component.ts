@@ -72,8 +72,6 @@ export class CreateReviewPageComponent {
         .subscribe();
     }
 
-    console.log(data);
-
     this.reviewService.createReview(data);
   }
 

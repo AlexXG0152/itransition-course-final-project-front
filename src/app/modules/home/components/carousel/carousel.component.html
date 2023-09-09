@@ -3,7 +3,7 @@
   <ngb-carousel>
 
     <ng-template ngbSlide *ngFor="let review of reviews; let i = index">
-      <app-review-preview [reviewData]="review"></app-review-preview>
+      <app-review-preview [liked]="likesArray[i]" [reviewData]="review" [showLikeButton]="showLikeButton"></app-review-preview>
     </ng-template>
 
   </ngb-carousel>

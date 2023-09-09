@@ -1,19 +1,11 @@
 <div class="container d-flex">
 
   <star-rating [starType]="'svg'" [rating]="rating" [hoverEnabled]="true" (starClickChange)="onClick($event)"
-    (ratingChange)="onRatingChange($event)">
+    (ratingChange)="onRatingChange($event)" [autoClose]="true" [openDelay]="300" #popover="ngbPopover" ngbPopover="{{
+      (error === true ? 'review.read.rate-error'
+      : (notAuthorized === true ? 'common.errors.not-authorized'
+      : (onClickResult ? ('review.read.rate'| translate) + ' ' + onClickResult
+      : 'review.read.rate-error'))) | translate}} ">
   </star-rating>
-
-  <div class="col d-flex ms-3" *ngIf="onClickResult">
-    <b>{{'review.read.rate' | translate}} {{onClickResult}}</b>
-  </div>
-
-  <div class="col d-flex ms-3" *ngIf="error">
-    <b>{{'review.read.rate-error' | translate}}</b>
-  </div>
-
-  <div class="col d-flex ms-3" *ngIf="notAuthorized">
-    <b>{{'common.errors.not-authorized' | translate}}</b>
-  </div>
 
 </div>

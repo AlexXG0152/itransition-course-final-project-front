@@ -16,6 +16,5 @@ export class LanguageComponent {
   useLanguage(language: string): void {
     this.translate.use(language);
     this.language = language;
-    console.log(language);
   }
 }

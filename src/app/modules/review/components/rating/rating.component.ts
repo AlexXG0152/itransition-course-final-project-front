@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ClickEvent, RatingChangeEvent } from 'angular-star-rating';
 import { ProductService } from '../../services/product.service';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError, tap } from 'rxjs';
 import { StorageService } from 'src/app/modules/auth/services/storage.service';
 
 @Component({
@@ -28,19 +28,23 @@ export class RatingComponent {
         productId: this.product.id,
         rate: `${$event.rating}`,
       })
-      .subscribe(
-        (result) => {
+      .pipe(
+        tap((result) => {
           this.error = false;
           this.onClickResult = $event.rating;
-        },
-        (error) => {
+        }),
+        catchError((error) => {
+          console.log(error);
+
           if (error.error.message === 'User not authorized') {
             this.notAuthorized = true;
           } else {
             this.error = true;
           }
-        }
-      );
+          throw error;
+        })
+      )
+      .subscribe();
   };
 
   onRatingChange = ($event: RatingChangeEvent) => {
@@ -49,7 +53,6 @@ export class RatingComponent {
 
   // onHoverRatingChangeResult?: HoverRatingChangeEvent;
   // onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-  //   console.log('onHoverRatingChange $event: ', $event);
   //   this.onHoverRatingChangeResult = $event;
   // };
 }

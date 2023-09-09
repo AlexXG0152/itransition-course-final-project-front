@@ -71,7 +71,6 @@ export class UserPageComponent implements OnInit {
           .replaceAll('productId', 'product-id')
           .replaceAll('reviewRating', 'review-rating')
       );
-      console.log(this.user);
 
       this.data = {
         rows: this.user.reviews,
@@ -90,17 +89,17 @@ export class UserPageComponent implements OnInit {
 
     this.user.ratings!.forEach((rating: any) => {
       const review: any = reviewMap[rating.productId];
-      rating.productTitle = review!.productTitle;
+      rating.productTitle = review?.productTitle;
     });
 
     this.user.comments!.forEach((comment: any) => {
       const review: any = reviewMap[comment.reviewId];
-      comment.productTitle = review!.title;
+      comment.productTitle = review?.title;
     });
 
     this.user.likes!.forEach((like: any) => {
       const review: any = reviewMap[like.reviewId];
-      like.productTitle = review!.title;
+      like.productTitle = review?.title;
     });
   }
 }

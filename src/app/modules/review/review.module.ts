@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import {
   NgbCarouselModule,
   NgbPaginationModule,
+  NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewPreviewComponent } from './components/review-preview/review-preview.component';
 import { ReviewPreviewsListComponent } from './components/review-previews-list/review-previews-list.component';
@@ -19,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { StarRatingModule } from 'angular-star-rating';
 import { TagComponent } from '../home/components/tag/tag.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { LikeComponent } from './components/like/like.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { RatingComponent } from './components/rating/rating.component';
     ReviewPreviewComponent,
     ReviewPreviewsListComponent,
     RatingComponent,
+    LikeComponent,
   ],
   imports: [
     CommonModule,
@@ -39,9 +44,12 @@ import { RatingComponent } from './components/rating/rating.component';
     TranslateModule,
     NgbCarouselModule,
     NgbPaginationModule,
+    NgbPopoverModule,
     MatButtonModule,
     StarRatingModule,
     TagComponent,
+    MatIconModule,
+    MatTooltipModule
   ],
   exports: [ReviewPreviewComponent],
 })

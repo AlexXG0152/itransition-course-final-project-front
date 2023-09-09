@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class CarouselComponent {
   @Input() reviews: any;
+  @Input() likesArray: any;
+  @Input() showLikeButton: any;
 }

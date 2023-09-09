@@ -3,8 +3,9 @@
 
     <div class="col-md-4">
       <div class="wrapper exmpl 2">
-        <img src="{{reviewData?.imageslinks[0]!.link}}" alt="Random first slide" class="img"
-          onerror="this.src='assets/images/placeholder.jpg';" />
+        <img
+          src="{{reviewData?.imageslinks[0].link !== 'empty' ? reviewData?.imageslinks[0]!.link : 'assets/images/placeholder.jpg'}}"
+          alt="Random first slide" class="img" onerror="this.src='assets/images/placeholder.jpg';" />
       </div>
     </div>
 
@@ -12,18 +13,22 @@
       <div class="card-body">
         <h5 class="card-title" [routerLink]="'/review/' + reviewData!.id">{{reviewData!.title}}</h5>
         <p class="card-text d-flex">{{'review.preview.product-title' | translate}}: {{reviewData!.productTitle}}</p>
-        <div class="card-text d-flex">{{'review.preview.rating-average' | translate}}:
-          <div class="ms-3">{{reviewData?.product?.productRating!}}</div>
+
+        <div class="card-text d-flex mb-2">{{'review.preview.rating-average' | translate}}:
+          <div class="ms-3">{{reviewData?.product?.productRating! || ('review.preview.not-rated-yet' | translate)}}
+          </div>
           <div>
             <app-rating [rating]="reviewData?.product?.productRating!" [product]="reviewData?.product"></app-rating>
           </div>
         </div>
-        <p class="card-text">{{'review.preview.text' | translate}}: {{reviewData!.content | slice: 0: 100}}...</p>
-        <p class="card-text"><small class="text-body-secondary">{{'review.preview.rating' | translate}}:
-            {{reviewData!.reviewRating}}</small></p>
+
+        <div class="card-text d-flex">{{'review.preview.text' | translate}}: <markdown class="variable-binding ps-3"
+            [data]="reviewData!.content + '...'| slice: 0: 70 " emoji></markdown>
+        </div>
+
+        <p class="card-text">{{'review.preview.rating' | translate}}: {{reviewData!.reviewRating}}</p>
         <p class="card-text"><small class="text-body-secondary">{{'review.preview.created' | translate}}:
-            {{reviewData!.createdAt | date:'dd.MM.yyyy,
-            hh:mm'}}</small></p>
+            {{reviewData!.createdAt | date:'dd.MM.yyyy, hh:mm'}}</small></p>
 
         <div class="d-flex">
           <button mat-raised-button [routerLink]="'/review/' + reviewData!.id" matTooltip="{{'review.preview.go-to-review' |

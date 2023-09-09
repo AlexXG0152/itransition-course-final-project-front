@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IReview } from '../../interfaces/review.interface';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
@@ -23,15 +23,18 @@ export class ReviewPageComponent implements OnInit {
   showLikeButton: boolean = false;
   liked?: boolean;
 
+  loaded: boolean = false;
+
   ngOnInit(): void {
     const reviewId = this.route.snapshot.params['id'];
     this.getReview(reviewId);
     // setTimeout(() => {
-      this.user = this.userService.getCurrentUser();
-      this.liked = this.user?.likes?.some(
-        (like: { reviewId: number }) => like.reviewId === +reviewId
-      );
-      this.showLikeButton = true;
+    this.user = this.userService.getCurrentUser();
+    this.liked = this.user?.likes?.some(
+      (like: { reviewId: number }) => like.reviewId === +reviewId
+    );
+    this.showLikeButton = true;
+
     // }, 100);
   }
 
@@ -39,6 +42,7 @@ export class ReviewPageComponent implements OnInit {
     this.reviewService.getReviewByID(reviewId).subscribe((review: IReview) => {
       this.review = review;
       this.review.imageslinks = JSON.parse(this.review.imageslinks);
+      this.loaded = true;
     });
   }
 }

@@ -84,10 +84,13 @@ export class ReviewPreviewsListComponent implements OnInit {
   }
 
   processReviewsResponse(response: any) {
-    response.rows.map(
-      (review: { imageslinks: string }) =>
-        (review.imageslinks = JSON.parse(review.imageslinks))
-    );
+    response.rows.map((review: any) => {
+      if (review.imageslinks) {
+        review.imageslinks = JSON.parse(review.imageslinks);
+      } else {
+        review.imageslinks = [{ link: 'empty' }];
+      }
+    });
     this.reviews = response.rows;
     this.collectionSize = response.count;
     this.getLikes();
@@ -100,10 +103,12 @@ export class ReviewPreviewsListComponent implements OnInit {
   }
 
   getLikes() {
-    const userLikes = this.userService.getCurrentUser().likes!;
+    const userLikes: any = this.userService.getCurrentUser().likes || 0;
 
     this.reviews?.forEach((rew) => {
-      this.likesArray!.push(userLikes.some((like) => like.reviewId === rew.id));
+      this.likesArray!.push(
+        userLikes.some((like: any) => like.reviewId === rew.id)
+      );
     });
     this.showLikeButton = true;
   }

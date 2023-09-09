@@ -12,7 +12,6 @@ import { StorageService } from 'src/app/modules/auth/services/storage.service';
 export class RatingComponent {
   constructor(
     private productService: ProductService,
-    private storageService: StorageService
   ) {}
   @Input() rating: any;
   @Input() product: any;
@@ -23,6 +22,8 @@ export class RatingComponent {
   notAuthorized = false;
 
   onClick = ($event: ClickEvent) => {
+    console.log(this.product);
+
     this.productService
       .rateProduct({
         productId: this.product.id,

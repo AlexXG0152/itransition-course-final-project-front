@@ -84,11 +84,11 @@ export class ReviewPreviewsListComponent implements OnInit {
   }
 
   processReviewsResponse(response: any) {
-    response.rows.map((review: { imageslinks: string }) => {
+    response.rows.map((review: any) => {
       if (review.imageslinks) {
         review.imageslinks = JSON.parse(review.imageslinks);
       } else {
-        review.imageslinks = '';
+        review.imageslinks = [{ link: 'empty' }];
       }
     });
     this.reviews = response.rows;

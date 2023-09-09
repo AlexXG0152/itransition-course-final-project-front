@@ -8,7 +8,7 @@ import {
 import { NavigationService } from 'src/app/modules/home/services/navigation.service';
 import { ReviewService } from '../../services/review.service';
 import { UploadService } from '../../services/upload.service';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-review-page',
@@ -52,9 +52,6 @@ export class CreateReviewPageComponent {
   }
 
   async submitReview() {
-    console.log(this.reviewForm);
-    console.log(this.files.length);
-
     this.splitTagsFromForm();
 
     if (this.files.length > 0) {
@@ -67,13 +64,32 @@ export class CreateReviewPageComponent {
             this.reviewForm.value.imageslinks = JSON.stringify(links);
             return this.reviewForm.value;
           }),
-          switchMap((data: any) => this.reviewService.createReview(data))
+          switchMap((data: any) =>
+            this.reviewService.createReview(data).pipe(
+              tap((result) => {
+                this.reviewForm.reset();
+              }),
+              catchError((error) => {
+                throw error;
+              })
+            )
+          )
+        )
+        .subscribe();
+    } else {
+      this.reviewForm.value.imageslinks = JSON.stringify([{ link: 'empty' }]);
+      this.reviewService
+        .createReview(this.reviewForm.value)
+        .pipe(
+          tap((result) => {
+            this.reviewForm.reset();
+          }),
+          catchError((error) => {
+            throw error;
+          })
         )
         .subscribe();
     }
-
-    this.reviewService.createReview(this.reviewForm.value).subscribe();
-    this.reviewForm.reset()
   }
 
   createImageFormData() {

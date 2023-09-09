@@ -23,6 +23,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { LikeComponent } from './components/like/like.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MarkdownModule } from 'ngx-markdown';
@@ -50,6 +51,7 @@ import { MarkdownModule } from 'ngx-markdown';
     NgbPaginationModule,
     NgbPopoverModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     StarRatingModule,
     TagComponent,
     MatIconModule,

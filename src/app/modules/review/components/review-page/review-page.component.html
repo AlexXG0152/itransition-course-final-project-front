@@ -1,77 +1,88 @@
-<div class="container">
+<ng-container *ngIf="loaded; else spinner">
+  <div class="container">
 
-  <div class="card-header my-2">
-    <div class="row d-flex align-items-center px-3">
+    <div class="card-header my-2">
+      <div class="row d-flex align-items-center px-3">
 
-      <div class="col-sm-2 d-flex justify-content-center">
-        <app-like [liked]="liked" [reviewId]="review?.id" *ngIf="showLikeButton"></app-like>
-      </div>
+        <div class="col-sm-2 d-flex justify-content-center">
+          <app-like [liked]="liked" [reviewId]="review?.id" *ngIf="showLikeButton"></app-like>
+        </div>
 
-      <div class="col-sm-10 d-flex justify-content-center">
-        <h1>{{ review?.title }}</h1>
+        <div class="col-sm-10 d-flex justify-content-center">
+          <h1>{{ review?.title }}</h1>
+        </div>
       </div>
     </div>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">{{'review.read.product-title' | translate}}</th>
+          <td class="d-flex">{{ review?.productTitle }}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.preview.rating-average' | translate}}</th>
+          <td class="d-flex">
+            <div>{{review?.product?.productRating! || ('review.preview.not-rated-yet' | translate)}}</div>
+            <div>
+              <app-rating [rating]="+review?.product?.productRating!" [product]="review?.product"></app-rating>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.content' | translate}}</th>
+          <td class="d-flex">
+            <markdown class="variable-binding" [data]="review?.content" emoji></markdown>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.category' | translate}}</th>
+          <td>{{ review?.categoryID?.name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.subcategory' | translate}}</th>
+          <td>{{ review?.subcategoryID?.name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.tags' | translate}}</th>
+          <td class="d-flex">
+            <div *ngFor="let tag of review?.tags"><app-tag [tag]="tag"></app-tag></div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.rating' | translate}}</th>
+          <td>{{review?.reviewRating!}}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.like' | translate}} <i class="bi bi-heart-fill text-danger"></i></th>
+          <td>{{ review?.like !== null ? review?.like : '0' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{'review.read.numberOfPic' | translate}}: </th>
+          <td>{{ review?.imageslinks[0].link !== 'empty' ? review?.imageslinks?.length : 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="review?.imageslinks[0].link !== 'empty'">
+    <ngb-carousel *ngIf="review?.imageslinks" class="img-container">
+      <ng-template ngbSlide *ngFor="let image of review?.imageslinks; let i = index">
+        <div class="wrapper exmpl">
+          <img [src]="image.link" alt="Random first slide" class="img"
+            onerror="this.src='assets/images/placeholder.jpg';" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
   </div>
 
-  <table class="table">
-    <tbody>
-      <tr>
-        <th scope="row">{{'review.read.product-title' | translate}}</th>
-        <td class="d-flex">{{ review?.productTitle }}
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.preview.rating-average' | translate}}</th>
-        <td class="d-flex">
-          <div>{{+review?.product?.productRating!}}</div>
-          <div>
-            <app-rating [rating]="+review?.product?.productRating!" [product]="review?.product"></app-rating>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.content' | translate}}</th>
-        <td class="d-flex">
-          <markdown class="variable-binding" [data]="review?.content" emoji></markdown>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.category' | translate}}</th>
-        <td>{{ review?.categoryID?.name }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.subcategory' | translate}}</th>
-        <td>{{ review?.subcategoryID?.name }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.tags' | translate}}</th>
-        <td class="d-flex">
-          <div *ngFor="let tag of review?.tags"><app-tag [tag]="tag"></app-tag></div>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.rating' | translate}}</th>
-        <td>{{review?.reviewRating!}}
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.like' | translate}} <i class="bi bi-heart-fill text-danger"></i></th>
-        <td>{{ review?.like !== null ? review?.like : '0' }}</td>
-      </tr>
-      <tr>
-        <th scope="row">{{'review.read.numberOfPic' | translate}}: </th>
-        <td>{{ review?.imageslinks?.length || 0 }}</td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
+</ng-container>
 
-  <ngb-carousel *ngIf="review?.imageslinks" class="img-container">
-    <ng-template ngbSlide *ngFor="let image of review?.imageslinks; let i = index">
-      <div class="wrapper exmpl">
-        <img [src]="image.link" alt="Random first slide" class="img"
-          onerror="this.src='assets/images/placeholder.jpg';" />
-      </div>
-    </ng-template>
-  </ngb-carousel>
 
-</div>
+<ng-template #spinner>
+  <div class="container d-flex justify-content-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

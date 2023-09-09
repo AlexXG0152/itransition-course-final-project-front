@@ -23,8 +23,11 @@ export class HomepageComponent implements OnInit {
         this.parseJSON(response);
         this.topTenReviews = response.rows;
         this.topTenReviews.name = 'Top 10';
-        this.reviewService.getLikes(this.topTenReviews, this.topTenReviewsLikesArray);
-        this.showLikeButton = true
+        this.reviewService.getLikes(
+          this.topTenReviews,
+          this.topTenReviewsLikesArray
+        );
+        this.showLikeButton = true;
       });
 
     this.reviewService
@@ -33,15 +36,21 @@ export class HomepageComponent implements OnInit {
         this.parseJSON(response);
         this.latestTenReviews = response.rows;
         this.latestTenReviews.name = 'Latest 10';
-        this.reviewService.getLikes(this.latestTenReviews, this.latestTenReviewsLikesArray);
-        this.showLikeButton = true
+        this.reviewService.getLikes(
+          this.latestTenReviews,
+          this.latestTenReviewsLikesArray
+        );
+        this.showLikeButton = true;
       });
   }
 
   parseJSON(response: { count?: number; rows: any }) {
-    return response.rows.map(
-      (review: { imageslinks: string }) =>
-        (review.imageslinks = JSON.parse(review.imageslinks))
-    );
+    return response.rows.map((review: any) => {
+      if (review.imageslinks) {
+        review.imageslinks = JSON.parse(review.imageslinks);
+      } else {
+        review.imageslinks = [{ link: 'empty' }];
+      }
+    });
   }
 }

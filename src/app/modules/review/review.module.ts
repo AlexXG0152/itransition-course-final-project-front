@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReviewRoutingModule } from './review-routing.module';
@@ -23,6 +23,8 @@ import { RatingComponent } from './components/rating/rating.component';
 import { LikeComponent } from './components/like/like.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReviewPreviewsListComponent,
     RatingComponent,
     LikeComponent,
+    MarkdownEditorComponent,
   ],
   imports: [
     CommonModule,
@@ -49,8 +52,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     StarRatingModule,
     TagComponent,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    TextFieldModule
   ],
   exports: [ReviewPreviewComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ReviewModule {}

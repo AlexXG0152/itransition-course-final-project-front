@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavigationService } from 'src/app/modules/home/services/navigation.service';
 import { ReviewService } from '../../services/review.service';
 import { UploadService } from '../../services/upload.service';
@@ -41,6 +41,10 @@ export class CreateReviewPageComponent {
       categoryId: ['', Validators.required],
       subcategoryId: ['', Validators.required],
     });
+  }
+
+  get contentControl(){
+    return this.reviewForm.controls['content'] as FormControl
   }
 
   async submitReview() {

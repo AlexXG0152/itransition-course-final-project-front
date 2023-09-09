@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     TagComponent,
     MatIconModule,
     MatTooltipModule,
-    TextFieldModule
+    TextFieldModule,
+    MarkdownModule
   ],
   exports: [ReviewPreviewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

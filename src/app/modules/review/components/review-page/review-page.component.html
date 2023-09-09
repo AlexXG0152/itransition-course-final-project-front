@@ -31,7 +31,10 @@
       </tr>
       <tr>
         <th scope="row">{{'review.read.content' | translate}}</th>
-        <td>{{ review?.content }}</td>
+        <!-- <td>{{ review?.content }}</td> -->
+        <td class="d-flex">
+          <markdown class="variable-binding" [data]="review?.content"></markdown>
+        </td>
       </tr>
       <tr>
         <th scope="row">{{'review.read.category' | translate}}</th>

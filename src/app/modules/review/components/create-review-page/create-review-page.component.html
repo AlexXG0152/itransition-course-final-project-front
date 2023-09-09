@@ -51,9 +51,6 @@
     <div class="mb-3">
       <label for="content" class="form-label">{{'review.create.content' | translate}}</label>
       <app-markdown-editor [control]="contentControl"></app-markdown-editor>
-      <div class="alert alert-info">
-        {{ reviewForm.value | json }}
-      </div>
     </div>
 
     <div class="mb-3">
@@ -74,7 +71,7 @@
         <img src="assets/images/ic-upload-file.svg" alt="">
         <h3>{{'review.create.drag1' | translate}}</h3>
         <h3>{{'review.create.drag2' | translate}}</h3>
-        <label for="fileDropRef">{{'review.create.drag2' | translate}}</label>
+        <label for="fileDropRef">{{'review.create.drag3' | translate}}</label>
       </div>
 
       <div class="files-list">

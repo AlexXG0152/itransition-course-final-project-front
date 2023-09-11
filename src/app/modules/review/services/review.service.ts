@@ -61,10 +61,15 @@ export class ReviewService {
   }
 
   getLikes(reviews: any, likesArray: any): void {
-    const userLikes = this.userService.getCurrentUser().likes!;
+    const userLikes = this.userService.getCurrentUser();
 
-    reviews?.forEach((rew: { id: number }) => {
-      likesArray!.push(userLikes.some((like) => like.reviewId === rew.id));
-    });
+    if (userLikes?.likes) {
+      reviews?.forEach((rew: { id: number }) => {
+        likesArray.push(
+          userLikes.likes?.some((like) => like.reviewId === rew.id)
+        );
+      });
+    }
+    return;
   }
 }

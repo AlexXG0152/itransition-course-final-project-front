@@ -93,7 +93,7 @@ export class ReviewPreviewsListComponent implements OnInit {
     });
     this.reviews = response.rows;
     this.collectionSize = response.count;
-    this.getLikes();
+    this.reviewService.getLikes(this.reviews, this.likesArray);
     this.cdr.detectChanges();
   }
 
@@ -102,14 +102,14 @@ export class ReviewPreviewsListComponent implements OnInit {
     this.loadData();
   }
 
-  getLikes() {
-    const userLikes: any = this.userService.getCurrentUser().likes || 0;
+  // getLikes() {
+  //   const userLikes: any = this.userService.getCurrentUser().likes || 0;
 
-    this.reviews?.forEach((rew) => {
-      this.likesArray!.push(
-        userLikes.some((like: any) => like.reviewId === rew.id)
-      );
-    });
-    this.showLikeButton = true;
-  }
+  //   this.reviews?.forEach((rew) => {
+  //     this.likesArray!.push(
+  //       userLikes.some((like: any) => like.reviewId === rew.id)
+  //     );
+  //   });
+  //   this.showLikeButton = true;
+  // }
 }

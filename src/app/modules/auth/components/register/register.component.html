@@ -11,7 +11,8 @@
             </li>
             <li class="nav-item" role="presentation">
               <a routerLink="/auth/register" class="nav-link active" id="tab-register" data-mdb-toggle="pill"
-                href="/auth/register" role="tab" aria-controls="pills-register" aria-selected="true">{{'registration.registration' | translate}}</a>
+                href="/auth/register" role="tab" aria-controls="pills-register"
+                aria-selected="true">{{'registration.registration' | translate}}</a>
             </li>
           </ul>
 
@@ -36,13 +37,13 @@
 
                 <div class="form-outline mb-4">
                   <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" />
-                  <label class="form-label" for="confirmPassword">{{'registration.confirm-password' | translate}}</label>
+                  <label class="form-label" for="confirmPassword">{{'registration.confirm-password' |
+                    translate}}</label>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-4">
                   <input class="form-check-input me-2" type="checkbox" id="registerCheck"
-                    formControlName="confirmTerms"
-                    />
+                    formControlName="confirmTerms" />
                   <label class="form-check-label" for="registerCheck">
                     {{'registration.terms' | translate}} <a class="terms" data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop">{{'registration.terms-2' | translate}}</a>
@@ -54,6 +55,9 @@
               </form>
 
             </div>
+
+            <app-social></app-social>
+
           </div>
 
         </div>

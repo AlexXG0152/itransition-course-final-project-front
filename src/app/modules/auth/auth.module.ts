@@ -7,9 +7,18 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TranslateModule } from '@ngx-translate/core';
+import { SocialComponent } from './components/social/social.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, AuthRoutingModule, FormsModule, ReactiveFormsModule, TranslateModule],
+  declarations: [LoginComponent, RegisterComponent, SocialComponent],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    MatIconModule
+  ],
 })
 export class AuthModule {}

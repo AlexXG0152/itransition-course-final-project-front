@@ -1,12 +1,12 @@
 <div class="d-flex">
 
-  <mat-icon class="social-icon">
-    <a href="/auth/facebook">
+  <mat-icon class="social-icon" (click)="loginWithFacebook()">
+    <!-- <a href="/auth/facebook"> -->
       <img src="/assets/images/login-facebook.png" alt="login-facebook" class="facebook">
-    </a>
+    <!-- </a> -->
   </mat-icon>
 
-  <mat-icon class="social-icon">
+  <mat-icon class="social-icon"  (click)="loginWithGoogle()">
     <div id="g_id_onload" data-client_id="945599202112-2mqbebn6ht6nn8tece8417pk2tp61qao.apps.googleusercontent.com"
       data-context="signin" data-ux_mode="popup"
       data-login_uri="https://itransition-course-final-project-front.onrender.com/api/v1/auth/google/redirect"
@@ -19,4 +19,3 @@
   </mat-icon>
 
 </div>
-

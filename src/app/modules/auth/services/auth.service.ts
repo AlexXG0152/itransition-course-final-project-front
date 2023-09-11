@@ -39,4 +39,12 @@ export class AuthService {
   logout() {
     this.storageService.clean();
   }
+
+  loginWithFacebook() {
+    return this.http.get<any>(`${this.API}/auth/facebook`);
+  }
+
+  loginWithGoogle() {
+    return this.http.get<any>(`${this.API}/auth/google`);
+  }
 }

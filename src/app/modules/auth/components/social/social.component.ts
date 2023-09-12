@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { IAuthRes } from '../../interfaces/auth-res.interface';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-social',
@@ -28,23 +29,51 @@ export class SocialComponent {
   }
 
   loginWithFacebook() {
-    this.authService.loginWithFacebook().subscribe((data: IAuthRes) => {
-      console.log(data);
+    this.authService
+      .loginWithFacebook()
+      .pipe(
+        tap((result) => {
+          console.log(result);
+          // this.router.navigate(['/home']);
+          this.storageService.saveUser(result);
+        }),
+        catchError((error) => {
+          console.log(error);
 
-      this.storageService.saveUser(data.name);
-      this.storageService.saveToken(data.token);
-      this.storageService.loginStatusChange(true);
-      // this.router.navigate(['/home']);
-    });
+          throw error;
+        })
+      )
+      .subscribe();
+    // .subscribe((data: IAuthRes) => {
+    //   console.log(data);
+
+    //   this.storageService.saveUser(data.name);
+    //   this.storageService.saveToken(data.token);
+    //   this.storageService.loginStatusChange(true);
+    //   // this.router.navigate(['/home']);
+    // });
   }
 
   loginWithGoogle() {
-    this.authService.loginWithGoogle().subscribe((data: IAuthRes) => {
-      console.log(data);
-      this.storageService.saveUser(data.name);
-      this.storageService.saveToken(data.token);
-      this.storageService.loginStatusChange(true);
+    this.authService.loginWithGoogle().pipe(
+      tap((result) => {
+        console.log(result);
+        // this.router.navigate(['/home']);
+        this.storageService.saveUser(result);
+      }),
+      catchError((error) => {
+        console.log(error);
+
+        throw error;
+      })
+    )
+    .subscribe();
+    // .subscribe((data: any) => {
+      // console.log(data);
+      // this.storageService.saveUser(data);
+      // this.storageService.saveToken(data.token);
+      // this.storageService.loginStatusChange(true);
       // this.router.navigate(['/home']);
-    });
+    // });
   }
 }

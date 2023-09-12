@@ -18,6 +18,7 @@ export class LoginComponent {
   ) {}
 
   loginForm!: FormGroup;
+  action = 'Login'
 
   login() {
     if (this.loginForm.invalid) {

@@ -16,24 +16,21 @@ export class AuthService {
 
   API = environment.API;
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+  headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('access-control-allow-origin', 'http://localhost:4200')
+    .set('access-control-allow-credentials', 'true');
 
   login(data: IAuthReq) {
-    return this.http.post<IAuthRes>(
-      `${this.API}/auth/login`,
-      data,
-      this.httpOptions
-    );
+    return this.http.post<IAuthRes>(`${this.API}/auth/login`, data, {
+      headers: this.headers,
+    });
   }
 
   registration(data: IAuthReq) {
-    return this.http.post<IAuthRes>(
-      `${this.API}/auth/registration`,
-      data,
-      this.httpOptions
-    );
+    return this.http.post<IAuthRes>(`${this.API}/auth/registration`, data, {
+      headers: this.headers,
+    });
   }
 
   logout() {
@@ -45,6 +42,8 @@ export class AuthService {
   }
 
   loginWithGoogle() {
-    return this.http.get<any>(`${this.API}/auth/google`);
+    return this.http.get<any>(`${this.API}/auth/google`, {
+      headers: this.headers,
+    });
   }
 }

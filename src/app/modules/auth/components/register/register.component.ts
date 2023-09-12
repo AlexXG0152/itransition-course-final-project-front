@@ -49,6 +49,7 @@ export class RegisterComponent {
   ) {}
 
   registerForm!: FormGroup;
+  action = 'Register'
 
   signup() {
     if (this.registerForm.invalid) {

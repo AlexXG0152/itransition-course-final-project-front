@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
@@ -24,12 +24,17 @@ export class SearchComponent {
           switchMap((query) => this.searchService.search(query))
         )
         .subscribe((results: any) => {
-          this.searchResults = results.reviews !== null ? results.reviews : [];
+          this.searchResults = results;
           this.results = true;
-          console.log(this.searchResults);
+          console.log(results);
         });
     } catch (error) {
       console.log(error);
     }
+  }
+
+  close() {
+    this.searchResults = null;
+    this.searchInput.setValue('');
   }
 }

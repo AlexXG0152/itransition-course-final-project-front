@@ -17,6 +17,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewModule } from '../review/review.module';
 import { SearchComponent } from './components/search/search.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SearchComponent } from './components/search/search.component';
     ReactiveFormsModule,
     TagComponent,
     NgbCarouselModule,
+    ScrollingModule,
     ReviewModule
   ],
   exports: [HeaderComponent],

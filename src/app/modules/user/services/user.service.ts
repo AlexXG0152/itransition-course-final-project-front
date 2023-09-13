@@ -20,8 +20,8 @@ export class UserService {
   public showAdminBoardSubject?: BehaviorSubject<boolean>;
   public currentUser$?: Observable<IUser>;
 
-  getUserInfo() {
-    return this.http.get<IUser>(`${this.API}/users/0/me`);
+  getUserInfo(id: number | string) {
+    return this.http.get<IUser>(`${this.API}/users/${id}`);
   }
 
   getMyInfo() {

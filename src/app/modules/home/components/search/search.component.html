@@ -10,7 +10,8 @@
       <h6 class="card-title">Search Results:</h6>
       <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
         <div class="list-group" *cdkVirtualFor="let result of $any(searchResults)">
-          <a [routerLink]="['/review', result.reviewId]" class="list-group-item list-group-item-action mb-1" (click)="close()">
+          <a [routerLink]="['/review', result.reviewId]" class="list-group-item list-group-item-action mb-1"
+            (click)="close()">
             <div>{{ result.title }}</div>
             <div>{{ result.content | slice: 0: 30 }}...</div>
           </a>
@@ -23,3 +24,4 @@
     </div>
 
   </ng-container>
+</div>

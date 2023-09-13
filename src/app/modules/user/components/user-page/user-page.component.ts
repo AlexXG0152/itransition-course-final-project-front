@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
 import { IColumns } from '../../interfaces/columns.interface';
+import { ActivatedRoute } from '@angular/router';
 
 export const columns: IColumns = {
   reviews: [
@@ -33,8 +34,11 @@ export const columns: IColumns = {
   styleUrls: ['./user-page.component.scss'],
 })
 export class UserPageComponent implements OnInit {
-  constructor(private userService: UserService) {}
-
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
+  id: number | string = 0;
   user!: IUser;
 
   ready = false;
@@ -53,11 +57,15 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = +this.route.snapshot.params['id'];
+    if (Number.isNaN(this.id)) {
+      this.id = '0/me';
+    }
     this.getInputData();
   }
 
   getInputData() {
-    this.userService.getUserInfo().subscribe((response) => {
+    this.userService.getUserInfo(this.id).subscribe((response) => {
       this.user = response;
       this.addFields();
       this.user = JSON.parse(
@@ -83,21 +91,21 @@ export class UserPageComponent implements OnInit {
   addFields(): void {
     const reviewMap: { [id: string]: any } = {};
 
-    this.user.reviews!.forEach((review: any) => {
+    this.user?.reviews?.forEach((review: any) => {
       reviewMap[review.id] = review;
     });
 
-    this.user.ratings!.forEach((rating: any) => {
+    this.user?.ratings?.forEach((rating: any) => {
       const review: any = reviewMap[rating.productId];
       rating.productTitle = review?.productTitle;
     });
 
-    this.user.comments!.forEach((comment: any) => {
+    this.user?.comments?.forEach((comment: any) => {
       const review: any = reviewMap[comment.reviewId];
       comment.productTitle = review?.title;
     });
 
-    this.user.likes!.forEach((like: any) => {
+    this.user?.likes?.forEach((like: any) => {
       const review: any = reviewMap[like.reviewId];
       like.productTitle = review?.title;
     });

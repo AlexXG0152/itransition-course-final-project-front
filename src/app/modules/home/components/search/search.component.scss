@@ -1,0 +1,29 @@
+.card {
+  padding: 15px;
+  border: none;
+  width: -webkit-fill-available;
+  position: absolute;
+  z-index: 999;
+  border: 1px rgb(88, 88, 88) solid;
+}
+
+.input-box {
+  position: relative;
+}
+
+.form-control {
+  height: 40px;
+}
+
+.form-control:focus {
+  background-color: #eeeeee69;
+  box-shadow: none;
+  border-color: #eee;
+  position: relative;
+  z-index: 999;
+  height: 40px;
+}
+
+.example-viewport {
+  height: 200px;
+}

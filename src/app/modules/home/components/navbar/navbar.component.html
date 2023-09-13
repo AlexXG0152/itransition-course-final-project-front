@@ -7,38 +7,41 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggler">
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
 
-          <li class="nav-item dropdown" *ngFor="let category of categories | keyvalue; let i = index">
+            <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link" data-bs-display="static">Categories</a>
 
-            <ng-container *ngIf="category.value.subcategories.length; else noSubcategories">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                {{category.value.name}}
-              </a>
-              <ul class="dropdown-menu">
-                <li *ngFor="let subcategories of category.value.subcategories">
-                  <a class="dropdown-item" href="#">{{subcategories.name}}</a>
-                </li>
-              </ul>
-            </ng-container>
+            <ul class="dropdown-menu dropend">
+              <li class="dropdown-submenu" *ngFor="let category of categories | keyvalue; let i = index">
+                <ng-container *ngIf="category.value.subcategories.length; else noSubcategories">
+                  <a [routerLink]="['/category', category.value.id]" data-bs-toggle="dropdown"
+                    class="dropdown-item dropdown-toggle">{{category.value.name}}</a>
+                  <ul class="dropdown-menu">
+                    <li *ngFor="let subcategory of category.value.subcategories">
+                      <a class="dropdown-item" [routerLink]="['/subcategory', subcategory.id]">{{subcategory.name}}</a>
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #noSubcategories>
+                  <a class="dropdown-item" [routerLink]="['/category', category.value.id]" role="button">
+                    {{category.value.name}}
+                  </a>
+                </ng-template>
+              </li>
+            </ul>
 
-            <ng-template #noSubcategories>
-              <a class="nav-link" href="#" role="button">
-                {{category.value.name}}
-              </a>
-            </ng-template>
-
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" role="button" (click)="openPage('createdAt', 'DESC')">{{'navbar.latest' |
+              translate}}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" role="button" (click)="openPage('createdAt', 'DESC')">{{'navbar.latest' | translate}}</a>
+            <a class="nav-link" role="button" (click)="openPage('reviewRating', 'DESC')">{{'navbar.top' |
+              translate}}</a>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link" role="button" (click)="openPage('reviewRating', 'DESC')">{{'navbar.top' | translate}}</a>
-          </li>
-
         </ul>
 
         <div *ngIf="!isLoggedIn; else loggedIn">
@@ -52,8 +55,8 @@
             <button mat-raised-button class="me-2" routerLink="review/create" matTooltip="CREATE REVIEW"
               matTooltipPosition="below">{{'navbar.new' | translate}}</button>
 
-            <button *ngIf="userService.getAdminBoard()" mat-raised-button class="me-2" routerLink="admin" matTooltip="ADMIN PAGE"
-              matTooltipPosition="below">{{'navbar.admin-panel' | translate}}</button>
+            <button *ngIf="userService.getAdminBoard()" mat-raised-button class="me-2" routerLink="admin"
+              matTooltip="ADMIN PAGE" matTooltipPosition="below">{{'navbar.admin-panel' | translate}}</button>
 
             <button mat-raised-button class="me-2" routerLink="user" matTooltip="YOUR PROFILE"
               matTooltipPosition="below">{{'navbar.profile' | translate}}</button>
@@ -64,8 +67,6 @@
         </div>
         <form class="d-flex" role="search">
           <app-search></app-search>
-          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
         </form>
       </div>
       <app-dark-mode></app-dark-mode>

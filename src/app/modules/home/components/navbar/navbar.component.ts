@@ -30,6 +30,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isLoggedIn = this.storageService.isLoggedIn();
       if (this.isLoggedIn) {
         this.userService.getMyInfo();
+        console.log(this.categories);
+
       }
     });
   }

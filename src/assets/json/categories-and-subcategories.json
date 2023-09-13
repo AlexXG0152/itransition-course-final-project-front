@@ -1,0 +1,232 @@
+[
+  {
+    "id": 1,
+    "name": "Movies",
+    "subcategories": [
+      {
+        "id": 1,
+        "categoryId": 1,
+        "name": "Action"
+      },
+      {
+        "id": 2,
+        "categoryId": 1,
+        "name": "Drama"
+      },
+      {
+        "id": 3,
+        "categoryId": 1,
+        "name": "Detective"
+      },
+      {
+        "id": 4,
+        "categoryId": 1,
+        "name": "Other"
+      },
+      {
+        "id": 12,
+        "categoryId": 1,
+        "name": "Adventure"
+      },
+      {
+        "id": 13,
+        "categoryId": 1,
+        "name": "Biography"
+      },
+      {
+        "id": 14,
+        "categoryId": 1,
+        "name": "Crime"
+      },
+      {
+        "id": 15,
+        "categoryId": 1,
+        "name": "Fantasy"
+      },
+      {
+        "id": 16,
+        "categoryId": 1,
+        "name": "Noir"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Series",
+    "subcategories": [
+      {
+        "id": 5,
+        "categoryId": 2,
+        "name": "Comedy"
+      },
+      {
+        "id": 6,
+        "categoryId": 2,
+        "name": "Documental"
+      },
+      {
+        "id": 7,
+        "categoryId": 2,
+        "name": "Netflix"
+      },
+      {
+        "id": 8,
+        "categoryId": 2,
+        "name": "Other"
+      },
+      {
+        "id": 17,
+        "categoryId": 2,
+        "name": "Historical"
+      },
+      {
+        "id": 18,
+        "categoryId": 2,
+        "name": "Horror"
+      },
+      {
+        "id": 19,
+        "categoryId": 2,
+        "name": "Political"
+      },
+      {
+        "id": 20,
+        "categoryId": 2,
+        "name": "Spy"
+      },
+      {
+        "id": 21,
+        "categoryId": 2,
+        "name": "Western"
+      },
+      {
+        "id": 22,
+        "categoryId": 2,
+        "name": "Thriller"
+      },
+      {
+        "id": 23,
+        "categoryId": 2,
+        "name": "War"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Books",
+    "subcategories": [
+      {
+        "id": 9,
+        "categoryId": 3,
+        "name": "Poetry"
+      },
+      {
+        "id": 10,
+        "categoryId": 3,
+        "name": "Classic"
+      },
+      {
+        "id": 11,
+        "categoryId": 3,
+        "name": "Other"
+      },
+      {
+        "id": 24,
+        "categoryId": 3,
+        "name": "War"
+      },
+      {
+        "id": 25,
+        "categoryId": 3,
+        "name": "Historical"
+      },
+      {
+        "id": 26,
+        "categoryId": 3,
+        "name": "Satire"
+      },
+      {
+        "id": 27,
+        "categoryId": 3,
+        "name": "Fantasy"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Employers",
+    "subcategories": [
+      {
+        "id": 28,
+        "categoryId": 4,
+        "name": "IT"
+      },
+      {
+        "id": 29,
+        "categoryId": 4,
+        "name": "Corporations"
+      },
+      {
+        "id": 30,
+        "categoryId": 4,
+        "name": "Small businesses"
+      },
+      {
+        "id": 31,
+        "categoryId": 4,
+        "name": "Non-profit organizations"
+      },
+      {
+        "id": 32,
+        "categoryId": 4,
+        "name": "Government agencies"
+      },
+      {
+        "id": 33,
+        "categoryId": 4,
+        "name": "Individual employers"
+      },
+      {
+        "id": 34,
+        "categoryId": 4,
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Eat, food and drink",
+    "subcategories": [
+      {
+        "id": 35,
+        "categoryId": 5,
+        "name": "Fast Food"
+      },
+      {
+        "id": 36,
+        "categoryId": 5,
+        "name": "Bars"
+      },
+      {
+        "id": 37,
+        "categoryId": 5,
+        "name": "Coffee"
+      },
+      {
+        "id": 38,
+        "categoryId": 5,
+        "name": "Restaurants"
+      },
+      {
+        "id": 39,
+        "categoryId": 5,
+        "name": "Other"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Other",
+    "subcategories": []
+  }
+]

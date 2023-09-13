@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="input-group">
+    <input type="text" class="form-control" [formControl]="searchInput" placeholder="Search...">
+  </div>
+
+  <ng-container>
+
+    <div class="card" *ngIf="searchResults?.length > 0">
+      <h6 class="card-title">Search Results:</h6>
+      <div class="list-group" *ngFor="let result of $any(searchResults)">
+        <a [routerLink]="['/review', result.id]" class="list-group-item list-group-item-action">{{ result.title }}</a>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="searchResults?.length === 0">
+      <span></span>No results found.
+    </div>
+
+  </ng-container>
+
+</div>

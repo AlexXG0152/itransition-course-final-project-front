@@ -1,6 +1,6 @@
 # itransition-course-final-project-frontend
 
-<https://itransition-course-final-project-back.onrender.com/api/v1>
+<https://itransition-course-final-project-front.onrender.com/>
 
 Web portal for reviews "what should you read/watch/play, etc."
 

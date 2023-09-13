@@ -10,12 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LanguageComponent } from './components/language/language.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagComponent } from './components/tag/tag.component';
 import { TagsCloudComponent } from './components/tags-cloud/tags-cloud.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewModule } from '../review/review.module';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ReviewModule } from '../review/review.module';
     DarkModeComponent,
     LanguageComponent,
     CarouselComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { ReviewModule } from '../review/review.module';
     MatTooltipModule,
     TranslateModule,
     FormsModule,
+    ReactiveFormsModule,
     TagComponent,
     NgbCarouselModule,
     ReviewModule

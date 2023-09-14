@@ -61,6 +61,7 @@
 	"review.create.category": "Kategoria",
 	"review.create.content": "Zawartość",
 	"review.create.create": "Utwórz recenzję",
+  "review.create.save": "Zapisz recenzję",
 	"review.create.drag1": "Przeciągnij i upuść plik tutaj",
 	"review.create.drag2": "Lub",
 	"review.create.drag3": "Wyszukaj plik",
@@ -92,6 +93,8 @@
 	"review.read.rating": "Użytkownik ustawia ocenę produktu",
 	"review.read.subcategory": "Podkategoria",
 	"review.read.tags": "Tagi",
+  "review.read.delete": "Skasować",
+	"review.read.edit": "Edytować",
 	"tags.header": "Tagi",
 	"user.info.avatar": "Awatar użytkownika",
 	"user.info.created": "Stworzony",
@@ -120,5 +123,6 @@
 	"user.user-page.review-id": "ID przeglądu",
 	"user.user-page.review-rating": "Ocena zestawu użytkownika",
 	"user.user-page.reviews": "Recenzje",
-	"user.user-page.title": "Tytuł"
+	"user.user-page.title": "Tytuł",
+  "common.cancel": "Anulowanie"
 }

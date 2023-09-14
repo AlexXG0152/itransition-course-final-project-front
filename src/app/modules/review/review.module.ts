@@ -27,6 +27,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MarkdownModule } from 'ngx-markdown';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MarkdownModule } from 'ngx-markdown';
     RatingComponent,
     LikeComponent,
     MarkdownEditorComponent,
+    ToolbarComponent,
   ],
   imports: [
     CommonModule,

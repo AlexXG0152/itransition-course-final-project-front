@@ -5,10 +5,13 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { NavigationService } from 'src/app/modules/home/services/navigation.service';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ReviewService } from '../../services/review.service';
 import { UploadService } from '../../services/upload.service';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { IReview } from '../../interfaces/review.interface';
+import { NavigationService } from '../../../home/services/navigation.service';
 
 @Component({
   selector: 'app-create-review-page',
@@ -16,45 +19,104 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./create-review-page.component.scss'],
 })
 export class CreateReviewPageComponent {
-  reviewForm: FormGroup;
+  reviewForm!: FormGroup;
   products: any[] = [
     { title: 'Product 1' },
     { title: 'Product 2' },
     { title: 'Product 3' },
   ];
-  droppedImages: string[] = [];
   showProductId = false;
 
   categories: any[] = this.navigationService.categories;
-  subCategories!: any[];
+  subCategories?: any[];
+
+  edit = false;
+  id?: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private navigationService: NavigationService,
     private uploadService: UploadService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
-    this.reviewForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      tags: ['', Validators.required],
-      content: ['', Validators.required],
-      imageslinks: '',
-      reviewRating: ['', Validators.required],
-      productTitle: ['', Validators.required],
-      productId: 0,
-      categoryId: ['', Validators.required],
-      subcategoryId: ['', Validators.required],
-    });
+    this.route.data.subscribe(
+      (isEdit: { preload?: boolean; edit?: boolean }) => {
+        this.edit = isEdit.edit ?? false;
+      }
+    );
+
+    if (this.edit) {
+      let dataForEdit: IReview =
+        this.router.getCurrentNavigation()?.extras.state?.['data'];
+
+      this.id = +this.route.snapshot.paramMap.get('id')!;
+
+      if (!dataForEdit) {
+        this.reviewService
+          .getReviewByID(this.id)
+          .pipe(
+            tap((response) => {
+              if (response === null) {
+                this.router.navigateByUrl('/404');
+                return;
+              }
+              dataForEdit = response;
+              this.fillReviewForm(dataForEdit);
+              this.onCategorySelect();
+              return;
+            }),
+            catchError((error) => {
+              throw error;
+            })
+          )
+          .subscribe();
+      }
+      this.fillReviewForm(dataForEdit);
+      this.onCategorySelect();
+    } else {
+      this.fillReviewForm();
+    }
   }
 
   get contentControl() {
     return this.reviewForm.controls['content'] as FormControl;
   }
 
-  async submitReview() {
+  fillReviewForm(dataForEdit?: IReview) {
+  //   console.log(dataForEdit);
+  //   this.files.push(dataForEdit?.imageslinks?.map((image: any) =>
+  //   image.originalname.split('-id-').at(0)
+  // ))
+
+    this.reviewForm = this.formBuilder.group({
+      title: [dataForEdit?.title || '', Validators.required],
+      tags: [
+        dataForEdit?.tags?.map((tag: any) => tag.name).join(', ') || '',
+        Validators.required,
+      ],
+      content: [dataForEdit?.content || '', Validators.required],
+      imageslinks: '',
+      reviewRating: [dataForEdit?.reviewRating || '', Validators.required],
+      productTitle: [dataForEdit?.productTitle || '', Validators.required],
+      productId: dataForEdit?.productId || 0,
+      categoryId: [dataForEdit?.categoryId || '', Validators.required],
+      subcategoryId: [dataForEdit?.subcategoryId || '', Validators.required],
+    });
+  }
+
+  async onSubmitReview() {
     this.splitTagsFromForm();
+    const service = (id: number | undefined, data: IReview) =>
+      this.edit
+        ? this.reviewService.editReview(id!, data)
+        : this.reviewService.createReview(data);
 
     if (this.files.length > 0) {
+      console.log(this.files);
+
       const images = this.createImageFormData();
 
       this.uploadService
@@ -65,9 +127,10 @@ export class CreateReviewPageComponent {
             return this.reviewForm.value;
           }),
           switchMap((data: any) =>
-            this.reviewService.createReview(data).pipe(
+            service(this.id, data).pipe(
               tap((result) => {
                 this.reviewForm.reset();
+                this.router.navigateByUrl(`review/${result.id || this.id}`);
               }),
               catchError((error) => {
                 throw error;
@@ -78,11 +141,11 @@ export class CreateReviewPageComponent {
         .subscribe();
     } else {
       this.reviewForm.value.imageslinks = JSON.stringify([{ link: 'empty' }]);
-      this.reviewService
-        .createReview(this.reviewForm.value)
+      service(this.id, this.reviewForm.value)
         .pipe(
           tap((result) => {
             this.reviewForm.reset();
+            this.router.navigateByUrl(`review/${result.id || this.id}`);
           }),
           catchError((error) => {
             throw error;
@@ -125,8 +188,12 @@ export class CreateReviewPageComponent {
   onCategorySelect() {
     this.subCategories =
       this.navigationService.categories[
-        this.reviewForm.get('categoryId')!.value - 1
-      ].subcategories;
+        this.reviewForm.get('categoryId')?.value - 1
+      ]?.subcategories;
+  }
+
+  onCancel() {
+    this.location.back();
   }
 
   @ViewChild('fileDropRef', { static: false }) fileDropEl:

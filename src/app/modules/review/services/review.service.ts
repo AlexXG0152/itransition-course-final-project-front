@@ -48,11 +48,11 @@ export class ReviewService {
     );
   }
 
-  editReview(id: string, data: IReview): Observable<IReview> {
+  editReview(id: number, data: IReview): Observable<IReview> {
     return this.http.patch<IReview>(`${this.API}/reviews/${id}`, data);
   }
 
-  deleteReview(id: string): Observable<IReview> {
+  deleteReview(id: number): Observable<IReview> {
     return this.http.delete<IReview>(`${this.API}/reviews/${id}`);
   }
 

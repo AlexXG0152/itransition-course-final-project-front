@@ -17,7 +17,6 @@
   margin-right: 10px;
 }
 
-
 .dnd-container {
   width: 450px;
   height: 210px;
@@ -146,4 +145,23 @@
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+
+.wrapper {
+  width: 370px;
+  height: 270px;
+  border: 1px solid #b8b8b8;
+}
+
+.exmpl {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exmpl img {
+  height: 100%;
+  width: auto;
 }

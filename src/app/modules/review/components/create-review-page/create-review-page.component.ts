@@ -32,6 +32,9 @@ export class CreateReviewPageComponent {
 
   edit = false;
   id?: number;
+  dataForEdit?: IReview;
+  originalData: any;
+  editFiles: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,12 +52,14 @@ export class CreateReviewPageComponent {
     );
 
     if (this.edit) {
-      let dataForEdit: IReview =
+      this.dataForEdit =
         this.router.getCurrentNavigation()?.extras.state?.['data'];
+
+      this.originalData = { ...this.dataForEdit };
 
       this.id = +this.route.snapshot.paramMap.get('id')!;
 
-      if (!dataForEdit) {
+      if (!this.dataForEdit) {
         this.reviewService
           .getReviewByID(this.id)
           .pipe(
@@ -63,8 +68,8 @@ export class CreateReviewPageComponent {
                 this.router.navigateByUrl('/404');
                 return;
               }
-              dataForEdit = response;
-              this.fillReviewForm(dataForEdit);
+              this.dataForEdit = response;
+              this.fillReviewForm(this.dataForEdit);
               this.onCategorySelect();
               return;
             }),
@@ -74,7 +79,7 @@ export class CreateReviewPageComponent {
           )
           .subscribe();
       }
-      this.fillReviewForm(dataForEdit);
+      this.fillReviewForm(this.dataForEdit);
       this.onCategorySelect();
     } else {
       this.fillReviewForm();
@@ -86,10 +91,7 @@ export class CreateReviewPageComponent {
   }
 
   fillReviewForm(dataForEdit?: IReview) {
-  //   console.log(dataForEdit);
-  //   this.files.push(dataForEdit?.imageslinks?.map((image: any) =>
-  //   image.originalname.split('-id-').at(0)
-  // ))
+    this.editFiles = dataForEdit?.imageslinks.length ?? 0;
 
     this.reviewForm = this.formBuilder.group({
       title: [dataForEdit?.title || '', Validators.required],
@@ -109,21 +111,28 @@ export class CreateReviewPageComponent {
 
   async onSubmitReview() {
     this.splitTagsFromForm();
+
     const service = (id: number | undefined, data: IReview) =>
       this.edit
         ? this.reviewService.editReview(id!, data)
         : this.reviewService.createReview(data);
 
     if (this.files.length > 0) {
-      console.log(this.files);
-
       const images = this.createImageFormData();
 
       this.uploadService
         .upload(images)
         .pipe(
           map((links) => {
-            this.reviewForm.value.imageslinks = JSON.stringify(links);
+            if (this.dataForEdit?.imageslinks) {
+              this.reviewForm.value.imageslinks = JSON.stringify([
+                ...this.dataForEdit?.imageslinks,
+                ...links,
+              ]);
+            } else {
+              this.reviewForm.value.imageslinks = JSON.stringify(links);
+            }
+
             return this.reviewForm.value;
           }),
           switchMap((data: any) =>
@@ -140,7 +149,9 @@ export class CreateReviewPageComponent {
         )
         .subscribe();
     } else {
-      this.reviewForm.value.imageslinks = JSON.stringify([{ link: 'empty' }]);
+      this.reviewForm.value.imageslinks =
+        JSON.stringify(this.dataForEdit?.imageslinks) || JSON.stringify([]);
+
       service(this.id, this.reviewForm.value)
         .pipe(
           tap((result) => {
@@ -161,6 +172,14 @@ export class CreateReviewPageComponent {
       formData.append('file', file);
     });
     return formData;
+  }
+
+  onImageRemoveWhenEdit(image: any) {
+    this.dataForEdit!.imageslinks =
+      this.dataForEdit!.imageslinks?.filter(
+        (item: { originalname: any }) =>
+          item.originalname !== image.originalname
+      ) || [];
   }
 
   splitTagsFromForm() {

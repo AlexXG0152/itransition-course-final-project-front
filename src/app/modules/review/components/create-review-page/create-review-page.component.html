@@ -91,6 +91,18 @@
       </div>
     </div>
 
+    <div class="mb-3 d-flex" *ngIf="edit">
+      <div *ngFor="let image of dataForEdit?.imageslinks" class="card">
+        <ng-container *ngIf="image?.link">
+          <div class="wrapper exmpl">
+            <img src="{{image?.link}}" alt="Image" class="img" onerror="this.src='assets/images/placeholder.jpg';"
+              style="float: left" />
+          </div>
+          <button mat-flat-button color="warn" (click)="onImageRemoveWhenEdit(image)">Remove</button>
+        </ng-container>
+      </div>
+    </div>
+
     <button type="submit" class="btn btn-primary me-3" (click)="onSubmitReview()">{{( edit ? 'review.create.save'
       :'review.create.create') | translate}}
     </button>

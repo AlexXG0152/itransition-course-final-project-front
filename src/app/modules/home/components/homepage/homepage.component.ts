@@ -46,11 +46,7 @@ export class HomepageComponent implements OnInit {
 
   parseJSON(response: { count?: number; rows: any }) {
     return response.rows.map((review: any) => {
-      if (review.imageslinks) {
         review.imageslinks = JSON.parse(review.imageslinks);
-      } else {
-        review.imageslinks = [{ link: 'empty' }];
-      }
     });
   }
 }

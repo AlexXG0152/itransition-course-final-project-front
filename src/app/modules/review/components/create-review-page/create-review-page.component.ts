@@ -36,11 +36,14 @@ export class CreateReviewPageComponent {
   originalData: any;
   editFiles: number = 0;
 
+  tags: string[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private navigationService: NavigationService,
     private uploadService: UploadService,
     private reviewService: ReviewService,
+
     private router: Router,
     private route: ActivatedRoute,
     private location: Location
@@ -58,6 +61,8 @@ export class CreateReviewPageComponent {
       this.originalData = { ...this.dataForEdit };
 
       this.id = +this.route.snapshot.paramMap.get('id')!;
+
+      this.tags = this.dataForEdit?.tags!.map((obj: any) => obj.name)!;
 
       if (!this.dataForEdit) {
         this.reviewService
@@ -109,8 +114,15 @@ export class CreateReviewPageComponent {
     });
   }
 
+  handleTagsChange(tags: string[]) {
+    this.tags = tags;
+    this.reviewForm.value.tags = tags;
+  }
+
   async onSubmitReview() {
-    this.splitTagsFromForm();
+    this.handleTagsChange(this.tags!);
+
+    this.dataForEdit!.tags = this.tags;
 
     const service = (id: number | undefined, data: IReview) =>
       this.edit
@@ -180,15 +192,6 @@ export class CreateReviewPageComponent {
         (item: { originalname: any }) =>
           item.originalname !== image.originalname
       ) || [];
-  }
-
-  splitTagsFromForm() {
-    this.reviewForm.value.tags = this.reviewForm.value.tags
-      .split(',')
-      .map((element: string) => {
-        return element.trim();
-      })
-      .filter((elem: string) => elem !== '');
   }
 
   onProductTitleChange() {

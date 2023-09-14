@@ -11,7 +11,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 export class SearchComponent {
   searchInput = new FormControl();
   searchResults: any;
-  results = false;
+  showResults = false;
 
   constructor(private searchService: SearchService) {}
 
@@ -25,8 +25,7 @@ export class SearchComponent {
         )
         .subscribe((results: any) => {
           this.searchResults = results;
-          this.results = true;
-          console.log(results);
+          this.showResults = true;
         });
     } catch (error) {
       console.log(error);

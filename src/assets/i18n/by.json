@@ -61,6 +61,7 @@
 	"review.create.category": "Катэгорыя",
 	"review.create.content": "Змест",
 	"review.create.create": "Стварыць агляд",
+  "review.create.save": "Сахранiць агляд",
 	"review.create.drag1": "Перацягніце файл сюды",
 	"review.create.drag2": "альбо",
 	"review.create.drag3": "Пошук файла",
@@ -92,6 +93,8 @@
 	"review.read.rating": "Карыстальнік усталяваў рэйтынг прадукту",
 	"review.read.subcategory": "Падкатэгорыя",
 	"review.read.tags": "Тэгі",
+  "review.read.delete": "Выдалiць",
+  "review.read.edit": "Рэдагаваць",
 	"tags.header": "Тэгі",
 	"user.info.avatar": "Аватар карыстальніка",
 	"user.info.created": "Створаны",
@@ -120,5 +123,6 @@
 	"user.user-page.review-id": "ID агляду",
 	"user.user-page.review-rating": "Рэйтынг агляду усталяваны карыстальнікам",
 	"user.user-page.reviews": "Водгукі",
-	"user.user-page.title": "Назва"
+	"user.user-page.title": "Назва",
+  "common.cancel": "Адмена"
 }

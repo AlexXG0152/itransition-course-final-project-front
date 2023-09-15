@@ -34,13 +34,8 @@
 
     <div class="mb-2">
       <label for="productTitle" class="form-label">{{'review.create.product-title' | translate}}</label>
-      <input type="text" class="form-control" id="productTitle" formControlName="productTitle">
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Product Title</mat-label>
-        <mat-select formControlName="productTitle" (selectionChange)="onProductTitleChange()">
-          <mat-option *ngFor="let product of products" [value]="product.title">{{ product.title }}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
+      <app-product-input (productChanged)="handleProductChange($event)"
+        [editProductTitle]="selectedProduct"></app-product-input>
     </div>
 
     <div class="mb-2" *ngIf="showProductId">
@@ -54,8 +49,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="tags" class="form-label">{{'review.create.tags' | translate}}</label>
-      <input type="text" class="form-control" id="tags" formControlName="tags">
+      <app-tag-input (tagsChanged)="handleTagsChange($event)" [tags]="tags"></app-tag-input>
     </div>
 
     <div class="mb-3">
@@ -91,7 +85,24 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="submitReview()">{{'review.create.create' | translate}}</button>
-  </form>
+    <div class="mb-3 d-flex" *ngIf="edit">
+      <div *ngFor="let image of dataForEdit?.imageslinks" class="card">
+        <ng-container *ngIf="image?.link">
+          <div class="wrapper exmpl">
+            <img src="{{image?.link}}" alt="Image" class="img" onerror="this.src='assets/images/placeholder.jpg';"
+              style="float: left" />
+          </div>
+          <button mat-flat-button color="warn" (click)="onImageRemoveWhenEdit(image)">Remove</button>
+        </ng-container>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary me-3" (click)="onSubmitReview()">{{( edit ? 'review.create.save'
+      :'review.create.create') | translate}}
+    </button>
 
+    <button type="submit" class="btn btn-secondary" (click)="onCancel()">{{'common.cancel' |
+      translate}}
+    </button>
+
+  </form>
 </div>

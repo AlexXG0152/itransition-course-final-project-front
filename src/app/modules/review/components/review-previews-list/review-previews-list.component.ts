@@ -85,12 +85,9 @@ export class ReviewPreviewsListComponent implements OnInit {
 
   processReviewsResponse(response: any) {
     response.rows.map((review: any) => {
-      if (review.imageslinks) {
-        review.imageslinks = JSON.parse(review.imageslinks);
-      } else {
-        review.imageslinks = [{ link: 'empty' }];
-      }
+      review.imageslinks = JSON.parse(review.imageslinks);
     });
+
     this.reviews = response.rows;
     this.collectionSize = response.count;
     this.reviewService.getLikes(this.reviews, this.likesArray);

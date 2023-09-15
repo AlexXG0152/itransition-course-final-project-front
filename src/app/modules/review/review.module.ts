@@ -22,11 +22,18 @@ import { TagComponent } from '../home/components/tag/tag.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { LikeComponent } from './components/like/like.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MarkdownModule } from 'ngx-markdown';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TagInputComponent } from './components/tag-input/tag-input.component';
+import { ProductInputComponent } from './components/product-input/product-input.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +46,9 @@ import { MarkdownModule } from 'ngx-markdown';
     RatingComponent,
     LikeComponent,
     MarkdownEditorComponent,
+    ToolbarComponent,
+    TagInputComponent,
+    ProductInputComponent,
   ],
   imports: [
     CommonModule,
@@ -52,14 +62,18 @@ import { MarkdownModule } from 'ngx-markdown';
     NgbPopoverModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    StarRatingModule,
-    TagComponent,
-    MatIconModule,
     MatTooltipModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    TagComponent,
+    StarRatingModule,
     TextFieldModule,
-    MarkdownModule
+    MarkdownModule,
   ],
   exports: [ReviewPreviewComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ReviewModule {}

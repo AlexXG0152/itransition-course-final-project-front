@@ -61,6 +61,7 @@
 	"review.create.category": "Category",
 	"review.create.content": "Content",
 	"review.create.create": "Create Review",
+  "review.create.save": "Save Review",
 	"review.create.drag1": "Drag and drop file here",
 	"review.create.drag2": "or",
 	"review.create.drag3": "Browse for file",
@@ -92,6 +93,8 @@
 	"review.read.rating": "User Set Product's Rating",
 	"review.read.subcategory": "Subcategory",
 	"review.read.tags": "Tags",
+  "review.read.edit": "Edit",
+  "review.read.delete": "Delete",
 	"tags.header": "TAGS",
 	"user.info.avatar": "User avatar",
 	"user.info.created": "Created",
@@ -120,5 +123,6 @@
 	"user.user-page.review-id": "Review ID",
 	"user.user-page.review-rating": "User Set Review rating",
 	"user.user-page.reviews": "Reviews",
-	"user.user-page.title": "Title"
+	"user.user-page.title": "Title",
+  "common.cancel": "Cancel"
 }

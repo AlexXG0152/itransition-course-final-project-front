@@ -14,9 +14,17 @@ const routes: Routes = [
   { path: 'popular', component: ReviewPreviewsListComponent },
   { path: 'latest', component: ReviewPreviewsListComponent },
   { path: 'tags', component: ReviewPreviewsListComponent },
-  { path: 'create', component: CreateReviewPageComponent },
+  {
+    path: 'create',
+    component: CreateReviewPageComponent,
+    data: { edit: false },
+  },
   { path: ':id', component: ReviewPageComponent },
-  { path: ':id/edit', component: CreateReviewPageComponent },
+  {
+    path: ':id/edit',
+    component: CreateReviewPageComponent,
+    data: { edit: true },
+  },
 ];
 
 @NgModule({

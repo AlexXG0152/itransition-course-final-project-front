@@ -1,0 +1,8 @@
+<div class="container d-flex" *ngIf="showAdminBoardSubject">
+  <button mat-raised-button matTooltip="{{'review.read.edit' | translate}}" (click)="onEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-raised-button matTooltip="{{'review.read.delete' | translate}}" (click)="onDelete()">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</div>

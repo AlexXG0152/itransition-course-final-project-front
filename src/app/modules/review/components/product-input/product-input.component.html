@@ -1,0 +1,50 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Product Title</mat-label>
+
+    <mat-chip-grid #chipGrid aria-label="Tags selection">
+      <mat-chip-row *ngFor="let product of editableProd" (removed)="remove(product)">
+        {{ product }}
+        <button matChipRemove [attr.aria-label]="'remove ' + product">
+          <mat-icon matTooltip="Delete this product">cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    </mat-chip-grid>
+
+
+    <input
+      placeholder="Pick one product..."
+      #productInput
+      matInput
+      type="text"
+      [formControl]="productSearchInput"
+      [matAutocomplete]="auto"
+      (keydown.enter)="onSelect($event)"
+      [matChipInputFor]="chipGrid"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="onSelect($event)"
+      [displayWith]="getOptionText"
+    >
+      <mat-option
+        *ngFor="let product of productSearchResults"
+        [value]="product"
+      >
+        {{ product.productTitle }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-hint
+      align="start"
+      *ngIf="
+        selectedProduct !== productSearchInput.value ||
+        (isEnterPressed && selectedProduct === productSearchInput.value)
+      "
+    >
+      Press enter after input product title if you didn't choose from list
+      <mat-icon *ngIf="isEnterPressed" style="margin-left: 10px; color: green"
+        >done_outline</mat-icon
+      >
+    </mat-hint>
+  </mat-form-field>
+</form>

@@ -41,8 +41,10 @@ export class ReviewPageComponent implements OnInit {
   getReview(reviewId: number): void {
     this.reviewService.getReviewByID(reviewId).subscribe((review: IReview) => {
       this.review = review;
-      this.review.imageslinks = JSON.parse(this.review.imageslinks);
-      this.loaded = true;
+      if (this.review) {
+        this.review.imageslinks = JSON.parse(this.review.imageslinks);
+        this.loaded = true;
+      }
     });
   }
 }

@@ -18,6 +18,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewModule } from '../review/review.module';
 import { SearchComponent } from './components/search/search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     DarkModeComponent,
     LanguageComponent,
     CarouselComponent,
-    SearchComponent
+    SearchComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -41,8 +43,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     TagComponent,
     NgbCarouselModule,
     ScrollingModule,
-    ReviewModule
+    ReviewModule,
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, PageNotFoundComponent],
 })
 export class HomeModule {}

@@ -20,11 +20,7 @@ import { NavigationService } from '../../../home/services/navigation.service';
 })
 export class CreateReviewPageComponent {
   reviewForm!: FormGroup;
-  products: any[] = [
-    { title: 'Product 1' },
-    { title: 'Product 2' },
-    { title: 'Product 3' },
-  ];
+
   showProductId = false;
 
   categories: any[] = this.navigationService.categories;
@@ -33,17 +29,16 @@ export class CreateReviewPageComponent {
   edit = false;
   id?: number;
   dataForEdit?: IReview;
-  originalData: any;
   editFiles: number = 0;
 
   tags: string[] = [];
+  selectedProduct?: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private navigationService: NavigationService,
     private uploadService: UploadService,
     private reviewService: ReviewService,
-
     private router: Router,
     private route: ActivatedRoute,
     private location: Location
@@ -58,11 +53,10 @@ export class CreateReviewPageComponent {
       this.dataForEdit =
         this.router.getCurrentNavigation()?.extras.state?.['data'];
 
-      this.originalData = { ...this.dataForEdit };
-
       this.id = +this.route.snapshot.paramMap.get('id')!;
 
       this.tags = this.dataForEdit?.tags!.map((obj: any) => obj.name)!;
+      this.selectedProduct = this.dataForEdit?.product.productTitle;
 
       if (!this.dataForEdit) {
         this.reviewService
@@ -116,13 +110,20 @@ export class CreateReviewPageComponent {
 
   handleTagsChange(tags: string[]) {
     this.tags = tags;
-    this.reviewForm.value.tags = tags;
+  }
+
+  handleProductChange(product: any) {
+    if (typeof product === 'string') {
+      this.selectedProduct = { productId: 0, productTitle: product };
+    } else {
+      this.selectedProduct = product;
+    }
   }
 
   async onSubmitReview() {
-    this.handleTagsChange(this.tags!);
-
-    this.dataForEdit!.tags = this.tags;
+    this.reviewForm.value.productId = this.selectedProduct.id ?? this.dataForEdit?.product.id;
+    this.reviewForm.value.productTitle = this.selectedProduct.productTitle ?? this.dataForEdit?.product.productTitle;
+    this.reviewForm.value.tags = this.tags;
 
     const service = (id: number | undefined, data: IReview) =>
       this.edit
@@ -144,7 +145,6 @@ export class CreateReviewPageComponent {
             } else {
               this.reviewForm.value.imageslinks = JSON.stringify(links);
             }
-
             return this.reviewForm.value;
           }),
           switchMap((data: any) =>
@@ -192,19 +192,6 @@ export class CreateReviewPageComponent {
         (item: { originalname: any }) =>
           item.originalname !== image.originalname
       ) || [];
-  }
-
-  onProductTitleChange() {
-    const productTitle = this.reviewForm.get('productTitle')!.value;
-
-    if (productTitle) {
-      const product = this.products.find((p) => p.title === productTitle);
-      this.reviewForm.patchValue({ productId: product.productId });
-      this.showProductId = true;
-    } else {
-      this.reviewForm.patchValue({ productId: 0 });
-      this.showProductId = false;
-    }
   }
 
   onCategorySelect() {

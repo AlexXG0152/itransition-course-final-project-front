@@ -33,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
+import { ProductInputComponent } from './components/product-input/product-input.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     MarkdownEditorComponent,
     ToolbarComponent,
     TagInputComponent,
+    ProductInputComponent,
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TagService } from 'src/app/modules/home/services/tag.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
@@ -37,33 +37,37 @@ export class TagInputComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   ngOnInit() {
-    console.log(this.tags);
-
     try {
       this.tagSearchInput.valueChanges
         .pipe(
           debounceTime(500),
           distinctUntilChanged(),
-          switchMap((query) => this.tagService.searchTags(query))
+          switchMap((query) => {
+            if (query === null || query === '') {
+              return of([]);
+            } else {
+              return this.tagService.searchTags(query);
+            }
+          })
         )
-        .subscribe((result) => (this.tagSearchResults = result));
+        .subscribe((result: string[]) => (this.tagSearchResults = result));
     } catch (error) {
       console.log(error);
     }
   }
 
   add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
+    const input: HTMLInputElement = event.input;
+    const value: string = event.value;
 
-    if ((value || '').trim() && this.tags.length <= 19) {
+    if ((value || '').trim() && this.tags.length <= 9) {
       this.tags.push(value.trim());
     }
 
     if (input) {
       input.value = '';
     }
-    this.tagsChanged.emit(this.tags)
+    this.tagsChanged.emit(this.tags);
     this.tagSearchInput.setValue(null);
   }
 
@@ -72,14 +76,14 @@ export class TagInputComponent {
 
     if (index >= 0) {
       this.tags.splice(index, 1);
-      this.tagsChanged.emit(this.tags)
+      this.tagsChanged.emit(this.tags);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.tags.push(event.option.viewValue);
+    this.tagsChanged.emit(this.tags);
     this.tagInput!.nativeElement.value = '';
-    this.tagsChanged.emit(this.tags)
     this.tagSearchInput.setValue(null);
   }
 }

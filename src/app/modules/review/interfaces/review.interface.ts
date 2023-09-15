@@ -15,5 +15,5 @@ export interface IReview {
   subcategoryId?: number;
   createdAt?: string;
   updatedAt?: string;
-  product: { productRating: string }
+  product: any
 }

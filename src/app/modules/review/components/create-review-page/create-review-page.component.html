@@ -34,13 +34,8 @@
 
     <div class="mb-2">
       <label for="productTitle" class="form-label">{{'review.create.product-title' | translate}}</label>
-      <input type="text" class="form-control" id="productTitle" formControlName="productTitle">
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Product Title</mat-label>
-        <mat-select formControlName="productTitle" (selectionChange)="onProductTitleChange()">
-          <mat-option *ngFor="let product of products" [value]="product.title">{{ product.title }}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
+      <app-product-input (productChanged)="handleProductChange($event)"
+        [editProductTitle]="selectedProduct"></app-product-input>
     </div>
 
     <div class="mb-2" *ngIf="showProductId">
@@ -101,7 +96,6 @@
         </ng-container>
       </div>
     </div>
-
     <button type="submit" class="btn btn-primary me-3" (click)="onSubmitReview()">{{( edit ? 'review.create.save'
       :'review.create.create') | translate}}
     </button>

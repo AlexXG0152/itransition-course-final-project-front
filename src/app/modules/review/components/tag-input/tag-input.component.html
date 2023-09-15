@@ -1,30 +1,37 @@
-<div class="form-label">{{'review.create.tags' | translate}}</div>
+<div class="form-label">{{ "review.create.tags" | translate }}</div>
 <form>
   <mat-form-field class="example-full-width">
-
-    <mat-label>{{'review.create.tags' | translate}}</mat-label>
+    <mat-label>{{ "review.create.tags" | translate }}</mat-label>
 
     <mat-chip-grid #chipGrid aria-label="Tags selection">
       <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
-        {{tag}}
+        {{ tag }}
         <button matChipRemove [attr.aria-label]="'remove ' + tag">
           <mat-icon matTooltip="Delete this tag">cancel</mat-icon>
         </button>
       </mat-chip-row>
     </mat-chip-grid>
 
-    <input placeholder="New Tag..." #tagInput [formControl]="tagSearchInput" [matChipInputFor]="chipGrid"
-      [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)" />
+    <input
+      placeholder="New Tag..."
+      #tagInput
+      [formControl]="tagSearchInput"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
 
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
       <mat-option *ngFor="let tag of tagSearchResults" [value]="tag.name">
-        {{tag.name}}
+        {{ tag.name }}
       </mat-option>
     </mat-autocomplete>
 
-    <mat-hint align="start"></mat-hint>
-    <mat-hint align="end">{{tags.length}} / 20</mat-hint>
-
+    <mat-hint align="start">Press comma or enter for separate tags</mat-hint>
+    <mat-hint align="end">{{ tags.length }} / 10</mat-hint>
   </mat-form-field>
 </form>

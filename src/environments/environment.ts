@@ -10,6 +10,7 @@ export const environment = {
   FACEBOOK_APP_CALLBACK_URL:
     'http://localhost:3000/api/v1/auth/facebook/redirect',
   GOOGLE_APP_CALLBACK_URL: 'http://localhost:3000/api/v1/auth/google/redirect',
+  WEBSOCKET_URL: 'http://localhost:3000',
 };
 
 /*

@@ -8,24 +8,15 @@ export const columns: IColumns = {
   reviews: [
     'id',
     'title',
-    'product-category',
     'review-rating',
     'like',
     'product-title',
     'create',
     'actions',
   ],
-  ratings: ['id', 'product-id', 'product-title', 'rate', 'create', 'actions'],
-  comments: [
-    'id',
-    'review-id',
-    'comment-title',
-    'comment-text',
-    'product-title',
-    'create',
-    'actions',
-  ],
-  likes: ['id', 'review-id', 'product-title', 'create', 'actions'],
+  ratings: ['product-id', 'product-title', 'rate', 'create', 'actions'],
+  comments: ['review-id', 'comment-text', 'review-title', 'create', 'actions'],
+  likes: ['review-id', 'review-title', 'create', 'actions'],
 };
 
 @Component({
@@ -67,18 +58,9 @@ export class UserPageComponent implements OnInit {
   getInputData() {
     this.userService.getUserInfo(this.id).subscribe((response) => {
       this.user = response;
-      this.addFields();
-      this.user = JSON.parse(
-        JSON.stringify(this.user)
-          .replaceAll('productTitle', 'product-title')
-          .replaceAll('createdAt', 'create')
-          .replaceAll('commentTitle', 'comment-title')
-          .replaceAll('commentText', 'comment-text')
-          .replaceAll('category', 'product-category')
-          .replaceAll('reviewId', 'review-id')
-          .replaceAll('productId', 'product-id')
-          .replaceAll('reviewRating', 'review-rating')
-      );
+
+      this.user = this.addFields(this.user);
+      this.user = this.replaceFieldsNameForTable(this.user);
 
       this.data = {
         rows: this.user.reviews,
@@ -88,26 +70,53 @@ export class UserPageComponent implements OnInit {
     });
   }
 
-  addFields(): void {
-    const reviewMap: { [id: string]: any } = {};
+  addFields(user: IUser): IUser {
+    user.reviews = user?.reviews?.map(
+      ({ categoryID, subcategoryID, ...review }: any) => ({
+        ...review,
+        categoryName: categoryID?.name,
+        subcategoryName: subcategoryID?.name,
+      })
+    );
 
-    this.user?.reviews?.forEach((review: any) => {
-      reviewMap[review.id] = review;
-    });
+    user.ratings = user?.ratings?.map(
+      ({ product: { productTitle, ...productRest }, ...rating }: any) => ({
+        ...rating,
+        productTitle,
+        ...productRest,
+      })
+    );
 
-    this.user?.ratings?.forEach((rating: any) => {
-      const review: any = reviewMap[rating.productId];
-      rating.productTitle = review?.productTitle;
-    });
+    user.comments = user?.comments?.map(
+      ({ review: { title, ...reviewRest }, ...comment }: any) => ({
+        ...comment,
+        reviewTitle: title,
+        ...reviewRest,
+      })
+    );
 
-    this.user?.comments?.forEach((comment: any) => {
-      const review: any = reviewMap[comment.reviewId];
-      comment.productTitle = review?.title;
-    });
+    user.likes = user?.likes?.map(
+      ({ review: { title, ...reviewRest }, ...like }: any) => ({
+        ...like,
+        reviewTitle: title,
+        ...reviewRest,
+      })
+    );
 
-    this.user?.likes?.forEach((like: any) => {
-      const review: any = reviewMap[like.reviewId];
-      like.productTitle = review?.title;
-    });
+    return user;
+  }
+
+  replaceFieldsNameForTable(user: IUser) {
+    return JSON.parse(
+      JSON.stringify(user)
+        .replace(/createdAt/g, 'create')
+        .replace(/commentText/g, 'comment-text')
+        .replace(/category/g, 'product-category')
+        .replace(/productTitle/g, 'product-title')
+        .replace(/reviewId/g, 'review-id')
+        .replace(/productId/g, 'product-id')
+        .replace(/reviewRating/g, 'review-rating')
+        .replace(/reviewTitle/g, 'review-title')
+    );
   }
 }

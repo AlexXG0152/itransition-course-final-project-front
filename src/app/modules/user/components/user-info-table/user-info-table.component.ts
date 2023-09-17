@@ -36,6 +36,8 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort | any;
 
   ngOnInit(): void {
+    console.log(this.inputData.rows);
+
     this.dataSource = new MatTableDataSource(this.inputData.rows);
     this.displayedColumns = this.inputData.columns.map((columnName: any) => {
       return this.translateService.instant(`user.user-page.${[columnName]}`);

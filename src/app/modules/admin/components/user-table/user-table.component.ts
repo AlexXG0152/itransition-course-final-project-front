@@ -22,6 +22,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
     'banned',
     'banreason',
     'unbanreason',
+    'totalLikes',
     'createdAt',
     'updatedAt',
     'deletedAt',

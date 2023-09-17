@@ -61,7 +61,7 @@ export interface CommentsEntity {
   id: number;
   commentTitle: string;
   commentText: string;
-  productTitle?: string;
+  reviewTitle?: string;
   edited: boolean;
   userId: number;
   reviewId: number;

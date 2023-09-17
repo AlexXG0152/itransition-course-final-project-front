@@ -10,9 +10,10 @@
       <div *ngFor="let col of displayedColumns; let i = index;">
 
         <ng-container matColumnDef="{{col}}"
-        *ngIf="inputData.columns[i] !== 'create' && inputData.columns[i] !== 'actions'; else createAt">
+          *ngIf="inputData.columns[i] !== 'create' && inputData.columns[i] !== 'actions'; else createAt">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
-          <mat-cell *matCellDef="let row" [routerLink]="'/review/' + row.id" class="row-hover"
+          <mat-cell *matCellDef="let row"
+            [routerLink]="row['review-id'] ? '/review/' + row['review-id'] : '/review/' + row.id" class="row-hover"
             matTooltip="Go to review">{{row[inputData.columns[i]]}}</mat-cell>
         </ng-container>
 
@@ -28,7 +29,8 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
             <mat-cell *matCellDef="let row">
               <mat-icon matTooltip="{{'user.table.edit' | translate}}">edit</mat-icon>
-              <mat-icon matTooltip="{{'user.table.delete' | translate}}" (click)="onDelete(row.id)">delete_forever</mat-icon>
+              <mat-icon matTooltip="{{'user.table.delete' | translate}}"
+                (click)="onDelete(row.id)">delete_forever</mat-icon>
             </mat-cell>
           </ng-container>
         </ng-template>

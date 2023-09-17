@@ -2,6 +2,13 @@
   <app-create-comment (newCommentText)="handleNewComment($event)"></app-create-comment>
 </div>
 
+<ng-container *ngIf="comments?.length !== 0; else first"></ng-container>
 <div *ngFor="let comment of comments">
   <app-comment [comment]="comment"></app-comment>
 </div>
+
+<ng-template #first>
+  <div class="container mt-3">
+    <p>You can post first comment for this rewiev</p>
+  </div>
+</ng-template>

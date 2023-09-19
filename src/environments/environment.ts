@@ -7,9 +7,12 @@ export const environment = {
   API: 'http://localhost:3000/api/v1',
   USER_KEY: 'auth-user',
   LOCALES: ['en', 'by', 'pl', 'ru'],
+  FACEBOOK_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/facebook',
   FACEBOOK_APP_CALLBACK_URL:
-    'http://localhost:3000/api/v1/auth/facebook/redirect',
-  GOOGLE_APP_CALLBACK_URL: 'http://localhost:3000/api/v1/auth/google/redirect',
+    'http://localhost:3000/api/v1/auth/facebook/callback',
+  GOOGLE_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/google',
+  GOOGLE_APP_CALLBACK_URL: 'http://localhost:3000/api/v1/auth/google/callback',
+  WEBSOCKET_URL: 'http://localhost:3000',
 };
 
 /*

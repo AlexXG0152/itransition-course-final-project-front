@@ -10,9 +10,7 @@ import { StorageService } from 'src/app/modules/auth/services/storage.service';
   styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent {
-  constructor(
-    private productService: ProductService,
-  ) {}
+  constructor(private productService: ProductService) {}
   @Input() rating: any;
   @Input() product: any;
 
@@ -22,8 +20,6 @@ export class RatingComponent {
   notAuthorized = false;
 
   onClick = ($event: ClickEvent) => {
-    console.log(this.product);
-
     this.productService
       .rateProduct({
         productId: this.product.id,
@@ -51,9 +47,4 @@ export class RatingComponent {
   onRatingChange = ($event: RatingChangeEvent) => {
     this.onRatingChangeResult = $event;
   };
-
-  // onHoverRatingChangeResult?: HoverRatingChangeEvent;
-  // onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-  //   this.onHoverRatingChangeResult = $event;
-  // };
 }

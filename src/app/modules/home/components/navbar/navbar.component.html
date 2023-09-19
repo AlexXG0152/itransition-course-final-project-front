@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Suggify</a>
+      <a class="navbar-brand" href="/">Suggify</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
         aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,16 +16,17 @@
             <ul class="dropdown-menu dropend">
               <li class="dropdown-submenu" *ngFor="let category of categories | keyvalue; let i = index">
                 <ng-container *ngIf="category.value.subcategories.length; else noSubcategories">
-                  <a [routerLink]="['/category', category.value.id]" data-bs-toggle="dropdown"
+                  <a (click)="openPage('title', 'ASC', category.value.id)" data-bs-toggle="dropdown"
                     class="dropdown-item dropdown-toggle">{{category.value.name}}</a>
                   <ul class="dropdown-menu">
                     <li *ngFor="let subcategory of category.value.subcategories">
-                      <a class="dropdown-item" [routerLink]="['/subcategory', subcategory.id]">{{subcategory.name}}</a>
+                      <a class="dropdown-item"
+                        (click)="openPage('title', 'ASC', subcategory.id)">{{subcategory.name}}</a>
                     </li>
                   </ul>
                 </ng-container>
                 <ng-template #noSubcategories>
-                  <a class="dropdown-item" [routerLink]="['/category', category.value.id]" role="button">
+                  <a class="dropdown-item" (click)="openPage('title', 'ASC', category.value.id)" role="button">
                     {{category.value.name}}
                   </a>
                 </ng-template>
@@ -47,8 +48,6 @@
         <div *ngIf="!isLoggedIn; else loggedIn">
           <button mat-raised-button class="me-2" routerLink="auth/login" matTooltip="SIGN UP"
             matTooltipPosition="below">{{'navbar.login' | translate}}</button>
-          <!-- <button mat-raised-button class="me-2" routerLink="auth/register" matTooltip="REGISTER"
-            matTooltipPosition="below">{{'navbar.register' | translate}}</button> -->
         </div>
         <div>
           <ng-template #loggedIn>

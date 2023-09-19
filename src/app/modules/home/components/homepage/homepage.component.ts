@@ -21,7 +21,7 @@ export class HomepageComponent implements OnInit {
       .getReviewsByParams(10, 0, 'reviewRating', 'DESC')
       .subscribe((response) => {
         this.parseJSON(response);
-        this.topTenReviews = response.rows;
+        this.topTenReviews = response?.rows;
         this.topTenReviews.name = 'Top 10';
         this.reviewService.getLikes(
           this.topTenReviews,
@@ -34,7 +34,7 @@ export class HomepageComponent implements OnInit {
       .getReviewsByParams(10, 0, 'createdAt', 'DESC')
       .subscribe((response) => {
         this.parseJSON(response);
-        this.latestTenReviews = response.rows;
+        this.latestTenReviews = response?.rows;
         this.latestTenReviews.name = 'Latest 10';
         this.reviewService.getLikes(
           this.latestTenReviews,
@@ -44,9 +44,9 @@ export class HomepageComponent implements OnInit {
       });
   }
 
-  parseJSON(response: { count?: number; rows: any }) {
-    return response.rows.map((review: any) => {
-        review.imageslinks = JSON.parse(review.imageslinks);
+  parseJSON(response: { count?: number; rows?: any }) {
+    return response.rows?.map((review: any) => {
+      review.imageslinks = JSON.parse(review.imageslinks);
     });
   }
 }

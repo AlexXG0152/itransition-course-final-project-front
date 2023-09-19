@@ -45,13 +45,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.loginStatus$?.unsubscribe();
   }
 
-  openPage(orderBy: string, direction: string) {
+  openPage(
+    orderBy: string,
+    direction: string,
+    categoryId?: number,
+  ) {
     const dbQueryParams = {
       quantity: 10,
       offset: 0,
       orderBy,
       direction,
+      categoryId,
     };
+
+    if (categoryId !== undefined) {
+      this.router.navigate(
+        [`/review/list`],
+        { queryParams: dbQueryParams }
+      );
+      return
+    }
 
     this.router.navigate(
       [`/review/${orderBy === 'createdAt' ? 'latest' : 'popular'}`],

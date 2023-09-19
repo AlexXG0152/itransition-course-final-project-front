@@ -16,8 +16,6 @@ export class UploadService {
 
   upload(formData: FormData) {
     return this.http.post<any>(`${this.API}/firebase/upload`, formData, {
-      // reportProgress: true,
-      // observe: 'events',
     });
   }
 }

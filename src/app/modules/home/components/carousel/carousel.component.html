@@ -1,10 +1,14 @@
 <div class="container">
   <h2 class="d-flex justify-content-center">{{reviews?.name | uppercase }}</h2>
-  <ngb-carousel>
+  <ngb-carousel *ngIf="reviews; else nothing">
 
     <ng-template ngbSlide *ngFor="let review of reviews; let i = index">
-      <app-review-preview [liked]="likesArray[i]" [reviewData]="review" [showLikeButton]="showLikeButton"></app-review-preview>
+      <app-review-preview [liked]="likesArray[i]" [reviewData]="review"
+        [showLikeButton]="showLikeButton"></app-review-preview>
     </ng-template>
 
   </ngb-carousel>
+  <ng-template #nothing>
+    <h3 class="d-flex justify-content-center">{{'review.nothing' | translate}}</h3>
+  </ng-template>
 </div>

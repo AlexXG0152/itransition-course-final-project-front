@@ -1,0 +1,15 @@
+<div>
+  <app-create-comment></app-create-comment>
+</div>
+
+<ng-container *ngIf="comments?.length !== 0; else first">
+  <div *ngFor="let comment of comments">
+    <app-comment [comment]="comment"></app-comment>
+  </div>
+</ng-container>
+
+<ng-template #first>
+  <div class="container mt-3">
+    <p>{{ "comment.first" | translate }}</p>
+  </div>
+</ng-template>

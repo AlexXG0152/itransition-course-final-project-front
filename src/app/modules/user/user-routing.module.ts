@@ -10,9 +10,6 @@ const routes: Routes = [
     children: [
       { path: '', component: UserPageComponent },
       { path: 'personal', redirectTo: '' },
-      // { path: 'reviews', component: EmployeeFamilyComponent },
-      // { path: 'likes', component: EmployeeEducationComponent },
-      // { path: '**', component: PageNotFoundComponent },
     ],
   },
   {

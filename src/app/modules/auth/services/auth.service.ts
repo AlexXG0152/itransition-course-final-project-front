@@ -16,34 +16,15 @@ export class AuthService {
 
   API = environment.API;
 
-  headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('access-control-allow-origin', 'http://localhost:4200')
-    .set('access-control-allow-credentials', 'true');
-
-  login(data: IAuthReq) {
-    return this.http.post<IAuthRes>(`${this.API}/auth/login`, data, {
-      headers: this.headers,
-    });
+  registration(data: IAuthReq) {
+    return this.http.post<IAuthRes>(`${this.API}/auth/registration`, data);
   }
 
-  registration(data: IAuthReq) {
-    return this.http.post<IAuthRes>(`${this.API}/auth/registration`, data, {
-      headers: this.headers,
-    });
+  login(data: IAuthReq) {
+    return this.http.post<IAuthRes>(`${this.API}/auth/login`, data);
   }
 
   logout() {
     this.storageService.clean();
-  }
-
-  loginWithFacebook() {
-    return this.http.get<any>(`${this.API}/auth/facebook`);
-  }
-
-  loginWithGoogle() {
-    return this.http.get<any>(`${this.API}/auth/google`, {
-      headers: this.headers,
-    });
   }
 }

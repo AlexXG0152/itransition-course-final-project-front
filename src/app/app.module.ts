@@ -1,4 +1,4 @@
-import { NgModule, SecurityContext } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -11,10 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeModule } from './modules/home/home.module';
-import { AuthModule } from './modules/auth/auth.module';
 import { JwtInterceptor } from './modules/auth/interceptors/jwt.interceptor';
-import { UserModule } from './modules/user/user.module';
-import { ReviewModule } from './modules/review/review.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -30,9 +27,6 @@ import { MarkdownModule } from 'ngx-markdown';
     AppRoutingModule,
     HttpClientModule,
     HomeModule,
-    // AuthModule,
-    // UserModule,
-    // ReviewModule,
     NgbModule,
     StarRatingModule.forRoot(),
     MarkdownModule.forRoot(),

@@ -22,6 +22,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
     'banned',
     'banreason',
     'unbanreason',
+    'receivedLikes',
     'createdAt',
     'updatedAt',
     'deletedAt',
@@ -72,9 +73,6 @@ export class UserTableComponent implements AfterViewInit, OnInit {
 
   onDelete(id: number) {
     console.log(id);
-    // this.reviewService
-    //   .deleteReview(id)
-    //   .subscribe(() => this.getInputData.emit());
   }
 
   onBlock(userActionId: number, reason: string) {

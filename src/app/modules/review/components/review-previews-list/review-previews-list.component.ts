@@ -31,6 +31,7 @@ export class ReviewPreviewsListComponent implements OnInit {
   offset = 0;
   orderBy = 'createdAt';
   direction: 'ASC' | 'DESC' = 'ASC';
+  categoryId?: number;
 
   reviews?: IReview[];
   likesArray: boolean[] = [];
@@ -43,6 +44,7 @@ export class ReviewPreviewsListComponent implements OnInit {
       this.offset = params['offset'];
       this.orderBy = params['orderBy'];
       this.direction = params['direction'];
+      this.categoryId = params['categoryId'];
 
       this.loadData();
     });
@@ -51,6 +53,8 @@ export class ReviewPreviewsListComponent implements OnInit {
   loadData() {
     if (this.tagId) {
       this.loadTagsReviews();
+    } else if (this.categoryId) {
+      this.loadCategoryIdReviews();
     } else {
       this.loadTopOrLatestReviews();
     }
@@ -83,12 +87,26 @@ export class ReviewPreviewsListComponent implements OnInit {
       });
   }
 
+  loadCategoryIdReviews() {
+    this.reviewService
+      .getReviewsByParams(
+        this.quantity,
+        this.offset,
+        this.orderBy,
+        this.direction,
+        this.categoryId
+      )
+      .subscribe((response) => {
+        this.processReviewsResponse(response);
+      });
+  }
+
   processReviewsResponse(response: any) {
-    response.rows.map((review: any) => {
+    response.rows?.map((review: any) => {
       review.imageslinks = JSON.parse(review.imageslinks);
     });
 
-    this.reviews = response.rows;
+    this.reviews = response?.rows;
     this.collectionSize = response.count;
     this.reviewService.getLikes(this.reviews, this.likesArray);
     this.cdr.detectChanges();

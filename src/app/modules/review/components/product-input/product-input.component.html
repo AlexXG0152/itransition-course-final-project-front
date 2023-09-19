@@ -1,6 +1,6 @@
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <mat-label>Product Title</mat-label>
+    <mat-label>{{'product.title' | translate}}</mat-label>
 
     <mat-chip-grid #chipGrid aria-label="Tags selection">
       <mat-chip-row *ngFor="let product of editableProd" (removed)="remove(product)">
@@ -41,7 +41,7 @@
         (isEnterPressed && selectedProduct === productSearchInput.value)
       "
     >
-      Press enter after input product title if you didn't choose from list
+    {{'product.message' | translate}}
       <mat-icon *ngIf="isEnterPressed" style="margin-left: 10px; color: green"
         >done_outline</mat-icon
       >

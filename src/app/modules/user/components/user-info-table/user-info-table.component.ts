@@ -63,8 +63,5 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
   }
 
   onDelete(id: any) {
-  //   this.reviewService
-  //     .deleteReview(id)
-  //     .subscribe(() => this.getInputData.emit());
   }
 }

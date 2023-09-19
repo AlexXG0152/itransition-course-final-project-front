@@ -29,8 +29,16 @@ export class ReviewService {
     quantity: number,
     offset: number,
     orderBy: string,
-    direction: 'ASC' | 'DESC'
+    direction: 'ASC' | 'DESC',
+    categoryId?: number
   ): Observable<{ count: number; rows: IReview[] }> {
+
+    if (categoryId !== undefined) {
+      return this.http.get<{ count: number; rows: IReview[] }>(
+        `${this.API}/reviews/list?quantity=${quantity}&offset=${offset}&order=${orderBy}&direction=${direction}&categoryId=${categoryId}`
+      );
+    }
+
     return this.http.get<{ count: number; rows: IReview[] }>(
       `${this.API}/reviews/list?quantity=${quantity}&offset=${offset}&order=${orderBy}&direction=${direction}`
     );

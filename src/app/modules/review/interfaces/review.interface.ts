@@ -16,4 +16,5 @@ export interface IReview {
   createdAt?: string;
   updatedAt?: string;
   product: any
+  comments: string[]
 }

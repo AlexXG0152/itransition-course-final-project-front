@@ -14,6 +14,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     TranslateModule,
   ],
 })

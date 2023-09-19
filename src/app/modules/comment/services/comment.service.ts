@@ -11,19 +11,21 @@ export class CommentsService {
   API = environment.API;
 
   socket = io(environment.WEBSOCKET_URL, {
-    path: `${this.API}/comments/events/`,
+    path: `/api/v1/comments/events/`,
   });
 
   public message$: BehaviorSubject<string> = new BehaviorSubject('');
 
   addComment(comment: ICreatedComment) {
     this.socket.emit('addComment', comment);
-    console.log('addCommentsocket');
+    console.log('addCommentsocket', comment);
   }
 
   getNewComments(): Observable<any> {
     this.socket.on('newComment', (message) => {
-      this.message$.next(JSON.parse(message));
+      if (message !== '') {
+        this.message$.next(message);
+      }
     });
 
     return this.message$.asObservable();

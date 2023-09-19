@@ -1,29 +1,33 @@
 <div class="container mt-3">
+  <ng-container *ngIf="ready; else spinner">
 
-  <app-user-info [user]="user"></app-user-info>
+    <app-user-info [user]="user"></app-user-info>
 
-  <div class="spinner-grow" role="status" *ngIf="!ready; else table">
-    <span class="visually-hidden">{{'user.user-page.loading' | translate}}...</span>
-  </div>
+    <div #table>
+      <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
+        <mat-tab label="{{'user.user-page.reviews' | translate}}">
+          <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
+        </mat-tab>
+        <mat-tab label="{{'user.user-page.ratings' | translate}}">
+          <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"
+              (getInputData)="getInputData()"></app-user-info-table></div>
+        </mat-tab>
+        <mat-tab label="{{'user.user-page.comments' | translate}}">
+          <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"
+              (getInputData)="getInputData()"></app-user-info-table></div>
+        </mat-tab>
+        <mat-tab label="{{'user.user-page.likes' | translate}}">
+          <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"
+              (getInputData)="getInputData()"></app-user-info-table></div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </ng-container>
 
-  <ng-template #table>
-    <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
-      <mat-tab label="{{'user.user-page.reviews' | translate}}">
-        <div><app-user-info-table [inputData]="data" (getInputData)="getInputData()"></app-user-info-table></div>
-      </mat-tab>
-      <mat-tab label="{{'user.user-page.ratings' | translate}}">
-        <div *ngIf="selectedTab === 'ratings'"><app-user-info-table [inputData]="data"
-            (getInputData)="getInputData()"></app-user-info-table></div>
-      </mat-tab>
-      <mat-tab label="{{'user.user-page.comments' | translate}}">
-        <div *ngIf="selectedTab === 'comments'"><app-user-info-table [inputData]="data"
-            (getInputData)="getInputData()"></app-user-info-table></div>
-      </mat-tab>
-      <mat-tab label="{{'user.user-page.likes' | translate}}">
-        <div *ngIf="selectedTab === 'likes'"><app-user-info-table [inputData]="data"
-            (getInputData)="getInputData()"></app-user-info-table></div>
-      </mat-tab>
-    </mat-tab-group>
+  <ng-template #spinner>
+    <div class="container d-flex justify-content-center">
+      <mat-spinner></mat-spinner>
+    </div>
   </ng-template>
 
 </div>

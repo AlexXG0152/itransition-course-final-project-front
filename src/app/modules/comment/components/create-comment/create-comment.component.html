@@ -1,8 +1,9 @@
-<div class="container mt-3">
-  <form [formGroup]="commentForm" >
+<div class="container mt-3" *ngIf="showAdminBoardSubject">
+  <form [formGroup]="commentForm">
     <div class="mb-3">
       <input class="form-control" formControlName="comment" placeholder="New comment" required>
     </div>
-    <button class="btn btn-primary" type="submit" (click)="addComment()">Send comment</button>
+    <button class="btn btn-primary" type="submit" (click)="addComment()"
+      matTooltip="{{'review.comment.create' | translate}}">{{'review.comment.create' | translate}}</button>
   </form>
 </div>

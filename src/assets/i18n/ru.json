@@ -18,7 +18,7 @@
   "admin.table.filter": "Фильтр",
   "admin.table.id": "id",
   "admin.table.name": "Имя",
-  "admin.table.totalLikes": "Лайки",
+  "admin.table.receivedLikes": "Лайки",
   "admin.table.unbanreason": "Причина разбана",
   "admin.table.updatedAt": "Обновлен",
   "common.errors.not-authorized": "Пользователь не авторизован",
@@ -96,6 +96,7 @@
   "review.read.tags": "Теги",
   "review.read.delete": "Удалить",
   "review.read.edit": "Редактировать",
+  "review.comment.create": "Создать",
   "tags.header": "Теги",
   "user.info.avatar": "Аватар пользователя",
   "user.info.created": "Создан",
@@ -126,5 +127,6 @@
   "user.user-page.review-rating": "Рейтинг установленный пользователем",
   "user.user-page.reviews": "Отзывы",
   "user.user-page.title": "Название",
-  "common.cancel": "Отмена"
+  "common.cancel": "Отмена",
+  "common.delete": "Удалить"
 }

@@ -18,7 +18,7 @@
 	"admin.table.filter": "Filtr",
 	"admin.table.id": "id",
 	"admin.table.name": "imię",
-  "admin.table.totalLikes": "Likes",
+  "admin.table.receivedLikes": "Likes",
 	"admin.table.unbanreason": "Usuń powód bana",
 	"admin.table.updatedAt": "Zaktualizowano",
 	"common.errors.not-authorized": "Użytkownik nieautoryzowany",
@@ -96,6 +96,7 @@
 	"review.read.tags": "Tagi",
   "review.read.delete": "Skasować",
 	"review.read.edit": "Edytować",
+  "review.comment.create": "Stwórzyć",
 	"tags.header": "Tagi",
 	"user.info.avatar": "Awatar użytkownika",
 	"user.info.created": "Stworzony",
@@ -126,5 +127,6 @@
 	"user.user-page.review-rating": "Ocena zestawu użytkownika",
 	"user.user-page.reviews": "Recenzje",
 	"user.user-page.title": "Tytuł",
-  "common.cancel": "Anulowanie"
+  "common.cancel": "Anulowanie",
+  "common.delete": "Skasować"
 }

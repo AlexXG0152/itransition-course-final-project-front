@@ -2,7 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommentsService } from '../../services/comment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICreatedComment } from '../../interfaces/create-comment.interface';
-
+import { UserService } from 'src/app/modules/user/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-comment',
@@ -12,11 +13,16 @@ import { ICreatedComment } from '../../interfaces/create-comment.interface';
 export class CreateCommentComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private commentsService: CommentsService
+    private route: ActivatedRoute,
+    private commentsService: CommentsService,
+    private userService: UserService
   ) {}
 
+  showAdminBoardSubject = this.userService.showAdminBoardSubject?.value;
+  currentUser = this.userService.getCurrentUser();
+
   commentForm!: FormGroup;
-  @Output() newCommentText = new EventEmitter<ICreatedComment>();
+  // @Output() newCommentText = new EventEmitter<ICreatedComment>();
 
   ngOnInit() {
     this.commentForm = this.formBuilder.group({
@@ -30,16 +36,13 @@ export class CreateCommentComponent {
     }
 
     const comment: ICreatedComment = {
-      user: 'User',
+      userId: this.currentUser.id,
+      reviewId: +this.route.snapshot.params['id'],
       commentText: this.commentForm.value.comment,
-      createdAt: Date.now(),
-      userId: 1,
     };
 
-    this.commentsService.addComment(comment)
-    this.newCommentText.emit(comment);
-
-    console.log('New comment:', comment);
+    this.commentsService.addComment(comment);
+    // this.newCommentText.emit(comment);
 
     this.commentForm.reset();
   }

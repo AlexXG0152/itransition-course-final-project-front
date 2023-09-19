@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommentsService } from '../../services/comment.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-comment-list',
@@ -16,16 +17,15 @@ export class CommentListComponent implements OnInit {
   }
 
   getComments() {
-    this.commentsService.getNewComments().subscribe((comment) => {
-      if (comment !== '') {
-        this.comments!.push(comment);
-      }
-    });
-  }
+    this.commentsService
+      .getNewComments()
+      .pipe(take(2))
+      .subscribe((comment) => {
+        if (comment !== '') {
+          this.comments!.push(comment);
+          console.log(this.comments);
 
-  handleNewComment(event: any) {
-    console.log(this.comments);
-    this.comments?.push(event)
-    this.getComments();
+        }
+      });
   }
 }

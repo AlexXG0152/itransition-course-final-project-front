@@ -8,16 +8,16 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{user?.name}} <i class="bi bi-heart-fill text-danger ms-2"
-              matTooltip="{{'user.info.likes' | translate}}"> {{user?.totalLikes}}</i></h5>
+              matTooltip="{{'user.info.likes' | translate}}"> {{user?.receivedLikes}}</i></h5>
           <p class="card-text" matTooltip="{{'user.info.email' | translate}}">{{'user.info.email' | translate}}:
             {{user?.email}}</p>
           <p class="card-text" matTooltip="{{'user.info.roles' | translate}}">{{'user.info.roles' | translate}}:
             {{user?.roles[0]?.value }}, {{user?.roles[1]?.value }}
           </p>
           <p class="card-text" matTooltip="{{'user.info.created' | translate}}">{{'user.info.created' | translate}}:
-            {{user?.create | date:'dd/MM/yyyy, hh:mm'}}</p>
+            {{user?.create | date:'dd.MM.yyyy, hh:mm'}}</p>
           <p class="card-text" matTooltip="{{'user.info.updated' | translate}}">{{'user.info.updated' | translate}}:
-            {{user?.updatedAt | date:'dd/MM/yyyy, hh:mm'}}</p>
+            {{user?.updatedAt | date:'dd.MM.yyyy, hh:mm'}}</p>
         </div>
       </div>
     </div>

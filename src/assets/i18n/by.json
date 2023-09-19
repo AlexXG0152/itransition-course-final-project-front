@@ -18,7 +18,7 @@
 	"admin.table.filter": "Фільтр",
 	"admin.table.id": "id",
 	"admin.table.name": "Імя",
-  "admin.table.totalLikes": "Падабайки",
+  "admin.table.receivedLikes": "Падабайки",
 	"admin.table.unbanreason": "Прычына зняцця забароны",
 	"admin.table.updatedAt": "Абнаўлён",
 	"common.errors.not-authorized": "Карыстальнік не аўтарызаваны",
@@ -96,6 +96,7 @@
 	"review.read.tags": "Тэгі",
   "review.read.delete": "Выдалiць",
   "review.read.edit": "Рэдагаваць",
+  "review.comment.create": "Апублiкаваць",
 	"tags.header": "Тэгі",
 	"user.info.avatar": "Аватар карыстальніка",
 	"user.info.created": "Створаны",
@@ -126,5 +127,6 @@
 	"user.user-page.review-rating": "Рэйтынг агляду усталяваны карыстальнікам",
 	"user.user-page.reviews": "Водгукі",
 	"user.user-page.title": "Назва",
-  "common.cancel": "Адмена"
+  "common.cancel": "Адмена",
+  "common.delete": "Выдаліць"
 }

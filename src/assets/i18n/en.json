@@ -18,7 +18,7 @@
 	"admin.table.filter": "Filter",
 	"admin.table.id": "id",
 	"admin.table.name": "name",
-	"admin.table.totalLikes": "Likes",
+	"admin.table.receivedLikes": "Likes",
 	"admin.table.unbanreason": "Unban reason",
 	"admin.table.updatedAt": "Updated",
 	"common.errors.not-authorized": "User not authorized",
@@ -96,6 +96,7 @@
 	"review.read.tags": "Tags",
   "review.read.edit": "Edit",
   "review.read.delete": "Delete",
+  "review.comment.create": "Post comment",
 	"tags.header": "TAGS",
 	"user.info.avatar": "User avatar",
 	"user.info.created": "Created",
@@ -126,5 +127,6 @@
 	"user.user-page.review-rating": "User Set Review rating",
 	"user.user-page.reviews": "Reviews",
 	"user.user-page.title": "Title",
-  "common.cancel": "Cancel"
+  "common.cancel": "Cancel",
+  "common.delete": "Delete"
 }

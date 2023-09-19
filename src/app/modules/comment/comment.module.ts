@@ -8,6 +8,8 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
     TranslateModule,
   ],
   exports: [CommentListComponent],

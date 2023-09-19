@@ -10,4 +10,8 @@ export class CommentComponent {
   constructor(private commentsService: CommentsService) {}
 
   @Input() comment: any;
+
+  handleDeleteComment(event: any) {
+    console.log('del', event);
+  }
 }

@@ -7,7 +7,6 @@ import {
 import { ReviewService } from '../../services/review.service';
 import { IReview } from '../../interfaces/review.interface';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/modules/user/services/user.service';
 
 @Component({
   selector: 'app-review-previews-list',
@@ -19,7 +18,6 @@ export class ReviewPreviewsListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService: UserService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -108,7 +106,7 @@ export class ReviewPreviewsListComponent implements OnInit {
 
     this.reviews = response?.rows;
     this.collectionSize = response.count;
-    this.reviewService.getLikes(this.reviews, this.likesArray);
+    this.reviewService.getLikesForPreview(this.reviews, this.likesArray);
     this.cdr.detectChanges();
   }
 
@@ -116,15 +114,4 @@ export class ReviewPreviewsListComponent implements OnInit {
     this.offset = page * 10 - 10;
     this.loadData();
   }
-
-  // getLikes() {
-  //   const userLikes: any = this.userService.getCurrentUser().likes || 0;
-
-  //   this.reviews?.forEach((rew) => {
-  //     this.likesArray!.push(
-  //       userLikes.some((like: any) => like.reviewId === rew.id)
-  //     );
-  //   });
-  //   this.showLikeButton = true;
-  // }
 }

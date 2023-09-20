@@ -19,6 +19,7 @@ import { ReviewModule } from '../review/review.module';
 import { SearchComponent } from './components/search/search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HomeRoutingModule,
     MatButtonModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,

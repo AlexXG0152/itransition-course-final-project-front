@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommentsService } from '../../services/comment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICreatedComment } from '../../interfaces/create-comment.interface';

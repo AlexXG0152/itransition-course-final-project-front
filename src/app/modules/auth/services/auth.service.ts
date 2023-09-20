@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import jwt_decode from 'jwt-decode';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { StorageService } from './storage.service';
 import { IAuthReq } from '../interfaces/auth-req.interface';
 import { IAuthRes } from '../interfaces/auth-res.interface';
-import { StorageService } from './storage.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import jwt_decode from 'jwt-decode';
 import { IUser } from '../../user/interfaces/user.interface';
 
 @Injectable({
@@ -18,7 +18,6 @@ export class AuthService {
   ) {}
 
   API = environment.API;
-  userState: any;
 
   registration(data: IAuthReq) {
     return this.http.post<IAuthRes>(`${this.API}/auth/registration`, data);

@@ -5,7 +5,8 @@
       <div class="row d-flex align-items-center px-3">
 
         <div class="col-sm-2 d-flex justify-content-center">
-          <app-like [liked]="liked" [reviewId]="review?.id" *ngIf="showLikeButton"></app-like>
+          <app-like [liked]="liked" [reviewId]="review?.id" (increaseLikeCounter)="increaseLikeCounter($event)"
+            *ngIf="isLoggedIn && showLikeButton"></app-like>
         </div>
 
         <div class="col-sm-8 d-flex justify-content-center">

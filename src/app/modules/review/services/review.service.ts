@@ -32,7 +32,6 @@ export class ReviewService {
     direction: 'ASC' | 'DESC',
     categoryId?: number
   ): Observable<{ count: number; rows: IReview[] }> {
-
     if (categoryId !== undefined) {
       return this.http.get<{ count: number; rows: IReview[] }>(
         `${this.API}/reviews/list?quantity=${quantity}&offset=${offset}&order=${orderBy}&direction=${direction}&categoryId=${categoryId}`
@@ -68,7 +67,11 @@ export class ReviewService {
     return this.http.get<IReview>(`${this.API}/reviews/${id}/like`);
   }
 
-  getLikes(reviews: any, likesArray: any): void {
+  isLiked(id: number, userId: number): Observable<boolean> {
+    return this.http.get<any>(`${this.API}/reviews/${id}/isLiked/${userId}`);
+  }
+
+  getLikesForPreview(reviews: any, likesArray: any): void {
     const userLikes = this.userService.getCurrentUser();
 
     if (userLikes?.likes) {

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   API: 'http://localhost:3000/api/v1',
-  USER_KEY: 'auth-user',
+  USER_ID: 'auth_user_id',
   A_TOKEN: 'a_token',
   LOCALES: ['en', 'by', 'pl', 'ru'],
   FACEBOOK_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/facebook',
@@ -24,3 +24,5 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+  // API: 'https://itr-c-f-p-b.onrender.com/api/v1',

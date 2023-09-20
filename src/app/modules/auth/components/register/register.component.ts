@@ -59,7 +59,7 @@ export class RegisterComponent {
     this.authService
       .registration(this.registerForm.value)
       .subscribe((data: IAuthRes) => {
-        this.storageService.saveUser(data.name);
+        this.storageService.saveUser(data.id);
         this.storageService.saveToken(data.token);
         this.authService.loginStatusChange(true);
         this.router.navigate(['/home']);

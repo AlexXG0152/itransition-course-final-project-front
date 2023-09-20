@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ReviewService } from '../../services/review.service';
-import { tap, catchError, pipe } from 'rxjs';
+import { tap, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-like',
@@ -12,6 +12,7 @@ export class LikeComponent implements OnInit {
 
   @Input() liked?: boolean;
   @Input() reviewId?: number;
+  @Output() increaseLikeCounter = new EventEmitter<string>();
 
   notAuthorized?: boolean;
   error?: boolean;
@@ -31,6 +32,7 @@ export class LikeComponent implements OnInit {
         tap((result) => {
           this.liked = !this.liked;
           this.shape = this.liked ? 'favorite' : 'favorite_outline';
+          this.increaseLikeCounter.emit('+1')
         }),
         catchError((error) => {
           if (error.error.message === 'User not authorized') {

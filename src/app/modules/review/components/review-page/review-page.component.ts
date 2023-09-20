@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IReview } from '../../interfaces/review.interface';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
-import { UserService } from 'src/app/modules/user/services/user.service';
 import { IUser } from 'src/app/modules/user/interfaces/user.interface';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { StorageService } from 'src/app/modules/auth/services/storage.service';
 
 @Component({
   selector: 'app-review-page',
@@ -14,11 +16,15 @@ export class ReviewPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService: UserService
+    private authService: AuthService,
+    private storageService: StorageService
   ) {}
 
   user?: IUser;
   review?: IReview;
+
+  isLoggedIn = false;
+  loginStatus$?: Subscription;
 
   showLikeButton: boolean = false;
   liked?: boolean;
@@ -26,16 +32,19 @@ export class ReviewPageComponent implements OnInit {
   loaded: boolean = false;
 
   ngOnInit(): void {
-    const reviewId = this.route.snapshot.params['id'];
+    const reviewId = +this.route.snapshot.params['id'];
     this.getReview(reviewId);
-    // setTimeout(() => {
-    this.user = this.userService.getCurrentUser();
-    this.liked = this.user?.likes?.some(
-      (like: { reviewId: number }) => like.reviewId === +reviewId
-    );
-    this.showLikeButton = true;
 
-    // }, 100);
+    this.loginStatus$ = this.authService.getLoginStatus().subscribe(() => {
+      this.isLoggedIn = this.authService.isLoggedIn();
+
+      this.reviewService
+        .isLiked(reviewId, +this.storageService.getUser())
+        .subscribe((response) => {
+          this.liked = response;
+          this.showLikeButton = true;
+        });
+    });
   }
 
   getReview(reviewId: number): void {
@@ -46,5 +55,9 @@ export class ReviewPageComponent implements OnInit {
         this.loaded = true;
       }
     });
+  }
+
+  increaseLikeCounter(event: string) {
+    this.review!.like = this.review?.like! + 1;
   }
 }

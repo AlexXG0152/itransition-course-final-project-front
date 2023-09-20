@@ -5,19 +5,19 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class StorageService {
-  private USER_KEY = environment.USER_KEY;
+  private USER_ID = environment.USER_ID;
   private A_TOKEN = environment.A_TOKEN;
 
   public clean(): void {
-    window.localStorage.removeItem(this.USER_KEY);
-    window.sessionStorage.removeItem(this.USER_KEY);
+    window.localStorage.removeItem(this.USER_ID);
+    window.sessionStorage.removeItem(this.USER_ID);
     window.localStorage.removeItem(this.A_TOKEN);
     window.sessionStorage.removeItem(this.A_TOKEN);
   }
 
-  public saveUser(user: string): void {
-    window.localStorage.removeItem(this.USER_KEY);
-    window.localStorage.setItem(this.USER_KEY, user);
+  public saveUser(userId: number): void {
+    window.localStorage.removeItem(this.USER_ID);
+    window.localStorage.setItem(this.USER_ID, `${userId}`);
   }
 
   public saveToken(token: string): void {
@@ -26,7 +26,7 @@ export class StorageService {
   }
 
   public getUser(): any {
-    const user = window.localStorage.getItem(this.USER_KEY);
+    const user = window.localStorage.getItem(this.USER_ID);
     if (user) {
       return user;
     }

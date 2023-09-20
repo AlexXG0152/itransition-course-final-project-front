@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 
 @Component({
@@ -23,10 +23,10 @@ export class ProductInputComponent {
 
   @Input() editProductTitle: any;
 
-  productSearchInput = new FormControl();
+  productSearchInput = new FormControl(null, Validators.required);
   productSearchResults: any[] = [];
 
-  selectedProduct: any;
+  selectedProduct?: any = '';
   isEnterPressed = false;
 
   visible = true;

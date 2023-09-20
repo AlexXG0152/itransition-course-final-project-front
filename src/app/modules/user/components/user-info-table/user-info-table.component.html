@@ -30,7 +30,7 @@
             <mat-cell *matCellDef="let row">
               <mat-icon matTooltip="{{'user.table.edit' | translate}}">edit</mat-icon>
               <mat-icon matTooltip="{{'user.table.delete' | translate}}"
-                (click)="onDelete(row.id)">delete_forever</mat-icon>
+                (click)="onDelete(row)">delete_forever</mat-icon>
             </mat-cell>
           </ng-container>
         </ng-template>

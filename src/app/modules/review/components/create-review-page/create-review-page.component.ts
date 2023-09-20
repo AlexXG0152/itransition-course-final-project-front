@@ -121,9 +121,11 @@ export class CreateReviewPageComponent {
   }
 
   async onSubmitReview() {
-    this.reviewForm.value.productId = this.selectedProduct.id ?? this.dataForEdit?.product.id;
-    this.reviewForm.value.productTitle = this.selectedProduct.productTitle ?? this.dataForEdit?.product.productTitle;
+    this.reviewForm.value.productId = this.selectedProduct?.id ?? this.dataForEdit?.product?.id;
+    this.reviewForm.value.productTitle = this.selectedProduct?.productTitle ?? this.dataForEdit?.product?.productTitle;
     this.reviewForm.value.tags = this.tags;
+    this.reviewForm.value.reviewRating = +this.reviewForm.value.reviewRating;
+    this.checkEmptyFields()
 
     const service = (id: number | undefined, data: IReview) =>
       this.edit
@@ -176,6 +178,18 @@ export class CreateReviewPageComponent {
         )
         .subscribe();
     }
+  }
+
+  productTitleShowError = false;
+  contentControlShowError = false;
+  tagsShowError = false;
+  reviewRatingShowError = false;
+
+  checkEmptyFields() {
+    this.productTitleShowError = !this.reviewForm.value.productTitle;
+    this.contentControlShowError = this.contentControl.value.length === 0;
+    this.tagsShowError = this.reviewForm.value.tags.length === 0;
+    this.reviewRatingShowError = !this.reviewForm.value.reviewRating;
   }
 
   createImageFormData() {

@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   API: 'http://localhost:3000/api/v1',
   USER_KEY: 'auth-user',
+  A_TOKEN: 'a_token',
   LOCALES: ['en', 'by', 'pl', 'ru'],
   FACEBOOK_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/facebook',
   FACEBOOK_APP_CALLBACK_URL:

@@ -11,3 +11,7 @@
 .navbar-nav li:hover>ul.dropdown-menu {
   display: block;
 }
+
+.dropdown-item {
+  cursor: pointer;
+}

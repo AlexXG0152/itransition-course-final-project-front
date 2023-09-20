@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ReviewRoutingModule } from './review-routing.module';
@@ -34,7 +35,6 @@ import { MarkdownEditorComponent } from './components/markdown-editor/markdown-e
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { ProductInputComponent } from './components/product-input/product-input.component';
-import { CommentListComponent } from '../comment/components/comment-list/comment-list.component';
 import { CommentModule } from '../comment/comment.module';
 
 @NgModule({
@@ -69,12 +69,13 @@ import { CommentModule } from '../comment/comment.module';
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
+    MatButtonToggleModule,
     MatChipsModule,
     StarRatingModule,
     TextFieldModule,
     MarkdownModule,
     TagComponent,
-    CommentModule
+    CommentModule,
   ],
   exports: [ReviewPreviewComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

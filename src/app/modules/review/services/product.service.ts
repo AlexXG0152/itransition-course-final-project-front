@@ -17,4 +17,8 @@ export class ProductService {
   searchProductByName(query: string) {
     return this.http.get<any>(`${this.API}/products/search/${query}`);
   }
+
+  deleteGivenRating(data: { productId: number; id: number }) {
+    return this.http.post<any>(`${this.API}/products/unrate`, data);
+  }
 }

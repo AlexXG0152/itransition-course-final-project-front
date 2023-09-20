@@ -6,10 +6,13 @@ import { environment } from 'src/environments/environment';
 })
 export class StorageService {
   private USER_KEY = environment.USER_KEY;
+  private A_TOKEN = environment.A_TOKEN;
 
   public clean(): void {
-    window.localStorage.clear();
-    window.sessionStorage.clear();
+    window.localStorage.removeItem(this.USER_KEY);
+    window.sessionStorage.removeItem(this.USER_KEY);
+    window.localStorage.removeItem(this.A_TOKEN);
+    window.sessionStorage.removeItem(this.A_TOKEN);
   }
 
   public saveUser(user: string): void {
@@ -18,8 +21,8 @@ export class StorageService {
   }
 
   public saveToken(token: string): void {
-    window.localStorage.removeItem(token);
-    window.localStorage.setItem('a_token', token);
+    window.localStorage.removeItem(this.A_TOKEN);
+    window.localStorage.setItem(this.A_TOKEN, token);
   }
 
   public getUser(): any {

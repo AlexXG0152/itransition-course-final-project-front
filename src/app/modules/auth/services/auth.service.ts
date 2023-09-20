@@ -32,26 +32,22 @@ export class AuthService {
     this.storageService.clean();
   }
 
+  private loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   public isLoggedIn() {
-    const token = window.localStorage.getItem('a_token');
+    const token = window.localStorage.getItem(environment.A_TOKEN);
     if (token) {
       const decoded: IUser = jwt_decode(token);
       const isLoggedIn = +decoded.exp! > +Date.now().toString().slice(0, 10);
       if (isLoggedIn) {
         return true
-        // return this.loginStatusChange(true);
       } else {
         this.storageService.clean();
         return false;
-        // return this.loginStatusChange(false);
       }
     }
     return false;
   }
-
-  private loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
 
   getLoginStatus(): Observable<boolean> {
     return this.loginStatus.asObservable();

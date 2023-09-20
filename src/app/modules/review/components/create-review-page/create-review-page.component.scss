@@ -75,7 +75,6 @@
       align-self: flex-end;
     }
 
-
     display: flex;
     flex-grow: 1;
 
@@ -164,4 +163,15 @@
 .exmpl img {
   height: 100%;
   width: auto;
+}
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
 }

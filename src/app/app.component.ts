@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DarkModeService } from 'angular-dark-mode';
 import { Observable } from 'rxjs/internal/Observable';
 import { TranslateService } from '@ngx-translate/core';
-import defaultLanguage from './../assets/i18n/en.json';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +19,14 @@ export class AppComponent implements OnInit {
     private darkModeService: DarkModeService,
     private translate: TranslateService
   ) {
-    translate.setTranslation('en', defaultLanguage);
-    translate.setDefaultLang('en');
-    translate.use('en');
+    const locale = window.localStorage.getItem('locale');
+
+    if (!locale) {
+      window.localStorage.setItem('locale', 'en');
+    }
+
+    translate.addLangs([...environment.LOCALES]);
+    translate.use(locale ?? 'en');
   }
 
   ngOnInit(): void {

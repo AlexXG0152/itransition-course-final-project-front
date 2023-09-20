@@ -3,12 +3,15 @@
 
   <form [formGroup]="reviewForm">
     <div class="mb-3">
-      <label for="title" class="form-label">{{'review.create.title' | translate}}</label>
-      <input type="text" class="form-control" id="title" formControlName="title">
+      <p class="form-label me-3">{{'review.create.title' | translate}}</p>
+      <mat-form-field class="example-full-width">
+        <mat-label>{{'review.create.title' | translate}}</mat-label>
+        <input matInput placeholder="{{'review.create.title' | translate}}" id="title" formControlName="title" required>
+      </mat-form-field>
     </div>
 
     <div class="mb-3">
-      <label for="categoryId" class="form-label me-3">{{'review.create.category' | translate}}</label>
+      <p class="form-label me-3">{{'review.create.category' | translate}}</p>
       <mat-form-field appearance="fill">
         <mat-label>{{'review.create.category' | translate}}</mat-label>
         <mat-select formControlName="categoryId">
@@ -20,7 +23,7 @@
 
     <ng-container *ngIf="subCategories?.length">
       <div class="mb-3">
-        <label for="subcategoryId" class="form-label me-3">{{'review.create.subcategory' | translate}}</label>
+        <p class="form-label me-3">{{'review.create.subcategory' | translate}}</p>
         <mat-form-field appearance="fill">
           <mat-label>{{'review.create.subcategory' | translate}}</mat-label>
           <mat-select formControlName="subcategoryId">
@@ -33,7 +36,8 @@
     </ng-container>
 
     <div class="mb-2">
-      <label for="productTitle" class="form-label">{{'review.create.product-title' | translate}}</label>
+      <p class="form-label">{{'review.create.product-title' | translate}}</p>
+      <mat-error *ngIf="productTitleShowError">Enter at least one keyword</mat-error>
       <app-product-input (productChanged)="handleProductChange($event)"
         [editProductTitle]="selectedProduct"></app-product-input>
     </div>
@@ -44,21 +48,36 @@
     </div>
 
     <div class="mb-3">
-      <label for="content" class="form-label">{{'review.create.content' | translate}}</label>
+      <p class="form-label">{{'review.create.content' | translate}}</p>
+      <mat-error *ngIf="contentControlShowError">Enter at least one word</mat-error>
       <app-markdown-editor [control]="contentControl"></app-markdown-editor>
     </div>
 
     <div class="mb-3">
+      <mat-error *ngIf="tagsShowError">Enter at least one keyword</mat-error>
       <app-tag-input (tagsChanged)="handleTagsChange($event)" [tags]="tags"></app-tag-input>
     </div>
 
     <div class="mb-3">
-      <label for="reviewRating" class="form-label">{{'review.create.review-rating' | translate}}</label>
-      <input type="number" class="form-control" id="reviewRating" formControlName="reviewRating" min="1" max="10">
+      <label for="reviewRating" class="form-label d-flex">{{'review.create.review-rating' | translate}}</label>
+      <mat-error *ngIf="reviewRatingShowError">Enter your opinion</mat-error>
+      <mat-button-toggle-group name="reviewRating" aria-label="Set review rating" id="reviewRating"
+        formControlName="reviewRating" required>
+        <mat-button-toggle value="1">1</mat-button-toggle>
+        <mat-button-toggle value="2">2</mat-button-toggle>
+        <mat-button-toggle value="3">3</mat-button-toggle>
+        <mat-button-toggle value="4">4</mat-button-toggle>
+        <mat-button-toggle value="5">5</mat-button-toggle>
+        <mat-button-toggle value="6">6</mat-button-toggle>
+        <mat-button-toggle value="7">7</mat-button-toggle>
+        <mat-button-toggle value="8">8</mat-button-toggle>
+        <mat-button-toggle value="9">9</mat-button-toggle>
+        <mat-button-toggle value="10">10</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
 
     <div class="mb-3">
-      <label for="images" class="form-label">{{'review.create.images' | translate}}</label>
+      <p class="form-label">{{'review.create.images' | translate}}</p>
       <div class="dnd-container" appDnd (fileDropped)="onFileDropped($event)">
         <input type="file" #fileDropRef id="fileDropRef" multiple
           (change)="fileBrowseHandler($any($event).target.files)" />

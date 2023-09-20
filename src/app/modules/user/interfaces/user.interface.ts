@@ -10,7 +10,7 @@ export interface IUser {
   ratings?: RatingsEntity[] | null;
   comments?: CommentsEntity[] | null;
   likes?: LikesEntity[] | null;
-  iat?: string;
+  exp?: string;
 }
 export interface RolesEntity {
   id: number;

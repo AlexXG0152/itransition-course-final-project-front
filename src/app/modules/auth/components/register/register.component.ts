@@ -61,7 +61,7 @@ export class RegisterComponent {
       .subscribe((data: IAuthRes) => {
         this.storageService.saveUser(data.name);
         this.storageService.saveToken(data.token);
-        this.storageService.loginStatusChange(true);
+        this.authService.loginStatusChange(true);
         this.router.navigate(['/home']);
       });
   }

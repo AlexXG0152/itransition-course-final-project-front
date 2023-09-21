@@ -83,6 +83,5 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
         break;
     }
     console.log(row.id);
-    console.log(this.inputData.columns);
   }
 }

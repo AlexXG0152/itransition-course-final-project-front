@@ -18,7 +18,6 @@ export class CommentsService {
 
   addComment(comment: ICreatedComment) {
     this.socket.emit('addComment', comment);
-    console.log('addCommentsocket', comment);
   }
 
   getNewComments(): Observable<any> {

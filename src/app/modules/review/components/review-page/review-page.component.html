@@ -69,6 +69,11 @@
           <th scope="row">{{'review.read.numberOfPic' | translate}}: </th>
           <td>{{ review?.imageslinks?.length }}</td>
         </tr>
+        <tr>
+          <th scope="row">{{'review.read.authorname' | translate}}: </th>
+          <td>{{ review?.user?.name }}<i class="bi bi-heart-fill text-danger ms-2"
+              matTooltip="{{'user.info.likes' | translate}}"> {{review?.user?.receivedLikes}}</i></td>
+        </tr>
       </tbody>
     </table>
 

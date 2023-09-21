@@ -20,7 +20,7 @@
         <ng-template #createAt>
           <ng-container matColumnDef="{{col}}" *ngIf="inputData.columns[i] !== 'actions'; else buttons">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{col | uppercase}} </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row[inputData.columns[i]] | date:'dd.MM.yyyy, hh:mm'}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row[inputData.columns[i]] | date:'dd.MM.yyyy, HH:mm'}}</mat-cell>
           </ng-container>
         </ng-template>
 

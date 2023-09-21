@@ -38,12 +38,14 @@ export class ReviewPageComponent implements OnInit {
     this.loginStatus$ = this.authService.getLoginStatus().subscribe(() => {
       this.isLoggedIn = this.authService.isLoggedIn();
 
-      this.reviewService
-        .isLiked(reviewId, +this.storageService.getUser())
-        .subscribe((response) => {
-          this.liked = response;
-          this.showLikeButton = true;
-        });
+      if (+this.storageService.getUser()) {
+        this.reviewService
+          .isLiked(reviewId, +this.storageService.getUser())
+          .subscribe((response) => {
+            this.liked = response;
+            this.showLikeButton = true;
+          });
+      }
     });
   }
 

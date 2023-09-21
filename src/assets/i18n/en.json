@@ -96,6 +96,7 @@
   "review.read.tags": "Tags",
   "review.read.edit": "Edit",
   "review.read.delete": "Delete",
+  "review.read.authorname": "Author",
   "review.comment.create": "Post comment",
   "review.nothing": "Nothing found",
   "tags.header": "TAGS",
@@ -135,5 +136,19 @@
   "product.title": "Product Title",
   "product.message": "Press enter after input product title if you didn't choose from list",
   "comment.first": "You can post first comment for this review",
-  "auth.social.with": "with"
+  "auth.social.with": "with",
+  "terms.title": "Terms and conditions (with a little pinch of humor 😎😉)",
+  "terms.close": "Close",
+  "terms.agree": "Agree",
+  "terms.0": "Oh, wow, a web portal for reviews! Just what the world needs! Finally, we can all have a place to share our opinions on what we should read, watch, play, and so on. Because, you know, there aren't enough opinions out there already.",
+  "terms.1": "And look at all the fancy technologies they're using! TypeScript, Angular, Node.js, NestJS, MySQL... I'm sure all of that is absolutely necessary for a website that lets you write reviews.",
+  "terms.2": "But wait, there's more! If you're not authenticated, you can only read reviews. How generous of them to let us do that! And if you are authenticated, you can do everything except access the admin panel. Because we all know how dangerous it is to let regular users mess around with admin stuff.",
+  "terms.3": "And of course, they have to support authentication through social media. Because who doesn't want to give a random website access to their Facebook or Twitter account?",
+  "terms.4": "But wait, there's even more! You can write reviews! And add tags! And format your text with markdown! And upload images! And rate things on a 10-point scale! And like other people's reviews! And leave comments! And... well, you get the idea.",
+  "terms.5": "And don't forget the two UI languages and two themes! Because we all know how important it is to have a choice between light and dark mode.",
+  "terms.6": "But hey, if you really want to go all out, you can opt for the optional features. Like the advanced admin panel, where you can block and delete users. Or the ability to upload multiple images and export reviews to PDF. Or the ability to link different reviews to the same work and calculate an average rating. Because who doesn't want to spend even more time on a website that lets you write reviews?",
+  "terms.7": "All in all, this website sounds like a real game-changer. I can't wait to spend hours reading reviews and writing my own. Because, you know, there aren't enough opinions out there already. 😒",
+  "about.title": "About (with a little pinch of humor ...😎😉)",
+  "not.ready": "Not ready yet 😎",
+  "open": "Click to open"
 }

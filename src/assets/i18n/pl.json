@@ -96,6 +96,7 @@
 	"review.read.tags": "Tagi",
   "review.read.delete": "Skasować",
 	"review.read.edit": "Edytować",
+  "review.read.authorname": "Autor",
   "review.comment.create": "Stwórzyć",
   "review.nothing": "Nic nie znaleziono",
 	"tags.header": "Tagi",
@@ -135,5 +136,19 @@
   "product.title": "Tytuł produktu",
   "product.message": "Naciśnij Enter po wprowadzeniu tytułu produktu, jeśli nie został on wybrany z listy.",
   "comment.first": "Możesz opublikować pierwszy komentarz do tej recenzji",
-  "auth.social.with": "z"
+  "auth.social.with": "z",
+  "terms.title":"Regulamin (z odrobiną humoru 😎😉)",
+  "terms.close": "Zamknąć",
+  "terms.agree": "Przyjąć",
+  "terms.0": "Och, wow, portal internetowy z recenzjami! Właśnie tego potrzebuje świat! Wreszcie wszyscy możemy mieć miejsce, w którym możemy dzielić się swoimi opiniami na temat tego, co powinniśmy czytać, oglądać, grać i tak dalej. Bo, wiesz, nie ma już wystarczającej liczby opinii.",
+  "terms.1": "I spójrz na wszystkie fantazyjne technologie, których używają! TypeScript, Angular, Node.js, NestJS, MySQL... Jestem pewien, że to wszystko jest absolutnie niezbędne w przypadku strony internetowej, która pozwala pisać recenzje.",
+  "terms.2": "Ale czekaj, jest więcej! Jeśli nie jesteś uwierzytelniony, możesz tylko czytać recenzje. Jak hojni z ich strony, że nam na to pozwolili! A jeśli jesteś uwierzytelniony, możesz zrobić wszystko oprócz dostępu do panelu administracyjnego. Ponieważ wszyscy wiemy, jak niebezpieczne jest pozwalanie zwykłym użytkownikom bawić się sprawami administracyjnymi.",
+  "terms.3": "I oczywiście muszą obsługiwać uwierzytelnianie za pośrednictwem mediów społecznościowych. Bo kto nie chciałby dać przypadkowej stronie internetowej dostępu do swojego konta na Facebooku lub Twitterze?",
+  "terms.4": "Ale czekaj, jest jeszcze więcej! Możesz pisać recenzje! I dodaj tagi! I sformatuj swój tekst za pomocą przecen! I przesyłaj zdjęcia! I oceniaj rzeczy w 10-punktowej skali! I polubij recenzje innych osób! I zostaw komentarze! I... cóż, rozumiesz o co chodzi.",
+  "terms.5": "I nie zapomnij o dwóch językach interfejsu użytkownika i dwóch motywach! Ponieważ wszyscy wiemy, jak ważny jest wybór między trybem jasnym i ciemnym.",
+  "terms.6": "Ale hej, jeśli naprawdę chcesz dać z siebie wszystko, możesz zdecydować się na opcjonalne funkcje. Podobnie jak zaawansowany panel administracyjny, w którym możesz blokować i usuwać użytkowników. Lub możliwość przesyłania wielu obrazów i eksportowania recenzji do formatu PDF. Lub możliwość powiązania różnych recenzji z tą samą pracą i obliczenia średniej oceny. Bo kto nie chciałby spędzać jeszcze więcej czasu na stronie internetowej, która umożliwia pisanie recenzji?",
+  "terms.7": "Podsumowując, ta strona internetowa wydaje się naprawdę przełomowa. Nie mogę się doczekać, aby spędzić wiele godzin na czytaniu recenzji i pisaniu własnych. Bo, wiesz, nie ma już wystarczającej liczby opinii. 😒",
+  "about.title": "O aplikacji (z odrobiną humoru 😎😉)",
+  "not.ready": "Jeszcze niegotowe 😎",
+  "open": "Kliknij, aby otworzyć"
 }

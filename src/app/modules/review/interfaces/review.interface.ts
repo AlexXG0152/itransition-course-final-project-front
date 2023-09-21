@@ -15,6 +15,8 @@ export interface IReview {
   subcategoryId?: number;
   createdAt?: string;
   updatedAt?: string;
-  product: any
-  comments: string[]
+  product: any;
+  comments: string[];
+  user: any;
+  userId: number;
 }

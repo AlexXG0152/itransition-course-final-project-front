@@ -28,7 +28,7 @@
 
         <p class="card-text">{{'review.preview.rating' | translate}}: {{reviewData!.reviewRating}}</p>
         <p class="card-text"><small class="text-body-secondary">{{'review.preview.created' | translate}}:
-            {{reviewData!.createdAt | date:'dd.MM.yyyy, hh:mm'}}</small></p>
+            {{reviewData!.createdAt | date:'dd.MM.yyyy, HH:mm'}}</small></p>
 
         <div class="d-flex">
           <button mat-raised-button [routerLink]="'/review/' + reviewData!.id" matTooltip="{{'review.preview.go-to-review' |

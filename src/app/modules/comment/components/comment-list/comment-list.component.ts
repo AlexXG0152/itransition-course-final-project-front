@@ -23,8 +23,6 @@ export class CommentListComponent implements OnInit {
       .subscribe((comment) => {
         if (comment !== '') {
           this.comments!.push(comment);
-          console.log(this.comments);
-
         }
       });
   }

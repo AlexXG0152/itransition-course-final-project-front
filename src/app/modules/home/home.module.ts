@@ -20,6 +20,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CarouselComponent,
     SearchComponent,
     PageNotFoundComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ScrollingModule,
     ReviewModule,
   ],
-  exports: [HeaderComponent, PageNotFoundComponent],
+  exports: [HeaderComponent, PageNotFoundComponent, FooterComponent],
 })
 export class HomeModule {}

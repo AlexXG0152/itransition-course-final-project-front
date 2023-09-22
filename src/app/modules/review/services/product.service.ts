@@ -18,7 +18,8 @@ export class ProductService {
     return this.http.get<any>(`${this.API}/products/search/${query}`);
   }
 
-  deleteGivenRating(data: { productId: number; id: number }) {
+  // for user page info (not implemented)
+  deleteGivenRating(data: { productId: number; userId: number }) {
     return this.http.post<any>(`${this.API}/products/unrate`, data);
   }
 }

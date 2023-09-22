@@ -39,8 +39,8 @@ export class UserService {
     return this.currentUserSubject!.value;
   }
 
-  setCurrentUser(user: IUser): void {
-    this.currentUserSubject!.next(user);
+  setCurrentUser(user: IUser | null): void {
+    this.currentUserSubject!.next(user!);
   }
 
   getAdminBoard(): boolean {

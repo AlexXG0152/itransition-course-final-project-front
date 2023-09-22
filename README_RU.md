@@ -2,6 +2,10 @@
 
 <https://itransition-course-final-project-front.onrender.com/>
 
+User with admin rights
+user2@user.com
+123456789
+
 Web portal for reviews "what should you read/watch/play/work, etc."
 
 САЙТ ДЛЯ УПРАВЛЕНИЯ РЕКОМЕНДАЦИЯМИ "ЧЁ ПОСМОТРЕТЬ/ЧЁ ПОЧИТАТЬ/ВО ЧТО ПОИГРАТЬ/У КОГО ПОРАБОТАТЬ И Т.Д."

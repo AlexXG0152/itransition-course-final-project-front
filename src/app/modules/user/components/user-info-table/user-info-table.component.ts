@@ -65,23 +65,41 @@ export class UserInfoTableComponent implements AfterViewInit, OnInit {
     }
   }
 
+  reload() {
+    this.dataSource = new MatTableDataSource(this.inputData.rows);
+  }
+
   onDelete(row: any) {
-    switch (this.inputData.columns) {
-      case this.inputData.columns[1] === 'title': //Reviews
-        this.reviewService.deleteReview(row.id).subscribe();
+    switch (this.inputData.columns[1]) {
+      case 'title': //Reviews
+        this.reviewService.deleteReview(row.id).subscribe(() => {
+          this.inputData.rows = this.inputData.rows.filter(
+            (review: any) => review.id !== row.id
+          );
+          this.reload();
+        });
         break;
-      case this.inputData.columns[1] === 'product-title': //Ratings
-        // this.reviewService.deleteGivenRating(row.id).subscribe();
+      case 'product-title': //Ratings
+        this.productService
+          .deleteGivenRating({
+            productId: row['product-id'],
+            userId: row.userId,
+          })
+          .subscribe(() => {
+            this.inputData.rows = this.inputData.rows.filter(
+              (review: any) => review.id !== row.id
+            );
+            this.reload();
+          });
         break;
-      case this.inputData.columns[1] === 'comment-text': //Comments
+      case 'comment-text': //Comments
         // this.commentsService.deleteComment().subscribe();
         break;
-      case this.inputData.columns[1] === 'review-title': //Likes
+      case 'review-title': //Likes
         // this.reviewService.deleteLike().sbscribe();
         break;
       default:
         break;
     }
-    console.log(row.id);
   }
 }

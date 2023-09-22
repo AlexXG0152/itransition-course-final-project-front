@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { ReviewService } from '../../services/review.service';
 import { IReview } from '../../interfaces/review.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-review-previews-list',
@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ReviewPreviewsListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private reviewService: ReviewService,
     private cdr: ChangeDetectorRef
   ) {}
@@ -30,6 +31,7 @@ export class ReviewPreviewsListComponent implements OnInit {
   orderBy = 'createdAt';
   direction: 'ASC' | 'DESC' = 'ASC';
   categoryId?: number;
+  subcategoryId?: number;
 
   reviews?: IReview[];
   likesArray: boolean[] = [];
@@ -43,6 +45,7 @@ export class ReviewPreviewsListComponent implements OnInit {
       this.orderBy = params['orderBy'];
       this.direction = params['direction'];
       this.categoryId = params['categoryId'];
+      this.subcategoryId = params['subcategoryId'];
 
       this.loadData();
     });
@@ -51,6 +54,8 @@ export class ReviewPreviewsListComponent implements OnInit {
   loadData() {
     if (this.tagId) {
       this.loadTagsReviews();
+    } else if (this.subcategoryId) {
+      this.loadSubCategoryIdReviews();
     } else if (this.categoryId) {
       this.loadCategoryIdReviews();
     } else {
@@ -99,12 +104,32 @@ export class ReviewPreviewsListComponent implements OnInit {
       });
   }
 
+  loadSubCategoryIdReviews() {
+    this.reviewService
+      .getReviewsByParams(
+        this.quantity,
+        this.offset,
+        this.orderBy,
+        this.direction,
+        this.categoryId,
+        this.subcategoryId
+      )
+      .subscribe((response) => {
+        this.processReviewsResponse(response);
+      });
+  }
+
   processReviewsResponse(response: any) {
     response.rows?.map((review: any) => {
       review.imageslinks = JSON.parse(review.imageslinks);
     });
 
     this.reviews = response?.rows;
+
+    if (response.count === 0) {
+      this.router.navigateByUrl('/404');
+    }
+
     this.collectionSize = response.count;
     this.reviewService.getLikesForPreview(this.reviews, this.likesArray);
     this.cdr.detectChanges();

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container my-2">
 
   <div class="input-group">
-    <input type="text" class="form-control" [formControl]="searchInput" placeholder="Search...">
+    <input type="text" class="form-control" [formControl]="searchInput" placeholder="{{'home.search' | translate}}...">
   </div>
 
   <ng-container>
@@ -10,18 +10,19 @@
       <h6 class="card-title">{{'search.title' | translate}}:</h6>
       <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
         <div class="list-group" *cdkVirtualFor="let result of $any(searchResults)">
-          <a [routerLink]="['/review', result.reviewId]" class="list-group-item list-group-item-action mb-1"
-            (click)="close()">
+          <button class="list-group-item list-group-item-action mb-1"
+            (click)="close(result.reviewId)">
             <div>{{ result.title }}</div>
             <div>{{ result.content | slice: 0: 30 }}...</div>
-          </a>
+          </button>
         </div>
       </cdk-virtual-scroll-viewport>
     </div>
 
-    <div class="card" *ngIf="searchResults?.length === 0">
+    <div class="card" *ngIf="searchResults?.length === 0 && searchResults !== 7">
       <span>{{'review.nothing' | translate}}</span>
     </div>
 
   </ng-container>
+
 </div>

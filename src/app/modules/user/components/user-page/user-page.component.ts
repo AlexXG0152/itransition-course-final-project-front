@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../interfaces/user.interface';
 import { IColumns } from '../../interfaces/columns.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export const columns: IColumns = {
   reviews: [
@@ -27,6 +27,7 @@ export const columns: IColumns = {
 export class UserPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService
   ) {}
   id: number | string = 0;
@@ -38,7 +39,6 @@ export class UserPageComponent implements OnInit {
   tabs = ['reviews', 'ratings', 'comments', 'likes'];
 
   selectedTabChange($event: any) {
-    // this.selectedTab = $event.tab.textLabel.toLowerCase();
     this.selectedTab = this.tabs[$event.index];
 
     this.data = {
@@ -58,15 +58,18 @@ export class UserPageComponent implements OnInit {
   getInputData() {
     this.userService.getUserInfo(this.id).subscribe((response) => {
       this.user = response;
+      if (this.user) {
+        this.user = this.addFields(this.user);
+        this.user = this.replaceFieldsNameForTable(this.user);
 
-      this.user = this.addFields(this.user);
-      this.user = this.replaceFieldsNameForTable(this.user);
-
-      this.data = {
-        rows: this.user?.reviews,
-        columns: columns.reviews,
-      };
-      this.ready = true;
+        this.data = {
+          rows: this.user?.reviews,
+          columns: columns.reviews,
+        };
+        this.ready = true;
+      } else {
+        this.router.navigateByUrl('/404');
+      }
     });
   }
 

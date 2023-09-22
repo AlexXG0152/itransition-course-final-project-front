@@ -72,7 +72,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   }
 
   onDelete(id: number) {
-    console.log(id);
+    console.log('onDelete', id);
   }
 
   onBlock(userActionId: number, reason: string) {

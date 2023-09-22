@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
@@ -22,10 +21,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FooterComponent } from './components/footer/footer.component';
 
-
 @NgModule({
   declarations: [
-    NavbarComponent,
     HeaderComponent,
     TagsCloudComponent,
     HomepageComponent,
@@ -50,6 +47,6 @@ import { FooterComponent } from './components/footer/footer.component';
     ScrollingModule,
     ReviewModule,
   ],
-  exports: [HeaderComponent, PageNotFoundComponent, FooterComponent],
+  exports: [HeaderComponent, PageNotFoundComponent, FooterComponent, SearchComponent],
 })
 export class HomeModule {}

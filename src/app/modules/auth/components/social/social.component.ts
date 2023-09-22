@@ -1,40 +1,56 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
-import { catchError, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { IAuthRes } from '../../interfaces/auth-res.interface';
+import { DarkModeService } from 'angular-dark-mode';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.scss'],
 })
-export class SocialComponent {
+export class SocialComponent implements OnInit, AfterViewInit {
   constructor(
-    private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private socialAuthService: SocialAuthService,
+    private darkModeService: DarkModeService
   ) {}
+
   @Input() action?: string;
 
-  linkToGoogle = environment.GOOGLE_LOGIN_LINK;
-  linkToFacebook = environment.FACEBOOK_LOGIN_LINK;
+  darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
+  darkMode: boolean = JSON.parse(localStorage.getItem('dark-mode')!).darkMode;
 
-  loginWithGoogle() {
-    // window.open(
-    //   'http://localhost:3000/api/v1/auth/google',
-    //   'mywindow',
-    //   'location=1,status=1,scrollbars=1, width=600,height=650'
-    // );
+  ngOnInit() {
+    this.socialAuthService.authState.subscribe((user: SocialUser) => {
+      this.authService
+        .loginWithGoogle({
+          email: user.email,
+          username: user.name,
+          accessToken: user.idToken,
+        })
+        .subscribe((user: IAuthRes) => {
+          this.storageService.saveUser(user.id);
+          this.storageService.saveToken(user.token);
+          this.authService.loginStatusChange(true);
+          this.router.navigate(['/home']);
+        });
+    });
+  }
 
-    // return this.http.get<any>('http://localhost:3000/api/v1/auth/google').subscribe((user) => {
-    //   this.storageService.saveUser(user.id);
-    //   this.storageService.saveToken(user.token);
-    //   this.authService.loginStatusChange(true);
-    //   this.router.navigate(['/home']);
-    // });
+  ngAfterViewInit(): void {
+    this.darkMode$.subscribe((mode) => {
+      this.darkMode = mode;
+    });
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }

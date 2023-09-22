@@ -8,11 +8,9 @@ export const environment = {
   USER_ID: 'auth_user_id',
   A_TOKEN: 'a_token',
   LOCALES: ['en', 'by', 'pl', 'ru'],
-  FACEBOOK_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/facebook',
-  FACEBOOK_APP_CALLBACK_URL:
-    'http://localhost:3000/api/v1/auth/facebook/callback',
-  GOOGLE_LOGIN_LINK: 'http://localhost:3000/api/v1/auth/google',
-  GOOGLE_APP_CALLBACK_URL: 'http://localhost:3000/api/v1/auth/google/callback',
+  FACEBOOK_LOGIN_PROVIDER: '627102699611104',
+  GOOGLE_LOGIN_PROVIDER:
+    '945599202112-77rpg14h8ajkfvmq9e3kqefddskvavrv.apps.googleusercontent.com',
   WEBSOCKET_URL: 'http://localhost:3000',
 };
 
@@ -25,4 +23,4 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
-  // API: 'https://itr-c-f-p-b.onrender.com/api/v1',
+// API: 'https://itr-c-f-p-b.onrender.com/api/v1',

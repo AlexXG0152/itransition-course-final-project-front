@@ -18,6 +18,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StarRatingModule } from 'angular-star-rating';
 import { MarkdownModule } from 'ngx-markdown';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule,
+} from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +35,7 @@ import { MarkdownModule } from 'ngx-markdown';
     HttpClientModule,
     HomeModule,
     NgbModule,
+    SocialLoginModule,
     StarRatingModule.forRoot(),
     MarkdownModule.forRoot(),
     TranslateModule.forRoot({
@@ -43,6 +51,29 @@ import { MarkdownModule } from 'ngx-markdown';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.GOOGLE_LOGIN_PROVIDER
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(
+              environment.FACEBOOK_LOGIN_PROVIDER
+            ),
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
     },
   ],
   bootstrap: [AppComponent],

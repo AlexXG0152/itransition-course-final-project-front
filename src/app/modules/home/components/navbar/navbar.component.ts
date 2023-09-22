@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/modules/user/services/user.service';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { StorageService } from 'src/app/modules/auth/services/storage.service';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +17,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private router: Router,
     private navigationService: NavigationService,
     private authService: AuthService,
+    private socialAuthService: SocialAuthService,
     private storageService: StorageService,
-    public userService: UserService
+    public userService: UserService,
   ) {}
 
   isLoggedIn = false;
@@ -40,6 +42,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.storageService.clean();
     this.authService.loginStatusChange(false);
     this.userService.setAdminBoard(false);
+    this.socialAuthService.signOut();
     this.router.navigate(['/home']);
   }
 

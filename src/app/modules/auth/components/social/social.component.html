@@ -1,28 +1,26 @@
 <div class="d-flex">
 
   <div class="col s12 m6 offset-m3 center-align">
-    <a class="oauth-container btn darken-4 white black-text" href="{{linkToFacebook}}" style="text-transform:none">
-      <div class="left">
+    <a class="oauth-container btn darken-4 white black-text" (click)="signInWithFB()" style="text-transform:none">
+      <div class="icon">
         <img width="20px" style="margin-top:7px; margin-right:8px; margin-bottom:7px;" alt="Facebook sign-in"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1024px-2021_Facebook_icon.svg.png" />
       </div>
-      {{action}} {{ "auth.social.with" | translate }} Facebook
+      <div class="explanationFacebook">
+        {{action}} {{ "auth.social.with" | translate }} Facebook
+      </div>
     </a>
   </div>
 
   <div class="col s12 m6 offset-m3 center-align">
-    <a class="oauth-container btn darken-4 white black-text" href="{{linkToGoogle}}" style="text-transform:none">
-      <div class="left">
-        <img width="20px" style="margin-top:7px; margin-right:8px; margin-bottom:7px;" alt="Google sign-in"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-      </div>
+    <div class="icon">
+      <asl-google-signin-button type='icon' size='medium' locale="en" shape="pill"
+        [attr.theme]="darkMode === true ? 'filled_black' : 'outline'"
+        class="oauth-container btn darken-4 black-text"></asl-google-signin-button>
+    </div>
+    <div class="explanationGoogle">
       {{action}} {{ "auth.social.with" | translate }} Google
-    </a>
+    </div>
   </div>
 
 </div>
-
-<!--
-  href="{{linkToGoogle}}"
-  (click)="loginWithGoogle()"
--->

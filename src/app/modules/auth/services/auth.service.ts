@@ -7,6 +7,7 @@ import { StorageService } from './storage.service';
 import { IAuthReq } from '../interfaces/auth-req.interface';
 import { IAuthRes } from '../interfaces/auth-res.interface';
 import { IUser } from '../../user/interfaces/user.interface';
+import { ISocialAuthReq } from '../interfaces/social-auth-req.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +28,17 @@ export class AuthService {
     return this.http.post<IAuthRes>(`${this.API}/auth/login`, data);
   }
 
+  loginWithGoogle(data: ISocialAuthReq) {
+    return this.http.post<IAuthRes>(`${this.API}/auth/loginWithGoogle`, data);
+  }
+
   logout() {
     this.storageService.clean();
   }
 
-  private loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   public isLoggedIn() {
     const token = window.localStorage.getItem(environment.A_TOKEN);
@@ -39,7 +46,7 @@ export class AuthService {
       const decoded: IUser = jwt_decode(token);
       const isLoggedIn = +decoded.exp! > +Date.now().toString().slice(0, 10);
       if (isLoggedIn) {
-        return true
+        return true;
       } else {
         this.storageService.clean();
         return false;

@@ -12,11 +12,11 @@ export const columns: IColumns = {
     'like',
     'product-title',
     'create',
-    'actions',
+    // 'actions'
   ],
-  ratings: ['product-id', 'product-title', 'rate', 'create', 'actions'],
-  comments: ['review-id', 'comment-text', 'review-title', 'create', 'actions'],
-  likes: ['review-id', 'review-title', 'create', 'actions'],
+  ratings: ['product-id', 'product-title', 'rate', 'create'],
+  comments: ['review-id', 'comment-text', 'review-title', 'create'],
+  likes: ['review-id', 'review-title', 'create'],
 };
 
 @Component({
@@ -38,7 +38,6 @@ export class UserPageComponent implements OnInit {
   tabs = ['reviews', 'ratings', 'comments', 'likes'];
 
   selectedTabChange($event: any) {
-    // this.selectedTab = $event.tab.textLabel.toLowerCase();
     this.selectedTab = this.tabs[$event.index];
 
     this.data = {

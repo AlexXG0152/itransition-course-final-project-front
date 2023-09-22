@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IReview } from '../../interfaces/review.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
 import { IUser } from 'src/app/modules/user/interfaces/user.interface';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { StorageService } from 'src/app/modules/auth/services/storage.service';
 export class ReviewPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private reviewService: ReviewService,
     private authService: AuthService,
     private storageService: StorageService
@@ -55,6 +56,8 @@ export class ReviewPageComponent implements OnInit {
       if (this.review) {
         this.review.imageslinks = JSON.parse(this.review.imageslinks);
         this.loaded = true;
+      } else {
+        this.router.navigateByUrl('/404')
       }
     });
   }

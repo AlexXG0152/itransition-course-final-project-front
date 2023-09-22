@@ -25,6 +25,8 @@ import {
   SocialLoginModule,
 } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
+import { ToastrModule } from 'ngx-toastr';
+import { HandleErrorsInterceptor } from './handle-error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,6 +46,12 @@ import { environment } from 'src/environments/environment';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+    }),
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-left',
     }),
   ],
   providers: [
@@ -74,6 +82,11 @@ import { environment } from 'src/environments/environment';
           console.error(err);
         },
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HandleErrorsInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FooterComponent } from './components/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
